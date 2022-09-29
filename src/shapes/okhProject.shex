@@ -1,0 +1,326 @@
+# ----------------------------------------------------
+# Shex (https://shex.io) shapes based on the Open Know-How Speciication
+# (https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl)
+# ----------------------------------------------------
+
+PREFIX okhs: <https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH-Shapes.ttl#>
+PREFIX okh: <https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#>
+PREFIX okshwa: <https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl/oshwa=#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX schema: <https://schema.org/>
+PREFIX otrl: <https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OTRL.ttl#>
+PREFIX otrls: <https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OTRL-shapes.ttl#>
+
+# TODO: Confirm cardinality on each item
+# TODO: Check the range on everything that's marked IRI
+# TODO: Get proper URLs for the shape prefixes
+# TODO: Schema URL, should it be an IRI or a string
+
+# ----------------------------------------------------
+# Component
+# ----------------------------------------------------
+okhs:Component EXTRA a {
+  $okhs:ComponentShape (
+    a [ okh:Component ]
+      // rdfs:comment "Either a module (MOSH) or Part (POSH); more component types may be added in the future";
+    okh:uploadMethod xsd:string?
+      // rdfs:comment "e.g. auto (fully integrated platforms) or manifest file (for connected platforms)";
+    okh:compilesWith IRI*
+      // rdfs:comment "complies with a technical standard";
+    okh:hasImage @okhs:Image*
+      // rdfs:comment "links to the corresponding Image";
+    okh:relatedTsDC IRI*
+      // rdfs:comment "Identifier for the applying Technology-specific Documentation Criteria according to DIN SPEC 3105-1, e.g. `tsdc:3DP`";
+  )
+}
+
+okhs:Module EXTRA a {
+  $okhs:ModuleShape (
+    &okhs:ComponentShape;
+    a [okh:Module]
+      // rdfs:comment "Module of Open Source Hardware (MOSH)";
+    okh:dataSource xsd:string?
+      // rdfs:comment "platform, where the crawler found the metadata (e.g. GitHub, Wikifactory)";
+    okh:repoHost xsd:string?
+      // rdfs:comment "platform, where the OSH documentation is located (e.g. GitLab, Wikifactory or any self-hosted website or wiki)";
+    okh:repository @okhs:WebsiteURL?
+      // rdfs:comment "URL to the place where development happens (typically the repository) following this link people shall be able to contribute to the development (reporting issues, suggesting changes, connecting to the team etc.)";
+    okh:repoSnapshot @okhs:WebsiteURL?
+      // rdfs:comment "LOSH-Krawler takes the commit hash from the version tag and creates this permalink";
+    okh:version xsd:string?
+      // rdfs:comment "version of this Component, preferably in the semantic versioning scheme (semver.org)";
+    okh:forkOf IRI?
+      // rdfs:comment "A resource from which this work is derived or from which it is a modification or adaption.";
+    okh:versionOf @okhs:Module*
+      // rdfs:comment "connects specific versions of Modules with their versionless superclass";
+    okh:documentationLanguage xsd:string?
+      // rdfs:comment "IETF language tag following the BCP 47 standard e.g. en-GB denotes the language of the documentation for the component subject";
+    # TODO: figure out if schema:Organization and schema:Person should be modeled
+    okh:licensor IRI?
+      // rdfs:comment "organization/individual behind the hardware design (holder of intellectual property)";
+    okh:organization IRI?
+      // rdfs:comment "organization representing (most) contributors of this project";
+    okh:spdxLicense IRI?
+      // rdfs:comment "view complete list under https://spdx.org/licenses/";
+    okh:alternativeLicense IRI*
+      // rdfs:comment "URL to legal code of a license without SPDX identifier, hence OSHWA-compliance is to be checked manually";
+    okh:technologyReadinessLevel @otrls:OTRL?
+      // rdfs:comment "Technology Readiness Level (TRL) using the OTRL definitions";
+    okh:documentationReadinessLevel @otrls:Odrl?
+      // rdfs:comment "Documentation Readiness Level (DLR) using the ODRL definitions";
+    okh:attestation IRI*
+      // rdfs:comment "permanent URL to evidence of compliance (OSHWA, FSF, DIN SPEC 3105)";
+    okh:hasPublication IRI*
+      // rdfs:comment "design files of this OSH modules have been peer reviewed in a scientific publication";
+    okh:cpcPatentClass IRI*
+      // rdfs:comment "International Patent Classification (IPC)";
+    # TODO: Might not actually be a string
+    okh:function xsd:string?
+      // rdfs:comment "functional description, e.g. what it actually does, what problem it solves, for whom, under which conditions etc. so if you wish that someone finds & uses your okh specifically e.g. for COVID-19-crisis response, include relevant keywords in this field optional: description of input, output and interfaces";
+    okh:hasReadme @okhs:Readme*
+      // rdfs:comment "links to the corresponding Readme";
+    okh:hasContributionGuide @okhs:ContributionGuide*
+      // rdfs:comment "links to the corresponding Contribution Guide";
+    okh:hasBoM @okhs:BoM*
+      // rdfs:comment "links to the corresponding Bill of Materials";
+    okh:hasComponent @okhs:Part*
+      // rdfs:comment "links to parts of the module";
+    (okh:usesModule @okhs:Module* | okh:useModule @okhs:WebsiteURL*)
+      // rdfs:comment "refers to a *release*/snapshot of an (external) OSH Module used in this design (should also appear in the BoM)";
+    okh:functionalMetadata xsd:string*
+      // rdfs:comment "Metadata addressing functionality, such as dimensions, material, weight, RPM,… (not standardised)";
+    okh:productionMetadata IRI*
+      // rdfs:comment "production-relevant metadata, such as material, manufacturing technology, outer dimensions, smallest tolerance, finest surface roughness";
+    okh:hasManifestFile @okhs:ManifestFile*
+      // rdfs:comment "has manifest file";
+    okh:timestamp xsd:dateTime*
+      // rdfs:comment "following ISO 8601";
+    okh:source @okhs:SourceFile*
+      // rdfs:comment "relative link to a source file";
+    okh:export @okhs:ExportFile*
+      // rdfs:comment "URL to a (generated) exported source file";
+    okh:auxiliary @okhs:AuxiliaryFile*
+      // rdfs:comment "reference to an auxiliary file";
+    okh:hasUserManual @okhs:UserManual*
+      // rdfs:comment "has user manual";
+    okh:hasManufacturingInstructions @okhs:ManufacturingInstructions*
+      // rdfs:comment "has Manufacturing Instructions";
+    okh:hasSoftware @okhs:Software*
+      // rdfs:comment "has Software";
+    okh:release xsd:string*
+      // rdfs:comment "URL to release";
+    okshwa:primaryType xsd:string?
+      // rdfs:comment "primary category as stated at OSHWA - possilbe values: 3D Printing, Agriculture, Arts, Education, Electronics, Enclosure, Environmental, Home Connection, IOT, Manufacturing, Other, Robotics, Science, Sound, Space, Tool, Wearables";
+    okshwa:additionalType xsd:string*
+      // rdfs:comment "additional category as stated at OSHWA";
+    okshwa:hardwareLicense IRI?
+      // rdfs:comment "harward license as stated at OSHWA";
+    okshwa:softwareLicense IRI?
+      // rdfs:comment "sotware license as stated at OSHWA";
+    okshwa:documentationLicense IRI?
+      // rdfs:comment "documentation license as stated at OSHWA";
+    okshwa:country xsd:string?
+      // rdfs:comment "origin (country) as stated at OSHWA";
+    okshwa:certificationDate xsd:date?
+      // rdfs:comment "certification date as state at OSHWA"
+  )
+}
+
+okhs:Part EXTRA a {
+  $okhs:PartShape (
+    &okhs:ComponentShape;
+    a [okh:Part]
+      // rdfs:comment "Piece of Open Source Hardware (POSH)";
+    okh:forkOf IRI?
+      // rdfs:comment "fork of" ;
+    okh:documentationLanguage xsd:string?
+      // rdfs:comment "IETF language tag following the BCP 47 standard e.g. en-GB denotes the language of the documentation for the component subject";
+    okh:productionMetadata IRI*
+      // rdfs:comment "production-relevant metadata, such as material, manufacturing technology, outer dimensions, smallest tolerance, finest surface roughness";
+    okh:smallestToleranceClass IRI?
+      // rdfs:comment "smallest tolerance class (following ISO 286)";
+    okh:hasManifestFile @okhs:ManifestFile*
+      // rdfs:comment "has manifest file";
+    okh:source @okhs:SourceFile*
+      // rdfs:comment "relative link to a source file";
+    okh:export @okhs:ExportFile*
+      // rdfs:comment "URL to a (generated) exported source file";
+    okh:auxiliary @okhs:AuxiliaryFile*
+      // rdfs:comment "reference to an auxiliary file";
+    okh:hasManufacturingInstructions @okhs:ManufacturingInstructions*
+      // rdfs:comment "has Manufacturing Instructions";
+  )
+}
+
+okhs:Software EXTRA a {
+  $okhs:SoftwareShape (
+    &okhs:ComponentShape;
+    a [okh:Software]
+      // rdfs:comment "Software (including firmware) needed to run & use the OSH";
+    okh:release IRI*
+      // rdfs:comment "URL to release";
+    okh:installationGuide xsd:string*
+      // rdfs:comment "Installation Guide";
+  )
+}
+
+okhs:Reference EXTRA a {
+  $okhs:ReferenceShape (
+    a [okh:Reference]
+      // rdfs:comment "unambiguous reference";
+  )
+}
+
+okhs:WebsiteURL EXTRA a {
+  $okhs:WebsiteURLShape (
+    &okhs:ReferenceShape;
+    a [okh:WebsiteUrl]
+      // rdfs:comment "Website URL";
+    schema:url xsd:string
+      // rdfs: "URL of the item.";
+  )
+}
+
+okhs:Publication EXTRA a {
+  $okhs:PublicationShape (
+    a [okh:Publication]
+      // rdfs:comment "_scientific_ (that is: peer reviewed) publication that _contains_ the design files";
+    okh:doi xsd:string?
+      // rdfs:comment "this publication has a digital object identifier (DOI)";
+  )
+}
+
+okhs:Standard EXTRA a {
+  $okhs:StandardShape (
+    a [okh:Standard]
+      // rdfs:comment "official standard used in the _design_ (not e.g. DIN SPEC 3105-1)";
+    okh:standardID xsd:string?
+      // rdfs:comment "Document Identifier for the technical Standard";
+  )
+}
+
+okhs:File EXTRA a {
+  $okhs:FileShape (
+    a [okh:File]
+      // rdfs:comment "File";
+  )
+}
+
+okhs:ManifestFile EXTRA a {
+  $okhs:ManifestFileShape (
+    &okhs:FileShape;
+    a [okh:ManifestFile]
+      // rdfs:comment "file holding the metadata";
+    okh:okhv xsd:string?
+      // rdfs:comment "version of OKH specification the metadata is following (different version → different data fields)";
+  )
+}
+
+okhs:Readme EXTRA a {
+  $okhs:ReadmeShape (
+    &okhs:FileShape;
+    a [okh:Readme]
+  )
+}
+
+okhs:ContributionGuide EXTRA a {
+  $okhs:ContributionGuideShape (
+    &okhs:FileShape;
+    a [okh:ContibutionFile]
+  )
+}
+
+okhs:Image EXTRA a {
+  $okhs:ImageShape (
+    &okhs:FileShpae;
+    a [okh:Readme]
+  )
+}
+
+okhs:BoM EXTRA a {
+  $okhs:BoMShape (
+    &okhs:FileShpae;
+    a [okh:BoM]
+  )
+}
+
+okhs:SourceFile EXTRA a {
+  $okhs:SourceFileShape (
+    &okhs:FileShpae;
+    a [okh:SourceFile]
+  )
+}
+
+okhs:ExportFile EXTRA a {
+  $okhs:ExportFileShape (
+    &okhs:FileShpae;
+    a [okh:ExportFile]
+  )
+}
+
+okhs:AuxiliaryFile EXTRA a {
+  $okhs:AuxiliaryFileShape (
+    &okhs:FileShpae;
+    a [okh:AuxiliaryFile]
+  )
+}
+
+okhs:ManufacturingInstructions EXTRA a {
+  $okhs:ManufacturingInstructionsShape (
+    &okhs:FileShpae;
+    a [okh:ManufacturingInstructions]
+  )
+}
+
+okhs:UserManual EXTRA a {
+  $okhs:UserManualShape (
+    &okhs:FileShpae;
+    a [okh:UserManual]
+  )
+}
+
+okhs:OuterDimensions EXTRA a {
+  $okhs:OuterDimensionsShape (
+    a [okh:OuterDimensions]
+      // rdfs:comment "outer dimensions of a module or part";
+    okh:openScad xsd:string*
+      // rdfs:comment "material";
+    okh:unit xsd:string*
+      // rdfs: "mm, cm, m, g, kg";
+  )
+}
+
+okhs:Mass EXTRA a {
+  $okhs:MassShape (
+    a [okh:Mass]
+      // rdfs:comment "mass of a module or part";
+    okh:unit xsd:string*
+      // rdfs: "mm, cm, m, g, kg";
+    okh:value xsd:decimal*
+      // rdfs:comment "value";
+  )
+}
+
+otrls:OTRL EXTRA a {
+  $otrls:OTRLShape (
+    a [otrl:OTRL]
+      // rdfs:comment "Technology Readiness Level for open source hardware";
+    otrl:goal xsd:string?
+      // rdfs:comment "Goal or purpose of this OTRL/ODRL";
+    otrl:exitCriteria xsd:string?
+      // rdfs:comment "Criteria to exit this OTRL for the next OTRL; inspired by: https://www.nasa.gov/pdf/458490main_TRL_Definitions.pdf";
+  )
+}
+
+otrls:Odrl EXTRA a {
+  $otrls:OdrlShape (
+    a [otrl:Odrl]
+      // rdfs:comment "Documentation Readiness Level for open source hardware";
+    otrl:goal xsd:string?
+      // rdfs:comment "Goal or purpose of this OTRL/ODRL";
+    otrl:exitCriteria xsd:string?
+      // rdfs:comment "Criteria to exit this OTRL for the next OTRL; inspired by: https://www.nasa.gov/pdf/458490main_TRL_Definitions.pdf";
+  )
+}

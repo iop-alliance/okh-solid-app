@@ -1,0 +1,368 @@
+@prefix : <https://wikifactory.com/%40rwbowman/openflexure-microscope/d2341c50c778378f615e1505d0ecfe7054b3476b/> .
+@prefix okh: <https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+:Project a okh:Module ;
+    rdfs:label "OpenFlexure Microscope" ;
+    okh:dataSource "wikifactory.com" ;
+    okh:documentationLanguage "en" ;
+    okh:function "The Openflexure Microscope was the first product by Waterscope. It is a 3D printed open-source microscope that can be assembled in the classroom and used as an education tool for students and teachers." ;
+    okh:hasComponent :Actuatorassemblytools,
+        :Bodyls65,
+        :Bodyls65m,
+        :Bodyss,
+        :Bodyssm,
+        :Condenserlenstool,
+        :Feet,
+        :Gears,
+        :Illuminationandbackfootadjls65,
+        :Illuminationandbackfootadjss,
+        :Illuminationandbackfootcondenserls65,
+        :Illuminationandbackfootcondenserls75,
+        :Justlegtest,
+        :Opticsc270ownlens,
+        :Opticsc270rms,
+        :Opticspicam2pilens,
+        :Opticspicam2rms,
+        :Opticsusbm12,
+        :Opticsusbrms,
+        :Picam2boardgripper,
+        :Picam2lensremover,
+        :Picamcover,
+        :Sampleclip,
+        :Tubelenstool ;
+    okh:hasImage :Image ;
+    okh:hasReadme :Readme ;
+    okh:licensor "Richard Bowman" ;
+    okh:release <https://wikifactory.com/@rwbowman/openflexure-microscope/v/d2341c5> ;
+    okh:repo <https://wikifactory.com/@rwbowman/openflexure-microscope> ;
+    okh:repoHost "wikifactory.com" ;
+    okh:spdxLicense <https://spdx.org/licenses/CERN-OHL-1.2> ;
+    okh:uploadMethod "manifest" ;
+    okh:version "d2341c50c778378f615e1505d0ecfe7054b3476b" ;
+    okh:versionOf <https://wikifactory.com/@rwbowman/openflexure-microscope> .
+
+:Actuatorassemblytools a okh:Part ;
+    rdfs:label "actuator_assembly_tools" ;
+    okh:documentationLanguage "en" ;
+    okh:licensor "James Botler" ;
+    okh:source :Actuatorassemblytools_source ;
+    okh:spdxLicense <https://spdx.org/licenses/CERN-OHL-1.2> .
+
+:Actuatorassemblytools_source a okh:SourceFile ;
+    rdfs:label "Source File of actuator_assembly_tools of OpenFlexure Microscope d2341c50c778378f615e1505d0ecfe7054b3476b" ;
+    okh:fileFormat "STL" ;
+    okh:fileUrl <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/actuatorassemblytools.stl> ;
+    okh:permaURL <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/actuatorassemblytools.stl> .
+
+:Bodyls65 a okh:Part ;
+    rdfs:label "body_LS65" ;
+    okh:documentationLanguage "en" ;
+    okh:licensor "James Botler" ;
+    okh:source :Bodyls65_source ;
+    okh:spdxLicense <https://spdx.org/licenses/CERN-OHL-1.2> .
+
+:Bodyls65_source a okh:SourceFile ;
+    rdfs:label "Source File of body_LS65 of OpenFlexure Microscope d2341c50c778378f615e1505d0ecfe7054b3476b" ;
+    okh:fileFormat "STL" ;
+    okh:fileUrl <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/bodyls65.stl> ;
+    okh:permaURL <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/bodyls65.stl> .
+
+:Bodyls65m a okh:Part ;
+    rdfs:label "body_LS65-M" ;
+    okh:documentationLanguage "en" ;
+    okh:licensor "James Botler" ;
+    okh:source :Bodyls65m_source ;
+    okh:spdxLicense <https://spdx.org/licenses/CERN-OHL-1.2> .
+
+:Bodyls65m_source a okh:SourceFile ;
+    rdfs:label "Source File of body_LS65-M of OpenFlexure Microscope d2341c50c778378f615e1505d0ecfe7054b3476b" ;
+    okh:fileFormat "STL" ;
+    okh:fileUrl <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/bodyls65-m.stl> ;
+    okh:permaURL <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/bodyls65-m.stl> .
+
+:Bodyss a okh:Part ;
+    rdfs:label "body_SS" ;
+    okh:documentationLanguage "en" ;
+    okh:licensor "James Botler" ;
+    okh:source :Bodyss_source ;
+    okh:spdxLicense <https://spdx.org/licenses/CERN-OHL-1.2> .
+
+:Bodyss_source a okh:SourceFile ;
+    rdfs:label "Source File of body_SS of OpenFlexure Microscope d2341c50c778378f615e1505d0ecfe7054b3476b" ;
+    okh:fileFormat "STL" ;
+    okh:fileUrl <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/bodyss.stl> ;
+    okh:permaURL <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/bodyss.stl> .
+
+:Bodyssm a okh:Part ;
+    rdfs:label "body_SS-M" ;
+    okh:documentationLanguage "en" ;
+    okh:licensor "James Botler" ;
+    okh:source :Bodyssm_source ;
+    okh:spdxLicense <https://spdx.org/licenses/CERN-OHL-1.2> .
+
+:Bodyssm_source a okh:SourceFile ;
+    rdfs:label "Source File of body_SS-M of OpenFlexure Microscope d2341c50c778378f615e1505d0ecfe7054b3476b" ;
+    okh:fileFormat "STL" ;
+    okh:fileUrl <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/bodyss-m.stl> ;
+    okh:permaURL <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/bodyss-m.stl> .
+
+:Condenserlenstool a okh:Part ;
+    rdfs:label "condenser_lens_tool" ;
+    okh:documentationLanguage "en" ;
+    okh:licensor "James Botler" ;
+    okh:source :Condenserlenstool_source ;
+    okh:spdxLicense <https://spdx.org/licenses/CERN-OHL-1.2> .
+
+:Condenserlenstool_source a okh:SourceFile ;
+    rdfs:label "Source File of condenser_lens_tool of OpenFlexure Microscope d2341c50c778378f615e1505d0ecfe7054b3476b" ;
+    okh:fileFormat "STL" ;
+    okh:fileUrl <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/condenserlenstool.stl> ;
+    okh:permaURL <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/condenserlenstool.stl> .
+
+:Feet a okh:Part ;
+    rdfs:label "feet" ;
+    okh:documentationLanguage "en" ;
+    okh:licensor "James Botler" ;
+    okh:source :Feet_source ;
+    okh:spdxLicense <https://spdx.org/licenses/CERN-OHL-1.2> .
+
+:Feet_source a okh:SourceFile ;
+    rdfs:label "Source File of feet of OpenFlexure Microscope d2341c50c778378f615e1505d0ecfe7054b3476b" ;
+    okh:fileFormat "STL" ;
+    okh:fileUrl <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/feet.stl> ;
+    okh:permaURL <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/feet.stl> .
+
+:Gears a okh:Part ;
+    rdfs:label "gears" ;
+    okh:documentationLanguage "en" ;
+    okh:licensor "James Botler" ;
+    okh:source :Gears_source ;
+    okh:spdxLicense <https://spdx.org/licenses/CERN-OHL-1.2> .
+
+:Gears_source a okh:SourceFile ;
+    rdfs:label "Source File of gears of OpenFlexure Microscope d2341c50c778378f615e1505d0ecfe7054b3476b" ;
+    okh:fileFormat "STL" ;
+    okh:fileUrl <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/gears.stl> ;
+    okh:permaURL <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/gears.stl> .
+
+:Illuminationandbackfootadjls65 a okh:Part ;
+    rdfs:label "illumination_and_back_foot_adj_LS65" ;
+    okh:documentationLanguage "en" ;
+    okh:licensor "James Botler" ;
+    okh:source :Illuminationandbackfootadjls65_source ;
+    okh:spdxLicense <https://spdx.org/licenses/CERN-OHL-1.2> .
+
+:Illuminationandbackfootadjls65_source a okh:SourceFile ;
+    rdfs:label "Source File of illumination_and_back_foot_adj_LS65 of OpenFlexure Microscope d2341c50c778378f615e1505d0ecfe7054b3476b" ;
+    okh:fileFormat "STL" ;
+    okh:fileUrl <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/illuminationandbackfootadjls65.stl> ;
+    okh:permaURL <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/illuminationandbackfootadjls65.stl> .
+
+:Illuminationandbackfootadjss a okh:Part ;
+    rdfs:label "illumination_and_back_foot_adj_SS" ;
+    okh:documentationLanguage "en" ;
+    okh:licensor "James Botler" ;
+    okh:source :Illuminationandbackfootadjss_source ;
+    okh:spdxLicense <https://spdx.org/licenses/CERN-OHL-1.2> .
+
+:Illuminationandbackfootadjss_source a okh:SourceFile ;
+    rdfs:label "Source File of illumination_and_back_foot_adj_SS of OpenFlexure Microscope d2341c50c778378f615e1505d0ecfe7054b3476b" ;
+    okh:fileFormat "STL" ;
+    okh:fileUrl <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/illuminationandbackfootadjss.stl> ;
+    okh:permaURL <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/illuminationandbackfootadjss.stl> .
+
+:Illuminationandbackfootcondenserls65 a okh:Part ;
+    rdfs:label "illumination_and_back_foot_condenser_LS65" ;
+    okh:documentationLanguage "en" ;
+    okh:licensor "James Botler" ;
+    okh:source :Illuminationandbackfootcondenserls65_source ;
+    okh:spdxLicense <https://spdx.org/licenses/CERN-OHL-1.2> .
+
+:Illuminationandbackfootcondenserls65_source a okh:SourceFile ;
+    rdfs:label "Source File of illumination_and_back_foot_condenser_LS65 of OpenFlexure Microscope d2341c50c778378f615e1505d0ecfe7054b3476b" ;
+    okh:fileFormat "STL" ;
+    okh:fileUrl <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/illuminationandbackfootcondenserls65.stl> ;
+    okh:permaURL <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/illuminationandbackfootcondenserls65.stl> .
+
+:Illuminationandbackfootcondenserls75 a okh:Part ;
+    rdfs:label "illumination_and_back_foot_condenser_LS75" ;
+    okh:documentationLanguage "en" ;
+    okh:licensor "James Botler" ;
+    okh:source :Illuminationandbackfootcondenserls75_source ;
+    okh:spdxLicense <https://spdx.org/licenses/CERN-OHL-1.2> .
+
+:Illuminationandbackfootcondenserls75_source a okh:SourceFile ;
+    rdfs:label "Source File of illumination_and_back_foot_condenser_LS75 of OpenFlexure Microscope d2341c50c778378f615e1505d0ecfe7054b3476b" ;
+    okh:fileFormat "STL" ;
+    okh:fileUrl <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/illuminationandbackfootcondenserls75.stl> ;
+    okh:permaURL <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/illuminationandbackfootcondenserls75.stl> .
+
+:Image a okh:Image ;
+    rdfs:label "Image of OpenFlexure Microscope d2341c50c778378f615e1505d0ecfe7054b3476b" ;
+    okh:fileFormat "JPG" ;
+    okh:fileUrl <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/unassembled-waterscope.jpg> ;
+    okh:permaURL <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/unassembled-waterscope.jpg> .
+
+:Justlegtest a okh:Part ;
+    rdfs:label "just_leg_test" ;
+    okh:documentationLanguage "en" ;
+    okh:licensor "James Botler" ;
+    okh:source :Justlegtest_source ;
+    okh:spdxLicense <https://spdx.org/licenses/CERN-OHL-1.2> .
+
+:Justlegtest_source a okh:SourceFile ;
+    rdfs:label "Source File of just_leg_test of OpenFlexure Microscope d2341c50c778378f615e1505d0ecfe7054b3476b" ;
+    okh:fileFormat "STL" ;
+    okh:fileUrl <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/justlegtest.stl> ;
+    okh:permaURL <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/justlegtest.stl> .
+
+:Opticsc270ownlens a okh:Part ;
+    rdfs:label "optics_c270_ownlens" ;
+    okh:documentationLanguage "en" ;
+    okh:licensor "James Botler" ;
+    okh:source :Opticsc270ownlens_source ;
+    okh:spdxLicense <https://spdx.org/licenses/CERN-OHL-1.2> .
+
+:Opticsc270ownlens_source a okh:SourceFile ;
+    rdfs:label "Source File of optics_c270_ownlens of OpenFlexure Microscope d2341c50c778378f615e1505d0ecfe7054b3476b" ;
+    okh:fileFormat "STL" ;
+    okh:fileUrl <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/opticsc270ownlens.stl> ;
+    okh:permaURL <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/opticsc270ownlens.stl> .
+
+:Opticsc270rms a okh:Part ;
+    rdfs:label "optics_c270_rms" ;
+    okh:documentationLanguage "en" ;
+    okh:licensor "James Botler" ;
+    okh:source :Opticsc270rms_source ;
+    okh:spdxLicense <https://spdx.org/licenses/CERN-OHL-1.2> .
+
+:Opticsc270rms_source a okh:SourceFile ;
+    rdfs:label "Source File of optics_c270_rms of OpenFlexure Microscope d2341c50c778378f615e1505d0ecfe7054b3476b" ;
+    okh:fileFormat "STL" ;
+    okh:fileUrl <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/opticsc270rms.stl> ;
+    okh:permaURL <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/opticsc270rms.stl> .
+
+:Opticspicam2pilens a okh:Part ;
+    rdfs:label "optics_picam2_pilens" ;
+    okh:documentationLanguage "en" ;
+    okh:licensor "James Botler" ;
+    okh:source :Opticspicam2pilens_source ;
+    okh:spdxLicense <https://spdx.org/licenses/CERN-OHL-1.2> .
+
+:Opticspicam2pilens_source a okh:SourceFile ;
+    rdfs:label "Source File of optics_picam2_pilens of OpenFlexure Microscope d2341c50c778378f615e1505d0ecfe7054b3476b" ;
+    okh:fileFormat "STL" ;
+    okh:fileUrl <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/opticspicam2pilens.stl> ;
+    okh:permaURL <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/opticspicam2pilens.stl> .
+
+:Opticspicam2rms a okh:Part ;
+    rdfs:label "optics_picam2_rms" ;
+    okh:documentationLanguage "en" ;
+    okh:licensor "James Botler" ;
+    okh:source :Opticspicam2rms_source ;
+    okh:spdxLicense <https://spdx.org/licenses/CERN-OHL-1.2> .
+
+:Opticspicam2rms_source a okh:SourceFile ;
+    rdfs:label "Source File of optics_picam2_rms of OpenFlexure Microscope d2341c50c778378f615e1505d0ecfe7054b3476b" ;
+    okh:fileFormat "STL" ;
+    okh:fileUrl <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/opticspicam2rms.stl> ;
+    okh:permaURL <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/opticspicam2rms.stl> .
+
+:Opticsusbm12 a okh:Part ;
+    rdfs:label "optics_usb_M12" ;
+    okh:documentationLanguage "en" ;
+    okh:licensor "James Botler" ;
+    okh:source :Opticsusbm12_source ;
+    okh:spdxLicense <https://spdx.org/licenses/CERN-OHL-1.2> .
+
+:Opticsusbm12_source a okh:SourceFile ;
+    rdfs:label "Source File of optics_usb_M12 of OpenFlexure Microscope d2341c50c778378f615e1505d0ecfe7054b3476b" ;
+    okh:fileFormat "STL" ;
+    okh:fileUrl <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/opticsusbm12.stl> ;
+    okh:permaURL <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/opticsusbm12.stl> .
+
+:Opticsusbrms a okh:Part ;
+    rdfs:label "optics_usb_rms" ;
+    okh:documentationLanguage "en" ;
+    okh:licensor "James Botler" ;
+    okh:source :Opticsusbrms_source ;
+    okh:spdxLicense <https://spdx.org/licenses/CERN-OHL-1.2> .
+
+:Opticsusbrms_source a okh:SourceFile ;
+    rdfs:label "Source File of optics_usb_rms of OpenFlexure Microscope d2341c50c778378f615e1505d0ecfe7054b3476b" ;
+    okh:fileFormat "STL" ;
+    okh:fileUrl <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/opticsusbrms.stl> ;
+    okh:permaURL <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/opticsusbrms.stl> .
+
+:Picam2boardgripper a okh:Part ;
+    rdfs:label "picam2_board_gripper" ;
+    okh:documentationLanguage "en" ;
+    okh:licensor "James Botler" ;
+    okh:source :Picam2boardgripper_source ;
+    okh:spdxLicense <https://spdx.org/licenses/CERN-OHL-1.2> .
+
+:Picam2boardgripper_source a okh:SourceFile ;
+    rdfs:label "Source File of picam2_board_gripper of OpenFlexure Microscope d2341c50c778378f615e1505d0ecfe7054b3476b" ;
+    okh:fileFormat "STL" ;
+    okh:fileUrl <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/picam2boardgripper.stl> ;
+    okh:permaURL <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/picam2boardgripper.stl> .
+
+:Picam2lensremover a okh:Part ;
+    rdfs:label "picam2_lens_remover" ;
+    okh:documentationLanguage "en" ;
+    okh:licensor "James Botler" ;
+    okh:source :Picam2lensremover_source ;
+    okh:spdxLicense <https://spdx.org/licenses/CERN-OHL-1.2> .
+
+:Picam2lensremover_source a okh:SourceFile ;
+    rdfs:label "Source File of picam2_lens_remover of OpenFlexure Microscope d2341c50c778378f615e1505d0ecfe7054b3476b" ;
+    okh:fileFormat "STL" ;
+    okh:fileUrl <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/picam2lensremover.stl> ;
+    okh:permaURL <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/picam2lensremover.stl> .
+
+:Picamcover a okh:Part ;
+    rdfs:label "picam_cover" ;
+    okh:documentationLanguage "en" ;
+    okh:licensor "James Botler" ;
+    okh:source :Picamcover_source ;
+    okh:spdxLicense <https://spdx.org/licenses/CERN-OHL-1.2> .
+
+:Picamcover_source a okh:SourceFile ;
+    rdfs:label "Source File of picam_cover of OpenFlexure Microscope d2341c50c778378f615e1505d0ecfe7054b3476b" ;
+    okh:fileFormat "STL" ;
+    okh:fileUrl <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/picamcover.stl> ;
+    okh:permaURL <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/picamcover.stl> .
+
+:Readme a okh:Readme ;
+    rdfs:label "Readme of OpenFlexure Microscope d2341c50c778378f615e1505d0ecfe7054b3476b" ;
+    okh:fileFormat "MD" ;
+    okh:fileUrl <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/readme-7.md> ;
+    okh:permaURL <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/readme-7.md> .
+
+:Sampleclip a okh:Part ;
+    rdfs:label "sample_clip" ;
+    okh:documentationLanguage "en" ;
+    okh:licensor "James Botler" ;
+    okh:source :Sampleclip_source ;
+    okh:spdxLicense <https://spdx.org/licenses/CERN-OHL-1.2> .
+
+:Sampleclip_source a okh:SourceFile ;
+    rdfs:label "Source File of sample_clip of OpenFlexure Microscope d2341c50c778378f615e1505d0ecfe7054b3476b" ;
+    okh:fileFormat "STL" ;
+    okh:fileUrl <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/sampleclip.stl> ;
+    okh:permaURL <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/sampleclip.stl> .
+
+:Tubelenstool a okh:Part ;
+    rdfs:label "tube_lens_tool" ;
+    okh:documentationLanguage "en" ;
+    okh:licensor "James Botler" ;
+    okh:source :Tubelenstool_source ;
+    okh:spdxLicense <https://spdx.org/licenses/CERN-OHL-1.2> .
+
+:Tubelenstool_source a okh:SourceFile ;
+    rdfs:label "Source File of tube_lens_tool of OpenFlexure Microscope d2341c50c778378f615e1505d0ecfe7054b3476b" ;
+    okh:fileFormat "STL" ;
+    okh:fileUrl <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/tubelenstool.stl> ;
+    okh:permaURL <https://wikifactory-prod-uploads.oss-accelerate.aliyuncs.com/26/tubelenstool.stl> .
+
