@@ -4,7 +4,6 @@ import {
   ISessionInfo
 } from '@inrupt/solid-client-authn-browser';
 import LoginHeader from './LoginHeader';
-import ProjectPanel from './ProjectPanel';
 
 function App() {
   const [sessionInfo, setSessionInfo] = useState<ISessionInfo | undefined>();
@@ -18,7 +17,6 @@ function App() {
     <div className="App">
       <h2>OKH Solid App</h2>
       <LoginHeader sessionInfo={sessionInfo} />
-      {/* {sessionInfo?.isLoggedIn && sessionInfo?.webId && <ProjectPanel webId={sessionInfo.webId} />} */}
     </div>
   );
 }
