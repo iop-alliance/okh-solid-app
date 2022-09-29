@@ -1,8 +1,9 @@
-import React, { FunctionComponent, useCallback } from 'react';
+import React, { FunctionComponent, useCallback, useState } from 'react';
 import { useAuth } from "./businessLogic/authGlobalHook";
+import useAsyncEffect from "use-async-effect";
 
 const LoginHeader: FunctionComponent<{}> = () => {
-    const { login, logout, session } = useAuth();
+    const { login, logout, session, fetch } = useAuth();
 
     const loginCallBack = useCallback(() => {
         const oidcIssuer = prompt(
@@ -15,6 +16,32 @@ const LoginHeader: FunctionComponent<{}> = () => {
             alert("Please provide an issuer.")
         }
     }, [login]);
+    
+    const [checkedRootApplicationContainer, setCheckedRootApplicationContainer] = useState(false);
+    useAsyncEffect(async () => {
+        if (!checkedRootApplicationContainer && session.isLoggedIn) {
+            // Get path to the root container
+            const profileUrl = new URL(session.webId as string);
+            const applicationRoot = `${profileUrl.origin}/okh/`;
+
+            // Check to see if root container exists
+            const containerExistsResponse = await fetch(applicationRoot);
+            if (containerExistsResponse.status === 404) {
+                // Create root container if it doesn't exist
+                console.log('Container doesnt exist'); 
+                const createContainerResponse = await fetch(applicationRoot, {
+                    method: "PUT",
+                    headers: {
+                        link: '<http://www.w3.org/ns/ldp#BasicContainer>; rel="type"'
+                    }
+                })
+                console.log(createContainerResponse.status);
+            }
+            console.log(containerExistsResponse.status);
+
+            setCheckedRootApplicationContainer(true);
+        }
+    }, [session, checkedRootApplicationContainer])
 
     if (session?.isLoggedIn) {
         return (

@@ -5,6 +5,7 @@ import {
   login as libraryLogin,
   getDefaultSession,
   logout as libraryLogout,
+  fetch
 } from "@inrupt/solid-client-authn-browser";
 
 import { createGlobalHook } from "../util/createGlobalHook";
@@ -16,6 +17,7 @@ interface AuthGlobalHookReturn {
   signUp: (issuer: string) => Promise<void>;
   session: ISessionInfo;
   ranInitialAuthCheck: boolean;
+  fetch: (input: URL | RequestInfo, init?: RequestInit | undefined) => Promise<Response>
 }
 
 function useAuthGlobalHookFunc(): AuthGlobalHookReturn {
@@ -64,6 +66,7 @@ function useAuthGlobalHookFunc(): AuthGlobalHookReturn {
       signUp,
       session,
       ranInitialAuthCheck,
+      fetch
     }),
     [login, logout, ranInitialAuthCheck, runInitialAuthCheck, session, signUp]
   );
