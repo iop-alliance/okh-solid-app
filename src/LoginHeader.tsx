@@ -1,6 +1,9 @@
 import React, { FunctionComponent, useCallback, useState } from 'react';
 import { useAuth } from "./businessLogic/authGlobalHook";
 import useAsyncEffect from "use-async-effect";
+import Button from 'react-bootstrap/Button';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 
 const LoginHeader: FunctionComponent<{}> = () => {
     const { login, logout, session, fetch } = useAuth();
@@ -45,14 +48,16 @@ const LoginHeader: FunctionComponent<{}> = () => {
 
     if (session?.isLoggedIn) {
         return (
-            <div>
-                <p>Logged in as {session.webId}</p>
-                <button onClick={logout}>Logout</button>
-            </div>
+            <DropdownButton title="Profile" align='end' variant="outline-primary">
+                <NavDropdown.ItemText>Logged in as {session.webId}</NavDropdown.ItemText>
+                <NavDropdown.Item>
+                    <Button onClick={logout} variant="outline-secondary">Logout</Button>
+                </NavDropdown.Item>
+            </DropdownButton>
         )
     } else {
         return (
-            <button onClick={loginCallBack}>Log into a Solid Pod</button>
+            <Button onClick={loginCallBack}>Log into a Solid Pod</Button>
         )
     }
 }
