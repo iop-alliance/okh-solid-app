@@ -68,11 +68,7 @@ export const okhProjectContext: ContextDefinition = {
   version: {
     "@id":
       "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#version",
-    "@type": [
-      "http://www.w3.org/2001/XMLSchema#string",
-      "http://www.w3.org/2001/XMLSchema#decimal",
-    ],
-    "@container": "@set",
+    "@type": "http://www.w3.org/2001/XMLSchema#string",
   },
   forkOf: {
     "@id":
@@ -199,11 +195,7 @@ export const okhProjectContext: ContextDefinition = {
     "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#ManifestFile",
   okhv: {
     "@id": "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#okhv",
-    "@type": [
-      "http://www.w3.org/2001/XMLSchema#string",
-      "http://www.w3.org/2001/XMLSchema#decimal",
-    ],
-    "@container": "@set",
+    "@type": "http://www.w3.org/2001/XMLSchema#string",
   },
   source: {
     "@id":

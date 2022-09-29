@@ -227,31 +227,15 @@ export const okhProjectSchema: Schema = {
             ],
           },
           {
-            type: "OneOf",
-            expressions: [
-              {
-                type: "TripleConstraint",
-                predicate:
-                  "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#version",
-                valueExpr: {
-                  type: "NodeConstraint",
-                  datatype: "http://www.w3.org/2001/XMLSchema#string",
-                },
-                min: 0,
-                max: 1,
-              },
-              {
-                type: "TripleConstraint",
-                predicate:
-                  "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#version",
-                valueExpr: {
-                  type: "NodeConstraint",
-                  datatype: "http://www.w3.org/2001/XMLSchema#decimal",
-                },
-                min: 0,
-                max: 1,
-              },
-            ],
+            type: "TripleConstraint",
+            predicate:
+              "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#version",
+            valueExpr: {
+              type: "NodeConstraint",
+              datatype: "http://www.w3.org/2001/XMLSchema#string",
+            },
+            min: 0,
+            max: 1,
             annotations: [
               {
                 type: "Annotation",
@@ -1490,31 +1474,15 @@ export const okhProjectSchema: Schema = {
             ],
           },
           {
-            type: "OneOf",
-            expressions: [
-              {
-                type: "TripleConstraint",
-                predicate:
-                  "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#okhv",
-                valueExpr: {
-                  type: "NodeConstraint",
-                  datatype: "http://www.w3.org/2001/XMLSchema#string",
-                },
-                min: 0,
-                max: 1,
-              },
-              {
-                type: "TripleConstraint",
-                predicate:
-                  "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#okhv",
-                valueExpr: {
-                  type: "NodeConstraint",
-                  datatype: "http://www.w3.org/2001/XMLSchema#decimal",
-                },
-                min: 0,
-                max: 1,
-              },
-            ],
+            type: "TripleConstraint",
+            predicate:
+              "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#okhv",
+            valueExpr: {
+              type: "NodeConstraint",
+              datatype: "http://www.w3.org/2001/XMLSchema#string",
+            },
+            min: 0,
+            max: 1,
             annotations: [
               {
                 type: "Annotation",

@@ -77,6 +77,10 @@ export interface Module {
    */
   repoSnapshot?: WebsiteURL;
   /**
+   * version of this Component, preferably in the semantic versioning scheme (semver.org)
+   */
+  version?: string;
+  /**
    * A resource from which this work is derived or from which it is a modification or adaption.
    */
   forkOf?: string;
@@ -389,6 +393,10 @@ export interface ManifestFile {
    * File | file holding the metadata
    */
   type: ("File" | "ManifestFile")[];
+  /**
+   * version of OKH specification the metadata is following (different version → different data fields)
+   */
+  okhv?: string;
 }
 
 /**
