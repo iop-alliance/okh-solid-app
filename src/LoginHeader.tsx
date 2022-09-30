@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useCallback, useState } from 'react';
 import { useAuth } from "./businessLogic/authGlobalHook";
-import useAsyncEffect from "use-async-effect";
+import useAsyncEffect from 'use-async-effect';
 import Button from 'react-bootstrap/Button';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
@@ -19,7 +19,7 @@ const LoginHeader: FunctionComponent<{}> = () => {
             alert("Please provide an issuer.")
         }
     }, [login]);
-    
+        
     const [checkedRootApplicationContainer, setCheckedRootApplicationContainer] = useState(false);
     useAsyncEffect(async () => {
         if (!checkedRootApplicationContainer && session.isLoggedIn) {
@@ -38,9 +38,7 @@ const LoginHeader: FunctionComponent<{}> = () => {
                         link: '<http://www.w3.org/ns/ldp#BasicContainer>; rel="type"'
                     }
                 })
-                console.log(createContainerResponse.status);
             }
-            console.log(containerExistsResponse.status);
 
             setCheckedRootApplicationContainer(true);
         }
