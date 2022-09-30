@@ -10,6 +10,13 @@ export const okhProjectContext: ContextDefinition = {
     "@id": "@type",
     "@container": "@set",
   },
+  label: {
+    "@id": "http://www.w3.org/2000/01/rdf-schema#label",
+    "@type": "http://www.w3.org/2001/XMLSchema#string",
+  },
+  fileUrl: {
+    "@id": "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#fileUrl",
+  },
   Component:
     "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#Component",
   uploadMethod: {
