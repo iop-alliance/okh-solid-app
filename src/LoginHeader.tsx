@@ -48,9 +48,9 @@ const LoginHeader: FunctionComponent<{}> = () => {
         return (
             <DropdownButton title="Profile" align='end' variant="outline-primary">
                 <NavDropdown.ItemText>Logged in as {session.webId}</NavDropdown.ItemText>
-                <NavDropdown.Item>
+                <NavDropdown.ItemText>
                     <Button onClick={logout} variant="outline-secondary">Logout</Button>
-                </NavDropdown.Item>
+                </NavDropdown.ItemText>
             </DropdownButton>
         )
     } else {

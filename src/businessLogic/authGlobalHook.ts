@@ -10,6 +10,8 @@ import {
 
 import { createGlobalHook } from "../util/createGlobalHook";
 
+export const POST_LOGIN_REDIRECT = 'postLoginRedirect';
+
 interface AuthGlobalHookReturn {
   runInitialAuthCheck: () => Promise<void>;
   login: (issuer: string) => Promise<void>;
@@ -27,6 +29,10 @@ function useAuthGlobalHookFunc(): AuthGlobalHookReturn {
   const [ranInitialAuthCheck, setRanInitialAuthCheck] = useState(false);
 
   const runInitialAuthCheck = useCallback(async () => {
+    const postLoginRedirect = window.localStorage.getItem(POST_LOGIN_REDIRECT);
+    if (!postLoginRedirect) {
+      window.localStorage.setItem(POST_LOGIN_REDIRECT, window.location.href);
+    }
     await handleIncomingRedirect({
       restorePreviousSession: true,
     });
@@ -58,8 +64,7 @@ function useAuthGlobalHookFunc(): AuthGlobalHookReturn {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return useMemo(
-    () => ({
+  return useMemo(() => ({
       runInitialAuthCheck,
       login,
       logout,
