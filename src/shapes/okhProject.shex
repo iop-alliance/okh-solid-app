@@ -46,7 +46,7 @@ okhs:Module EXTRA a {
       // rdfs:comment "platform, where the crawler found the metadata (e.g. GitHub, Wikifactory)";
     okh:repoHost xsd:string?
       // rdfs:comment "platform, where the OSH documentation is located (e.g. GitLab, Wikifactory or any self-hosted website or wiki)";
-    okh:repository @okhs:WebsiteURL?
+    okh:repo @okhs:WebsiteURL?
       // rdfs:comment "URL to the place where development happens (typically the repository) following this link people shall be able to contribute to the development (reporting issues, suggesting changes, connecting to the team etc.)";
     okh:repoSnapshot @okhs:WebsiteURL?
       // rdfs:comment "LOSH-Krawler takes the commit hash from the version tag and creates this permalink";

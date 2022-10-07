@@ -79,7 +79,7 @@ export interface Module {
   /**
    * URL to the place where development happens (typically the repository) following this link people shall be able to contribute to the development (reporting issues, suggesting changes, connecting to the team etc.)
    */
-  repository?: WebsiteURL;
+  repo?: WebsiteURL;
   /**
    * LOSH-Krawler takes the commit hash from the version tag and creates this permalink
    */

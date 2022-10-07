@@ -214,7 +214,7 @@ export const okhProjectSchema: Schema = {
           {
             type: "TripleConstraint",
             predicate:
-              "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#repository",
+              "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#repo",
             valueExpr:
               "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH-Shapes.ttl#WebsiteURL",
             min: 0,

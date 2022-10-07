@@ -1,4 +1,6 @@
-import React, { FunctionComponent, useCallback, useState } from 'react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
+import { FoafProfile } from "./ldo/foafProfile.typings";
+import { FoafProfileFactory } from "./ldo/foafProfile.ldoFactory";
 import { useAuth } from "./businessLogic/authGlobalHook";
 import useAsyncEffect from 'use-async-effect';
 import Button from 'react-bootstrap/Button';
@@ -6,20 +8,29 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 
 const LoginHeader: FunctionComponent<{}> = () => {
-    const { login, logout, session, fetch } = useAuth();
+    const { logout, session, fetch } = useAuth();
+    const [profile, setProfile] = useState<FoafProfile | undefined>();
+    const [nameField, setNameField] = useState<string>("");
 
-    const loginCallBack = useCallback(() => {
-        const oidcIssuer = prompt(
-            "Enter your Solid OIDC Issuer (Example: https://solidcommunity.net)",
-            "https://solidcommunity.net"
-        );
-        if (oidcIssuer) {
-            login(oidcIssuer);
-        } else {
-            alert("Please provide an issuer.")
+    useEffect(() => {
+        async function fetchProfile() {
+            if (!session.isLoggedIn) return;
+            const profileUrl = new URL(session.webId as string);
+
+            const rawProfile = await (
+               await fetch(profileUrl)
+            ).text();
+            const foafProfile = await FoafProfileFactory.parse(
+                `${session.webId}`,
+                rawProfile,
+                { baseIRI: session.webId }
+            );
+            setProfile(foafProfile);
+            setNameField(foafProfile.name || "");
         }
-    }, [login]);
-        
+        fetchProfile();
+    }, [session]);
+
     const [checkedRootApplicationContainer, setCheckedRootApplicationContainer] = useState(false);
     useAsyncEffect(async () => {
         if (!checkedRootApplicationContainer && session.isLoggedIn) {
@@ -47,16 +58,19 @@ const LoginHeader: FunctionComponent<{}> = () => {
     if (session?.isLoggedIn) {
         return (
             <DropdownButton title="Profile" align='end' variant="outline-primary">
-                <NavDropdown.ItemText>Logged in as {session.webId}</NavDropdown.ItemText>
+                <NavDropdown.ItemText>
+                    <div className='d-block'>
+                        Logged in as{' '}
+                        <a href={session.webId}>{nameField}</a>
+                    </div>
+                </NavDropdown.ItemText>
                 <NavDropdown.ItemText>
                     <Button onClick={logout} variant="outline-secondary">Logout</Button>
                 </NavDropdown.ItemText>
             </DropdownButton>
         )
     } else {
-        return (
-            <Button onClick={loginCallBack}>Log into a Solid Pod</Button>
-        )
+        return (<span></span>)
     }
 }
 

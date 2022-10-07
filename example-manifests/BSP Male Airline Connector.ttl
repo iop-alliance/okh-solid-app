@@ -1,0 +1,19 @@
+@prefix : <https://field-ready-projects.openknowhow.org/gn012/UNVERSIONED/> .
+@prefix okh: <https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#> .
+@prefix otrl: <http://purl.org/oseg/ontologies/OTRL#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+:Project a okh:Module ;
+    rdfs:label "'GN012 - ¼\" BSP Male Airline Connector '" ;
+    okh:documentationLanguage "En-US" ;
+    okh:documentationReadinessLevel otrl:Odrl1 ;
+    okh:function "Connects a ¼\" BSP female thread to a female quick release" ;
+    okh:licensor "Field Ready" ;
+    okh:repo <https://field-ready-projects.openknowhow.org/gn012> ;
+    okh:repoHost "field-ready-projects.openknowhow.org" ;
+    okh:spdxLicense <https://spdx.org/licenses/CERN-OHL-1.1> ;
+    okh:technologyReadinessLevel otrl:Otrl3 ;
+    okh:uploadMethod "manifest-script" ;
+    okh:version "UNVERSIONED" ;
+    okh:versionOf <https://field-ready-projects.openknowhow.org/gn012> .
+
