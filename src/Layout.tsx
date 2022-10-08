@@ -46,7 +46,7 @@ function Layout() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <Container className='my-3'>
+      <Container className='mt-3 mb-5'>
         {ranInitialAuthCheck && <Outlet />}
       </Container>
     </div>
