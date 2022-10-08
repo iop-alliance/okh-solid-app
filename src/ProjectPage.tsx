@@ -2,7 +2,6 @@ import React, { FunctionComponent, useState, useCallback } from 'react';
 import { useAuth } from './businessLogic/authGlobalHook';
 import { useNavigate, useParams } from 'react-router-dom';
 import useAsyncEffect from 'use-async-effect';
-// import Loading from './Loading';
 import { ModuleFactory } from './ldo/okhProject.ldoFactory';
 import { Module } from './ldo/okhProject.typings';
 import Button from 'react-bootstrap/Button';

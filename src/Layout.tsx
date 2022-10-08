@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { NavLink, Link, Outlet, useNavigate } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import LoginHeader from './LoginHeader';
-import Loading from './Loading';
+import ProfileDropdown from './ProfileDropdown';
 import { POST_LOGIN_REDIRECT, useAuth } from "./businessLogic/authGlobalHook";
 
 function Layout() {
@@ -42,7 +41,7 @@ function Layout() {
               <NavLink to="/about" className='nav-link'>About</NavLink>
             </Nav>
             <Nav>
-              <LoginHeader />
+              <ProfileDropdown />
             </Nav>
           </Navbar.Collapse>
         </Container>

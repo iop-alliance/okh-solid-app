@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 
-const LoginHeader: FunctionComponent<{}> = () => {
+const ProfileDropdown: FunctionComponent<{}> = () => {
     const { logout, session, fetch } = useAuth();
     const [profile, setProfile] = useState<FoafProfile | undefined>();
     const [nameField, setNameField] = useState<string>("");
@@ -74,4 +74,4 @@ const LoginHeader: FunctionComponent<{}> = () => {
     }
 }
 
-export default LoginHeader;
+export default ProfileDropdown;
