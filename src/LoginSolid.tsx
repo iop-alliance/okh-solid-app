@@ -1,7 +1,9 @@
-import React, { FunctionComponent, useCallback } from 'react';
+import React, { FormEventHandler, FunctionComponent, useCallback, useState } from 'react';
 import { useAuth } from "./businessLogic/authGlobalHook";
+import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 
 interface IProviderData {
@@ -38,6 +40,14 @@ const LoginSolid: FunctionComponent<{}> = () => {
 
   const { login } = useAuth();
 
+  const [oidcIssuer, setOidcIssuer] = useState('');
+
+  const onSubmit = useCallback<FormEventHandler<HTMLFormElement>>(async (e) => {
+    e.preventDefault();
+      login(oidcIssuer);
+  }, [oidcIssuer, login]);
+
+
   const loginCallBack = useCallback(async (issuer: string) => {
     if (!issuer) {
     //     alert("Please provide an issuer.");
@@ -54,10 +64,14 @@ const LoginSolid: FunctionComponent<{}> = () => {
   return (
     <>
       <Row>
-        <Col md={6}>
-          <h1>Store your hardware projects on your Solid Pod, not with a company</h1>
+        <Col md={6} className='pe-md-3'>
+          <h1>Store your hardware project files on your Solid Pod, not with a company</h1>
+          <h3 className='mt-4'>
+            Visit the <Link to="/about">About</Link> page to learn more about this app.
+          </h3>
         </Col>
-        <Col md={6}>
+        <Col md={6} className='ps-md-3'>
+          <hr className='d-sm-block d-md-none' />
           <h2 className='mb-4'>Log in with a Solid Pod</h2>
 
           {providerData.map((provider) => (
@@ -65,12 +79,15 @@ const LoginSolid: FunctionComponent<{}> = () => {
               <Col>
                 <h4>Use {provider.name}</h4>
                 <Row>
-                  <Col>
-                  <a href={provider.registerLink} target="_blank" rel="noreferrer" className='btn btn-sm btn-outline-primary rounded w-100'>Get a Pod</a>
+                  <Col md={6}>
+                    <a href={provider.registerLink} target="_blank" rel="noreferrer" 
+                        className='btn btn-outline-primary rounded w-100 mb-3 mb-md-0'>
+                      Get a Pod
+                    </a>
                   </Col>
-                  <Col>
+                  <Col md={6}>
                     <Button 
-                      variant="primary" className='btn-sm rounded w-100' 
+                      variant="primary" className='rounded w-100' 
                       onClick={() => loginCallBack(provider.issuer)}>
                         Log In
                     </Button>
@@ -81,58 +98,22 @@ const LoginSolid: FunctionComponent<{}> = () => {
             </Row>
           ))}
 
-          {/* <Row className='mb-3'>
-            <Col>
-              <h4>Use inrupt.net</h4>
-              <Row>
-                <Col>
-                  <a href="https://inrupt.net/register" target="_blank" rel="noreferrer" className='btn btn-sm btn-outline-primary rounded w-100'>Get a Pod</a>
-                </Col>
-                <Col>
-                  <a href="/#" className='btn btn-sm btn-primary rounded w-100'>Log In</a>
-                </Col>
-              </Row>
-            </Col>
-          </Row>
-          <Row className='mb-3'>
-            <Col>
-              <h4>Use solidcommunity.net</h4>
-              <Row>
-                <Col>
-                <a href="https://solidcommunity.net/register" target="_blank" rel="noreferrer" className='btn btn-sm btn-outline-primary rounded w-100'>Get a Pod</a>
-                </Col>
-                <Col>
-                  <a href="/#" className='btn btn-sm btn-primary rounded w-100'>Log In</a>
-                </Col>
-              </Row>
-            </Col>
-          </Row>
-          <Row className='mb-3'>
-            <Col>
-              <h4>Use solidweb.me</h4>
-              <Row>
-                <Col>
-                <a href="https://solidweb.me/idp/register/" target="_blank" rel="noreferrer" className='btn btn-sm btn-outline-primary rounded w-100'>Get a Pod</a>
-                </Col>
-                <Col>
-                  <a href="/#" className='btn btn-sm btn-primary rounded w-100'>Log In</a>
-                </Col>
-              </Row>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <h4>Use solidweb.org</h4>
-              <Row>
-                <Col>
-                  <a href="https://solidweb.org/register" target="_blank" rel="noreferrer" className='btn btn-sm btn-outline-primary rounded w-100'>Get a Pod</a>
-                </Col>
-                <Col>
-                  <a href="/#" className='btn btn-sm btn-primary rounded w-100'>Log In</a>
-                </Col>
-              </Row>
-            </Col>
-          </Row> */}
+          <Form onSubmit={onSubmit}>
+            <Form.Group className="mb-3" controlId="formUrl">
+              <h4>Use a custom Solid issuer</h4>
+              <Form.Control 
+                  type="text" 
+                  placeholder="Solid Issuer (e.g. https://solidcommunity.net)"
+                  onChange={e =>
+                    setOidcIssuer(e.target.value)
+                  }
+                  value={oidcIssuer}
+                />
+            </Form.Group>
+            <Button variant="primary" type="submit" className='rounded w-100'>
+              Log In with Custom Issuer
+            </Button>
+          </Form>
         </Col>
       </Row>
     </>
