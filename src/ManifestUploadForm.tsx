@@ -14,16 +14,18 @@ const ManifestUploadForm: FunctionComponent<ManifestUploadFormProps> = ({ onComp
 
   const onSubmit = useCallback<FormEventHandler<HTMLFormElement>>(async (e) => {
     e.preventDefault();
-    console.log(manifestFiles);
     if (!manifestFiles) return;
     await Promise.all(Array.from(manifestFiles).map(async (file) => {
       const rawTurtle = await file.text();
-      console.log(rawTurtle);
       try {
         await saveManifestToPod(rawTurtle, session, fetch)
         onComplete();
-      } catch {
-        alert('failure!')
+      } catch (err: unknown) {
+        if ((err as Error).message) {
+          alert((err as Error).message);
+        } else {
+          alert('There was a problem uploading this manifest');
+        }
       }
     }));
   }, [manifestFiles, session, fetch]);

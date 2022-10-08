@@ -2,30 +2,38 @@ import React, { FunctionComponent, useState, useCallback, FormEventHandler } fro
 import Button from 'react-bootstrap/Button';
 import { useAuth } from './businessLogic/authGlobalHook';
 import Form from 'react-bootstrap/Form';
-import { ModuleFactory } from './ldo/okhProject.ldoFactory';
-import { namedNode } from '@rdfjs/data-model';
+import saveManifestToPod from "./util/saveManifestToPod";
 
-const ManifestUrlForm: FunctionComponent = () => {
+// const CORS_HOST = 'https://cors-anywhere.herokuapp.com'
+const CORS_HOST = 'https://iopa-cors-anywhere.fly.dev'
+
+interface ManifestUrlFormProps {
+  onComplete: () => void;
+}
+
+const ManifestUrlForm: FunctionComponent<ManifestUrlFormProps> = ({ onComplete }) => {
   const [manifestUrl, setManifestUrl] = useState('');
-  const { fetch } = useAuth();
+  const { fetch, session } = useAuth();
 
   const onSubmit = useCallback<FormEventHandler<HTMLFormElement>>(async (e) => {
     e.preventDefault();
     // Perform fetch and validation
-    const response = await fetch(manifestUrl);
+    const response = await fetch(`${CORS_HOST}/${manifestUrl}`);
     if (response.status !== 200) {
       alert('Problem Fetching');
     }
     const rawTurtle = await response.text();
-    const temp = await ModuleFactory.parse(manifestUrl, rawTurtle, { baseIRI: manifestUrl });
-    const dataStore = temp.$dataset();
-    const manifestSubjects = dataStore.match(
-      null,
-      namedNode('http://www.w3.org/2000/01/rdf-schema#type'),
-      namedNode('https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#Manifest')
-    ).toArray()
-    console.log(manifestSubjects);
-  }, [manifestUrl, fetch]);
+    try {
+      await saveManifestToPod(rawTurtle, session, fetch);
+      onComplete();
+    } catch (err: unknown) {
+      if ((err as Error).message) {
+        alert((err as Error).message);
+      } else {
+        alert('There was a problem uploading this manifest');
+      }
+    }
+  }, [manifestUrl, fetch, session]);
 
   return (
     <Form onSubmit={onSubmit}>

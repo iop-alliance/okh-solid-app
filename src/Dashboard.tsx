@@ -1,7 +1,6 @@
 import React, { FunctionComponent, useState, useCallback } from 'react';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Modal from 'react-bootstrap/Modal';
 import Row from 'react-bootstrap/Row';
@@ -12,10 +11,12 @@ import { ContainerFactory } from "./ldo/solid.ldoFactory";
 import { ModuleFactory } from './ldo/okhProject.ldoFactory';
 import { Module } from './ldo/okhProject.typings';
 // import console from 'console';
-import { Link } from 'react-router-dom';
-import ManifestUploadForm from './ManifestUploadForm';
-// import ManifestUrlForm from './ManifestUrlForm';
+// import ManifestUploadForm from './ManifestUploadForm';
+import ManifestUrlForm from './ManifestUrlForm';
 import LoginSolid from './LoginSolid';
+// import ProjectCard from './components/ProjectCard';
+import ProjectListItem from './components/ProjectListItem';
+import ReactLoading from 'react-loading';
 
 const Dashboard:FunctionComponent<{}> = () => {
 
@@ -23,6 +24,7 @@ const Dashboard:FunctionComponent<{}> = () => {
   const [modules, setModules] = useState<Module[]>([]);
   const [showForm, setShowForm] = useState(false);
   const [showAlert, setShowAlert] = useState(false)
+  const [projectsLoaded, setProjectsLoaded] = useState(false)
 
   const handleCloseForm = () => setShowForm(false);
   const handleShowForm = () => setShowForm(true);
@@ -45,6 +47,7 @@ const Dashboard:FunctionComponent<{}> = () => {
       }));
     }
     setModules(modules);
+    setProjectsLoaded(true);
   }, [session, fetch]);
 
   useAsyncEffect(async () => {
@@ -80,31 +83,15 @@ const Dashboard:FunctionComponent<{}> = () => {
           <Modal.Title>Add an OKH Project Manifest</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <ManifestUploadForm onComplete={onUploadFormComplete} />
+          <ManifestUrlForm onComplete={onUploadFormComplete} />
         </Modal.Body>
       </Modal>
-      <Row xs={1} md={2} lg={3} className='g-3'>
-        
+      {/* <Row xs={1} md={2} lg={3} className='g-3'> */}
+      <Row>
+        {!projectsLoaded && <ReactLoading type="spin" color="#454545" className='mx-auto' height={100} width={100} />}
         {modules.map((module) => {
           return (
-            <Col key={module['@id']}>
-              <Card className='h-100'>
-                { /* @ts-ignore */ }
-                {module.hasImage && module.hasImage.length > 0 && <Card.Img variant="top" src={module.hasImage?.[0].fileUrl?.['@id']} />}
-                <Card.Body>
-                  <Card.Title>{module.label}</Card.Title>
-                  <Card.Text>
-                      {module.function}
-                  </Card.Text>
-                  <Link
-                    to={`/projects/${encodeURIComponent(module['@id'] || '')}`}
-                    className='btn btn-sm btn-primary'
-                  >
-                    View Project Details
-                  </Link>
-                  </Card.Body>
-              </Card>
-            </Col>
+            <ProjectListItem module={module} />
           )
         })}
       </Row>
