@@ -24,6 +24,8 @@ export const okhProjectSchema: Schema = {
                 "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#Component",
               ],
             },
+            min: 0,
+            max: 1,
             annotations: [
               {
                 type: "Annotation",
@@ -31,6 +33,25 @@ export const okhProjectSchema: Schema = {
                 object: {
                   value:
                     "Either a module (MOSH) or Part (POSH); more component types may be added in the future",
+                },
+              },
+            ],
+          },
+          {
+            type: "TripleConstraint",
+            predicate: "http://www.w3.org/2000/01/rdf-schema#label",
+            valueExpr: {
+              type: "NodeConstraint",
+              datatype: "http://www.w3.org/2001/XMLSchema#string",
+            },
+            min: 0,
+            max: 1,
+            annotations: [
+              {
+                type: "Annotation",
+                predicate: "http://www.w3.org/2000/01/rdf-schema#comment",
+                object: {
+                  value: "Label for this object",
                 },
               },
             ],
@@ -136,6 +157,8 @@ export const okhProjectSchema: Schema = {
                 "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#Module",
               ],
             },
+            min: 0,
+            max: 1,
             annotations: [
               {
                 type: "Annotation",
@@ -191,7 +214,7 @@ export const okhProjectSchema: Schema = {
           {
             type: "TripleConstraint",
             predicate:
-              "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#repository",
+              "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#repo",
             valueExpr:
               "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH-Shapes.ttl#WebsiteURL",
             min: 0,
@@ -314,7 +337,7 @@ export const okhProjectSchema: Schema = {
               "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#licensor",
             valueExpr: {
               type: "NodeConstraint",
-              nodeKind: "iri",
+              datatype: "http://www.w3.org/2001/XMLSchema#string",
             },
             min: 0,
             max: 1,
@@ -811,7 +834,7 @@ export const okhProjectSchema: Schema = {
               "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#release",
             valueExpr: {
               type: "NodeConstraint",
-              datatype: "http://www.w3.org/2001/XMLSchema#string",
+              nodeKind: "iri",
             },
             min: 0,
             max: -1,
@@ -987,6 +1010,8 @@ export const okhProjectSchema: Schema = {
                 "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#Part",
               ],
             },
+            min: 0,
+            max: 1,
             annotations: [
               {
                 type: "Annotation",
@@ -1190,6 +1215,8 @@ export const okhProjectSchema: Schema = {
                 "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#Software",
               ],
             },
+            min: 0,
+            max: 1,
             annotations: [
               {
                 type: "Annotation",
@@ -1250,21 +1277,47 @@ export const okhProjectSchema: Schema = {
       type: "Shape",
       expression: {
         id: "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH-Shapes.ttl#ReferenceShape",
-        type: "TripleConstraint",
-        predicate: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
-        valueExpr: {
-          type: "NodeConstraint",
-          values: [
-            "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#Reference",
-          ],
-        },
-        annotations: [
+        type: "EachOf",
+        expressions: [
           {
-            type: "Annotation",
-            predicate: "http://www.w3.org/2000/01/rdf-schema#comment",
-            object: {
-              value: "unambiguous reference",
+            type: "TripleConstraint",
+            predicate: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+            valueExpr: {
+              type: "NodeConstraint",
+              values: [
+                "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#Reference",
+              ],
             },
+            min: 0,
+            max: 1,
+            annotations: [
+              {
+                type: "Annotation",
+                predicate: "http://www.w3.org/2000/01/rdf-schema#comment",
+                object: {
+                  value: "unambiguous reference",
+                },
+              },
+            ],
+          },
+          {
+            type: "TripleConstraint",
+            predicate: "http://www.w3.org/2000/01/rdf-schema#label",
+            valueExpr: {
+              type: "NodeConstraint",
+              datatype: "http://www.w3.org/2001/XMLSchema#string",
+            },
+            min: 0,
+            max: 1,
+            annotations: [
+              {
+                type: "Annotation",
+                predicate: "http://www.w3.org/2000/01/rdf-schema#comment",
+                object: {
+                  value: "Label for this object",
+                },
+              },
+            ],
           },
         ],
       },
@@ -1287,6 +1340,8 @@ export const okhProjectSchema: Schema = {
                 "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#WebsiteUrl",
               ],
             },
+            min: 0,
+            max: 1,
             annotations: [
               {
                 type: "Annotation",
@@ -1334,6 +1389,8 @@ export const okhProjectSchema: Schema = {
                 "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#Publication",
               ],
             },
+            min: 0,
+            max: 1,
             annotations: [
               {
                 type: "Annotation",
@@ -1366,6 +1423,25 @@ export const okhProjectSchema: Schema = {
               },
             ],
           },
+          {
+            type: "TripleConstraint",
+            predicate: "http://www.w3.org/2000/01/rdf-schema#label",
+            valueExpr: {
+              type: "NodeConstraint",
+              datatype: "http://www.w3.org/2001/XMLSchema#string",
+            },
+            min: 0,
+            max: 1,
+            annotations: [
+              {
+                type: "Annotation",
+                predicate: "http://www.w3.org/2000/01/rdf-schema#comment",
+                object: {
+                  value: "Label for this object",
+                },
+              },
+            ],
+          },
         ],
       },
       extra: ["http://www.w3.org/1999/02/22-rdf-syntax-ns#type"],
@@ -1386,6 +1462,8 @@ export const okhProjectSchema: Schema = {
                 "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#Standard",
               ],
             },
+            min: 0,
+            max: 1,
             annotations: [
               {
                 type: "Annotation",
@@ -1417,6 +1495,25 @@ export const okhProjectSchema: Schema = {
               },
             ],
           },
+          {
+            type: "TripleConstraint",
+            predicate: "http://www.w3.org/2000/01/rdf-schema#label",
+            valueExpr: {
+              type: "NodeConstraint",
+              datatype: "http://www.w3.org/2001/XMLSchema#string",
+            },
+            min: 0,
+            max: 1,
+            annotations: [
+              {
+                type: "Annotation",
+                predicate: "http://www.w3.org/2000/01/rdf-schema#comment",
+                object: {
+                  value: "Label for this object",
+                },
+              },
+            ],
+          },
         ],
       },
       extra: ["http://www.w3.org/1999/02/22-rdf-syntax-ns#type"],
@@ -1426,21 +1523,107 @@ export const okhProjectSchema: Schema = {
       type: "Shape",
       expression: {
         id: "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH-Shapes.ttl#FileShape",
-        type: "TripleConstraint",
-        predicate: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
-        valueExpr: {
-          type: "NodeConstraint",
-          values: [
-            "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#File",
-          ],
-        },
-        annotations: [
+        type: "EachOf",
+        expressions: [
           {
-            type: "Annotation",
-            predicate: "http://www.w3.org/2000/01/rdf-schema#comment",
-            object: {
-              value: "File",
+            type: "TripleConstraint",
+            predicate: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+            valueExpr: {
+              type: "NodeConstraint",
+              values: [
+                "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#File",
+              ],
             },
+            min: 0,
+            max: 1,
+            annotations: [
+              {
+                type: "Annotation",
+                predicate: "http://www.w3.org/2000/01/rdf-schema#comment",
+                object: {
+                  value: "File",
+                },
+              },
+            ],
+          },
+          {
+            type: "TripleConstraint",
+            predicate: "http://www.w3.org/2000/01/rdf-schema#label",
+            valueExpr: {
+              type: "NodeConstraint",
+              datatype: "http://www.w3.org/2001/XMLSchema#string",
+            },
+            min: 0,
+            max: 1,
+            annotations: [
+              {
+                type: "Annotation",
+                predicate: "http://www.w3.org/2000/01/rdf-schema#comment",
+                object: {
+                  value: "Label for this object",
+                },
+              },
+            ],
+          },
+          {
+            type: "TripleConstraint",
+            predicate:
+              "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#fileFormat",
+            valueExpr: {
+              type: "NodeConstraint",
+              datatype: "http://www.w3.org/2001/XMLSchema#string",
+            },
+            min: 0,
+            max: 1,
+            annotations: [
+              {
+                type: "Annotation",
+                predicate: "http://www.w3.org/2000/01/rdf-schema#comment",
+                object: {
+                  value: "File extension. For example 'JPG'",
+                },
+              },
+            ],
+          },
+          {
+            type: "TripleConstraint",
+            predicate:
+              "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#fileUrl",
+            valueExpr: {
+              type: "NodeConstraint",
+              nodeKind: "iri",
+            },
+            min: 0,
+            max: 1,
+            annotations: [
+              {
+                type: "Annotation",
+                predicate: "http://www.w3.org/2000/01/rdf-schema#comment",
+                object: {
+                  value: "The url of the file",
+                },
+              },
+            ],
+          },
+          {
+            type: "TripleConstraint",
+            predicate:
+              "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#permaURL",
+            valueExpr: {
+              type: "NodeConstraint",
+              datatype: "http://www.w3.org/2001/XMLSchema#string",
+            },
+            min: 0,
+            max: 1,
+            annotations: [
+              {
+                type: "Annotation",
+                predicate: "http://www.w3.org/2000/01/rdf-schema#comment",
+                object: {
+                  value: "A permanent url for the file",
+                },
+              },
+            ],
           },
         ],
       },
@@ -1463,6 +1646,8 @@ export const okhProjectSchema: Schema = {
                 "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#ManifestFile",
               ],
             },
+            min: 0,
+            max: 1,
             annotations: [
               {
                 type: "Annotation",
@@ -1515,6 +1700,8 @@ export const okhProjectSchema: Schema = {
                 "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#Readme",
               ],
             },
+            min: 0,
+            max: 1,
           },
         ],
       },
@@ -1537,6 +1724,8 @@ export const okhProjectSchema: Schema = {
                 "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#ContibutionFile",
               ],
             },
+            min: 0,
+            max: 1,
           },
         ],
       },
@@ -1549,16 +1738,18 @@ export const okhProjectSchema: Schema = {
         id: "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH-Shapes.ttl#ImageShape",
         type: "EachOf",
         expressions: [
-          "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH-Shapes.ttl#FileShpae",
+          "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH-Shapes.ttl#FileShape",
           {
             type: "TripleConstraint",
             predicate: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
             valueExpr: {
               type: "NodeConstraint",
               values: [
-                "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#Readme",
+                "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#Image",
               ],
             },
+            min: 0,
+            max: 1,
           },
         ],
       },
@@ -1571,7 +1762,7 @@ export const okhProjectSchema: Schema = {
         id: "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH-Shapes.ttl#BoMShape",
         type: "EachOf",
         expressions: [
-          "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH-Shapes.ttl#FileShpae",
+          "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH-Shapes.ttl#FileShape",
           {
             type: "TripleConstraint",
             predicate: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
@@ -1581,6 +1772,8 @@ export const okhProjectSchema: Schema = {
                 "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#BoM",
               ],
             },
+            min: 0,
+            max: 1,
           },
         ],
       },
@@ -1593,7 +1786,7 @@ export const okhProjectSchema: Schema = {
         id: "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH-Shapes.ttl#SourceFileShape",
         type: "EachOf",
         expressions: [
-          "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH-Shapes.ttl#FileShpae",
+          "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH-Shapes.ttl#FileShape",
           {
             type: "TripleConstraint",
             predicate: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
@@ -1603,6 +1796,8 @@ export const okhProjectSchema: Schema = {
                 "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#SourceFile",
               ],
             },
+            min: 0,
+            max: 1,
           },
         ],
       },
@@ -1615,7 +1810,7 @@ export const okhProjectSchema: Schema = {
         id: "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH-Shapes.ttl#ExportFileShape",
         type: "EachOf",
         expressions: [
-          "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH-Shapes.ttl#FileShpae",
+          "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH-Shapes.ttl#FileShape",
           {
             type: "TripleConstraint",
             predicate: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
@@ -1625,6 +1820,8 @@ export const okhProjectSchema: Schema = {
                 "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#ExportFile",
               ],
             },
+            min: 0,
+            max: 1,
           },
         ],
       },
@@ -1637,7 +1834,7 @@ export const okhProjectSchema: Schema = {
         id: "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH-Shapes.ttl#AuxiliaryFileShape",
         type: "EachOf",
         expressions: [
-          "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH-Shapes.ttl#FileShpae",
+          "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH-Shapes.ttl#FileShape",
           {
             type: "TripleConstraint",
             predicate: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
@@ -1647,6 +1844,8 @@ export const okhProjectSchema: Schema = {
                 "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#AuxiliaryFile",
               ],
             },
+            min: 0,
+            max: 1,
           },
         ],
       },
@@ -1659,7 +1858,7 @@ export const okhProjectSchema: Schema = {
         id: "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH-Shapes.ttl#ManufacturingInstructionsShape",
         type: "EachOf",
         expressions: [
-          "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH-Shapes.ttl#FileShpae",
+          "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH-Shapes.ttl#FileShape",
           {
             type: "TripleConstraint",
             predicate: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
@@ -1669,6 +1868,8 @@ export const okhProjectSchema: Schema = {
                 "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#ManufacturingInstructions",
               ],
             },
+            min: 0,
+            max: 1,
           },
         ],
       },
@@ -1681,7 +1882,7 @@ export const okhProjectSchema: Schema = {
         id: "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH-Shapes.ttl#UserManualShape",
         type: "EachOf",
         expressions: [
-          "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH-Shapes.ttl#FileShpae",
+          "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH-Shapes.ttl#FileShape",
           {
             type: "TripleConstraint",
             predicate: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
@@ -1691,6 +1892,8 @@ export const okhProjectSchema: Schema = {
                 "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#UserManual",
               ],
             },
+            min: 0,
+            max: 1,
           },
         ],
       },
@@ -1712,6 +1915,8 @@ export const okhProjectSchema: Schema = {
                 "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#OuterDimensions",
               ],
             },
+            min: 0,
+            max: 1,
             annotations: [
               {
                 type: "Annotation",
@@ -1762,6 +1967,25 @@ export const okhProjectSchema: Schema = {
               },
             ],
           },
+          {
+            type: "TripleConstraint",
+            predicate: "http://www.w3.org/2000/01/rdf-schema#label",
+            valueExpr: {
+              type: "NodeConstraint",
+              datatype: "http://www.w3.org/2001/XMLSchema#string",
+            },
+            min: 0,
+            max: 1,
+            annotations: [
+              {
+                type: "Annotation",
+                predicate: "http://www.w3.org/2000/01/rdf-schema#comment",
+                object: {
+                  value: "Label for this object",
+                },
+              },
+            ],
+          },
         ],
       },
       extra: ["http://www.w3.org/1999/02/22-rdf-syntax-ns#type"],
@@ -1782,6 +2006,8 @@ export const okhProjectSchema: Schema = {
                 "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#Mass",
               ],
             },
+            min: 0,
+            max: 1,
             annotations: [
               {
                 type: "Annotation",
@@ -1832,6 +2058,25 @@ export const okhProjectSchema: Schema = {
               },
             ],
           },
+          {
+            type: "TripleConstraint",
+            predicate: "http://www.w3.org/2000/01/rdf-schema#label",
+            valueExpr: {
+              type: "NodeConstraint",
+              datatype: "http://www.w3.org/2001/XMLSchema#string",
+            },
+            min: 0,
+            max: 1,
+            annotations: [
+              {
+                type: "Annotation",
+                predicate: "http://www.w3.org/2000/01/rdf-schema#comment",
+                object: {
+                  value: "Label for this object",
+                },
+              },
+            ],
+          },
         ],
       },
       extra: ["http://www.w3.org/1999/02/22-rdf-syntax-ns#type"],
@@ -1852,6 +2097,8 @@ export const okhProjectSchema: Schema = {
                 "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OTRL.ttl#OTRL",
               ],
             },
+            min: 0,
+            max: 1,
             annotations: [
               {
                 type: "Annotation",
@@ -1903,6 +2150,25 @@ export const okhProjectSchema: Schema = {
               },
             ],
           },
+          {
+            type: "TripleConstraint",
+            predicate: "http://www.w3.org/2000/01/rdf-schema#label",
+            valueExpr: {
+              type: "NodeConstraint",
+              datatype: "http://www.w3.org/2001/XMLSchema#string",
+            },
+            min: 0,
+            max: 1,
+            annotations: [
+              {
+                type: "Annotation",
+                predicate: "http://www.w3.org/2000/01/rdf-schema#comment",
+                object: {
+                  value: "Label for this object",
+                },
+              },
+            ],
+          },
         ],
       },
       extra: ["http://www.w3.org/1999/02/22-rdf-syntax-ns#type"],
@@ -1923,6 +2189,8 @@ export const okhProjectSchema: Schema = {
                 "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OTRL.ttl#Odrl",
               ],
             },
+            min: 0,
+            max: 1,
             annotations: [
               {
                 type: "Annotation",
@@ -1971,6 +2239,25 @@ export const okhProjectSchema: Schema = {
                 object: {
                   value:
                     "Criteria to exit this OTRL for the next OTRL; inspired by: https://www.nasa.gov/pdf/458490main_TRL_Definitions.pdf",
+                },
+              },
+            ],
+          },
+          {
+            type: "TripleConstraint",
+            predicate: "http://www.w3.org/2000/01/rdf-schema#label",
+            valueExpr: {
+              type: "NodeConstraint",
+              datatype: "http://www.w3.org/2001/XMLSchema#string",
+            },
+            min: 0,
+            max: 1,
+            annotations: [
+              {
+                type: "Annotation",
+                predicate: "http://www.w3.org/2000/01/rdf-schema#comment",
+                object: {
+                  value: "Label for this object",
                 },
               },
             ],

@@ -1,13 +1,16 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState, useRef } from "react";
 import {
   ISessionInfo,
   handleIncomingRedirect,
   login as libraryLogin,
   getDefaultSession,
   logout as libraryLogout,
+  fetch
 } from "@inrupt/solid-client-authn-browser";
 
 import { createGlobalHook } from "../util/createGlobalHook";
+
+export const POST_LOGIN_REDIRECT = 'postLoginRedirect';
 
 interface AuthGlobalHookReturn {
   runInitialAuthCheck: () => Promise<void>;
@@ -16,6 +19,7 @@ interface AuthGlobalHookReturn {
   signUp: (issuer: string) => Promise<void>;
   session: ISessionInfo;
   ranInitialAuthCheck: boolean;
+  fetch: (input: URL | RequestInfo, init?: RequestInit | undefined) => Promise<Response>
 }
 
 function useAuthGlobalHookFunc(): AuthGlobalHookReturn {
@@ -23,13 +27,21 @@ function useAuthGlobalHookFunc(): AuthGlobalHookReturn {
     getDefaultSession().info
   );
   const [ranInitialAuthCheck, setRanInitialAuthCheck] = useState(false);
+  const handleIncomingRedirectExecuting = useRef<boolean>(false);
 
   const runInitialAuthCheck = useCallback(async () => {
-    await handleIncomingRedirect({
-      restorePreviousSession: true,
-    });
-    setSession({ ...getDefaultSession().info });
-    setRanInitialAuthCheck(true);
+    if (!handleIncomingRedirectExecuting.current) {
+      handleIncomingRedirectExecuting.current = true;
+      const postLoginRedirect = window.localStorage.getItem(POST_LOGIN_REDIRECT);
+      if (!postLoginRedirect) {
+        window.localStorage.setItem(POST_LOGIN_REDIRECT, window.location.href);
+      }
+      await handleIncomingRedirect({
+        restorePreviousSession: true,
+      });
+      setSession({ ...getDefaultSession().info });
+      setRanInitialAuthCheck(true);
+    }
   }, []);
 
   const login = useCallback(async (issuer: string) => {
@@ -56,14 +68,14 @@ function useAuthGlobalHookFunc(): AuthGlobalHookReturn {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return useMemo(
-    () => ({
+  return useMemo(() => ({
       runInitialAuthCheck,
       login,
       logout,
       signUp,
       session,
       ranInitialAuthCheck,
+      fetch
     }),
     [login, logout, ranInitialAuthCheck, runInitialAuthCheck, session, signUp]
   );

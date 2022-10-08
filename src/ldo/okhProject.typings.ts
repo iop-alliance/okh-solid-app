@@ -15,7 +15,11 @@ export interface Component {
   /**
    * Either a module (MOSH) or Part (POSH); more component types may be added in the future
    */
-  type: "Component";
+  type?: "Component";
+  /**
+   * Label for this object
+   */
+  label?: string;
   /**
    * e.g. auto (fully integrated platforms) or manifest file (for connected platforms)
    */
@@ -43,7 +47,11 @@ export interface Module {
   /**
    * Either a module (MOSH) or Part (POSH); more component types may be added in the future | Module of Open Source Hardware (MOSH)
    */
-  type: ("Component" | "Module")[];
+  type?: ("Component" | "Module")[];
+  /**
+   * Label for this object
+   */
+  label?: string;
   /**
    * e.g. auto (fully integrated platforms) or manifest file (for connected platforms)
    */
@@ -71,7 +79,7 @@ export interface Module {
   /**
    * URL to the place where development happens (typically the repository) following this link people shall be able to contribute to the development (reporting issues, suggesting changes, connecting to the team etc.)
    */
-  repository?: WebsiteURL;
+  repo?: WebsiteURL;
   /**
    * LOSH-Krawler takes the commit hash from the version tag and creates this permalink
    */
@@ -231,7 +239,11 @@ export interface Part {
   /**
    * Either a module (MOSH) or Part (POSH); more component types may be added in the future | Piece of Open Source Hardware (POSH)
    */
-  type: ("Component" | "Part")[];
+  type?: ("Component" | "Part")[];
+  /**
+   * Label for this object
+   */
+  label?: string;
   /**
    * e.g. auto (fully integrated platforms) or manifest file (for connected platforms)
    */
@@ -295,7 +307,11 @@ export interface Software {
   /**
    * Either a module (MOSH) or Part (POSH); more component types may be added in the future | Software (including firmware) needed to run & use the OSH
    */
-  type: ("Component" | "Software")[];
+  type?: ("Component" | "Software")[];
+  /**
+   * Label for this object
+   */
+  label?: string;
   /**
    * e.g. auto (fully integrated platforms) or manifest file (for connected platforms)
    */
@@ -328,6 +344,14 @@ export interface Software {
 export interface Reference {
   "@id"?: string;
   "@context"?: ContextDefinition;
+  /**
+   * unambiguous reference
+   */
+  type?: "Reference";
+  /**
+   * Label for this object
+   */
+  label?: string;
 }
 
 /**
@@ -339,7 +363,11 @@ export interface WebsiteURL {
   /**
    * unambiguous reference | Website URL
    */
-  type: ("Reference" | "WebsiteUrl")[];
+  type?: ("Reference" | "WebsiteUrl")[];
+  /**
+   * Label for this object
+   */
+  label?: string;
   url: string;
 }
 
@@ -352,11 +380,15 @@ export interface Publication {
   /**
    * _scientific_ (that is: peer reviewed) publication that _contains_ the design files
    */
-  type: "Publication";
+  type?: "Publication";
   /**
    * this publication has a digital object identifier (DOI)
    */
   doi?: string;
+  /**
+   * Label for this object
+   */
+  label?: string;
 }
 
 /**
@@ -368,11 +400,15 @@ export interface Standard {
   /**
    * official standard used in the _design_ (not e.g. DIN SPEC 3105-1)
    */
-  type: "Standard";
+  type?: "Standard";
   /**
    * Document Identifier for the technical Standard
    */
   standardID?: string;
+  /**
+   * Label for this object
+   */
+  label?: string;
 }
 
 /**
@@ -381,6 +417,26 @@ export interface Standard {
 export interface File {
   "@id"?: string;
   "@context"?: ContextDefinition;
+  /**
+   * File
+   */
+  type?: "File";
+  /**
+   * Label for this object
+   */
+  label?: string;
+  /**
+   * File extension. For example 'JPG'
+   */
+  fileFormat?: string;
+  /**
+   * The url of the file
+   */
+  fileUrl?: string;
+  /**
+   * A permanent url for the file
+   */
+  permaURL?: string;
 }
 
 /**
@@ -392,7 +448,23 @@ export interface ManifestFile {
   /**
    * File | file holding the metadata
    */
-  type: ("File" | "ManifestFile")[];
+  type?: ("File" | "ManifestFile")[];
+  /**
+   * Label for this object
+   */
+  label?: string;
+  /**
+   * File extension. For example 'JPG'
+   */
+  fileFormat?: string;
+  /**
+   * The url of the file
+   */
+  fileUrl?: string;
+  /**
+   * A permanent url for the file
+   */
+  permaURL?: string;
   /**
    * version of OKH specification the metadata is following (different version → different data fields)
    */
@@ -408,7 +480,23 @@ export interface Readme {
   /**
    * File
    */
-  type: ("File" | "Readme")[];
+  type?: ("File" | "Readme")[];
+  /**
+   * Label for this object
+   */
+  label?: string;
+  /**
+   * File extension. For example 'JPG'
+   */
+  fileFormat?: string;
+  /**
+   * The url of the file
+   */
+  fileUrl?: string;
+  /**
+   * A permanent url for the file
+   */
+  permaURL?: string;
 }
 
 /**
@@ -420,7 +508,23 @@ export interface ContributionGuide {
   /**
    * File
    */
-  type: ("File" | "ContibutionFile")[];
+  type?: ("File" | "ContibutionFile")[];
+  /**
+   * Label for this object
+   */
+  label?: string;
+  /**
+   * File extension. For example 'JPG'
+   */
+  fileFormat?: string;
+  /**
+   * The url of the file
+   */
+  fileUrl?: string;
+  /**
+   * A permanent url for the file
+   */
+  permaURL?: string;
 }
 
 /**
@@ -429,7 +533,26 @@ export interface ContributionGuide {
 export interface Image {
   "@id"?: string;
   "@context"?: ContextDefinition;
-  type: "Readme";
+  /**
+   * File
+   */
+  type?: ("File" | "Image")[];
+  /**
+   * Label for this object
+   */
+  label?: string;
+  /**
+   * File extension. For example 'JPG'
+   */
+  fileFormat?: string;
+  /**
+   * The url of the file
+   */
+  fileUrl?: string;
+  /**
+   * A permanent url for the file
+   */
+  permaURL?: string;
 }
 
 /**
@@ -438,7 +561,26 @@ export interface Image {
 export interface BoM {
   "@id"?: string;
   "@context"?: ContextDefinition;
-  type: "BoM";
+  /**
+   * File
+   */
+  type?: ("File" | "BoM")[];
+  /**
+   * Label for this object
+   */
+  label?: string;
+  /**
+   * File extension. For example 'JPG'
+   */
+  fileFormat?: string;
+  /**
+   * The url of the file
+   */
+  fileUrl?: string;
+  /**
+   * A permanent url for the file
+   */
+  permaURL?: string;
 }
 
 /**
@@ -447,7 +589,26 @@ export interface BoM {
 export interface SourceFile {
   "@id"?: string;
   "@context"?: ContextDefinition;
-  type: "SourceFile";
+  /**
+   * File
+   */
+  type?: ("File" | "SourceFile")[];
+  /**
+   * Label for this object
+   */
+  label?: string;
+  /**
+   * File extension. For example 'JPG'
+   */
+  fileFormat?: string;
+  /**
+   * The url of the file
+   */
+  fileUrl?: string;
+  /**
+   * A permanent url for the file
+   */
+  permaURL?: string;
 }
 
 /**
@@ -456,7 +617,26 @@ export interface SourceFile {
 export interface ExportFile {
   "@id"?: string;
   "@context"?: ContextDefinition;
-  type: "ExportFile";
+  /**
+   * File
+   */
+  type?: ("File" | "ExportFile")[];
+  /**
+   * Label for this object
+   */
+  label?: string;
+  /**
+   * File extension. For example 'JPG'
+   */
+  fileFormat?: string;
+  /**
+   * The url of the file
+   */
+  fileUrl?: string;
+  /**
+   * A permanent url for the file
+   */
+  permaURL?: string;
 }
 
 /**
@@ -465,7 +645,26 @@ export interface ExportFile {
 export interface AuxiliaryFile {
   "@id"?: string;
   "@context"?: ContextDefinition;
-  type: "AuxiliaryFile";
+  /**
+   * File
+   */
+  type?: ("File" | "AuxiliaryFile")[];
+  /**
+   * Label for this object
+   */
+  label?: string;
+  /**
+   * File extension. For example 'JPG'
+   */
+  fileFormat?: string;
+  /**
+   * The url of the file
+   */
+  fileUrl?: string;
+  /**
+   * A permanent url for the file
+   */
+  permaURL?: string;
 }
 
 /**
@@ -474,7 +673,26 @@ export interface AuxiliaryFile {
 export interface ManufacturingInstructions {
   "@id"?: string;
   "@context"?: ContextDefinition;
-  type: "ManufacturingInstructions";
+  /**
+   * File
+   */
+  type?: ("File" | "ManufacturingInstructions")[];
+  /**
+   * Label for this object
+   */
+  label?: string;
+  /**
+   * File extension. For example 'JPG'
+   */
+  fileFormat?: string;
+  /**
+   * The url of the file
+   */
+  fileUrl?: string;
+  /**
+   * A permanent url for the file
+   */
+  permaURL?: string;
 }
 
 /**
@@ -483,7 +701,26 @@ export interface ManufacturingInstructions {
 export interface UserManual {
   "@id"?: string;
   "@context"?: ContextDefinition;
-  type: "UserManual";
+  /**
+   * File
+   */
+  type?: ("File" | "UserManual")[];
+  /**
+   * Label for this object
+   */
+  label?: string;
+  /**
+   * File extension. For example 'JPG'
+   */
+  fileFormat?: string;
+  /**
+   * The url of the file
+   */
+  fileUrl?: string;
+  /**
+   * A permanent url for the file
+   */
+  permaURL?: string;
 }
 
 /**
@@ -495,12 +732,16 @@ export interface OuterDimensions {
   /**
    * outer dimensions of a module or part
    */
-  type: "OuterDimensions";
+  type?: "OuterDimensions";
   /**
    * material
    */
   openScad?: string[];
   unit?: string[];
+  /**
+   * Label for this object
+   */
+  label?: string;
 }
 
 /**
@@ -512,12 +753,16 @@ export interface Mass {
   /**
    * mass of a module or part
    */
-  type: "Mass";
+  type?: "Mass";
   unit?: string[];
   /**
    * value
    */
   value?: number[];
+  /**
+   * Label for this object
+   */
+  label?: string;
 }
 
 /**
@@ -529,7 +774,7 @@ export interface OTRL {
   /**
    * Technology Readiness Level for open source hardware
    */
-  type: "OTRL";
+  type?: "OTRL";
   /**
    * Goal or purpose of this OTRL/ODRL
    */
@@ -538,6 +783,10 @@ export interface OTRL {
    * Criteria to exit this OTRL for the next OTRL; inspired by: https://www.nasa.gov/pdf/458490main_TRL_Definitions.pdf
    */
   exitCriteria?: string;
+  /**
+   * Label for this object
+   */
+  label?: string;
 }
 
 /**
@@ -549,7 +798,7 @@ export interface Odrl {
   /**
    * Documentation Readiness Level for open source hardware
    */
-  type: "Odrl";
+  type?: "Odrl";
   /**
    * Goal or purpose of this OTRL/ODRL
    */
@@ -558,4 +807,8 @@ export interface Odrl {
    * Criteria to exit this OTRL for the next OTRL; inspired by: https://www.nasa.gov/pdf/458490main_TRL_Definitions.pdf
    */
   exitCriteria?: string;
+  /**
+   * Label for this object
+   */
+  label?: string;
 }

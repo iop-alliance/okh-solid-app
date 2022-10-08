@@ -13,18 +13,19 @@ PREFIX schema: <https://schema.org/>
 PREFIX otrl: <https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OTRL.ttl#>
 PREFIX otrls: <https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OTRL-shapes.ttl#>
 
-# TODO: Confirm cardinality on each item
-# TODO: Check the range on everything that's marked IRI
-# TODO: Get proper URLs for the shape prefixes
-# TODO: Schema URL, should it be an IRI or a string
+# THINGS TO NOTE
+# "organization" is spelled with a "z" in the OWL, but with an "s" in most examples
+# "FileFormat", "FileUrl", and "permaURL" are not in the OWL
 
 # ----------------------------------------------------
 # Component
 # ----------------------------------------------------
 okhs:Component EXTRA a {
   $okhs:ComponentShape (
-    a [ okh:Component ]
+    a [ okh:Component ]?
       // rdfs:comment "Either a module (MOSH) or Part (POSH); more component types may be added in the future";
+    rdfs:label xsd:string?
+      // rdfs:comment "Label for this object";
     okh:uploadMethod xsd:string?
       // rdfs:comment "e.g. auto (fully integrated platforms) or manifest file (for connected platforms)";
     okh:compilesWith IRI*
@@ -39,13 +40,13 @@ okhs:Component EXTRA a {
 okhs:Module EXTRA a {
   $okhs:ModuleShape (
     &okhs:ComponentShape;
-    a [okh:Module]
+    a [okh:Module]?
       // rdfs:comment "Module of Open Source Hardware (MOSH)";
     okh:dataSource xsd:string?
       // rdfs:comment "platform, where the crawler found the metadata (e.g. GitHub, Wikifactory)";
     okh:repoHost xsd:string?
       // rdfs:comment "platform, where the OSH documentation is located (e.g. GitLab, Wikifactory or any self-hosted website or wiki)";
-    okh:repository @okhs:WebsiteURL?
+    okh:repo @okhs:WebsiteURL?
       // rdfs:comment "URL to the place where development happens (typically the repository) following this link people shall be able to contribute to the development (reporting issues, suggesting changes, connecting to the team etc.)";
     okh:repoSnapshot @okhs:WebsiteURL?
       // rdfs:comment "LOSH-Krawler takes the commit hash from the version tag and creates this permalink";
@@ -57,8 +58,7 @@ okhs:Module EXTRA a {
       // rdfs:comment "connects specific versions of Modules with their versionless superclass";
     okh:documentationLanguage xsd:string?
       // rdfs:comment "IETF language tag following the BCP 47 standard e.g. en-GB denotes the language of the documentation for the component subject";
-    # TODO: figure out if schema:Organization and schema:Person should be modeled
-    okh:licensor IRI?
+    okh:licensor xsd:string?
       // rdfs:comment "organization/individual behind the hardware design (holder of intellectual property)";
     okh:organization IRI?
       // rdfs:comment "organization representing (most) contributors of this project";
@@ -109,7 +109,7 @@ okhs:Module EXTRA a {
       // rdfs:comment "has Manufacturing Instructions";
     okh:hasSoftware @okhs:Software*
       // rdfs:comment "has Software";
-    okh:release xsd:string*
+    okh:release IRI*
       // rdfs:comment "URL to release";
     okshwa:primaryType xsd:string?
       // rdfs:comment "primary category as stated at OSHWA - possilbe values: 3D Printing, Agriculture, Arts, Education, Electronics, Enclosure, Environmental, Home Connection, IOT, Manufacturing, Other, Robotics, Science, Sound, Space, Tool, Wearables";
@@ -131,7 +131,7 @@ okhs:Module EXTRA a {
 okhs:Part EXTRA a {
   $okhs:PartShape (
     &okhs:ComponentShape;
-    a [okh:Part]
+    a [okh:Part]?
       // rdfs:comment "Piece of Open Source Hardware (POSH)";
     okh:forkOf IRI?
       // rdfs:comment "fork of" ;
@@ -157,7 +157,7 @@ okhs:Part EXTRA a {
 okhs:Software EXTRA a {
   $okhs:SoftwareShape (
     &okhs:ComponentShape;
-    a [okh:Software]
+    a [okh:Software]?
       // rdfs:comment "Software (including firmware) needed to run & use the OSH";
     okh:release IRI*
       // rdfs:comment "URL to release";
@@ -168,15 +168,17 @@ okhs:Software EXTRA a {
 
 okhs:Reference EXTRA a {
   $okhs:ReferenceShape (
-    a [okh:Reference]
+    a [okh:Reference]?
       // rdfs:comment "unambiguous reference";
+    rdfs:label xsd:string?
+      // rdfs:comment "Label for this object";
   )
 }
 
 okhs:WebsiteURL EXTRA a {
   $okhs:WebsiteURLShape (
     &okhs:ReferenceShape;
-    a [okh:WebsiteUrl]
+    a [okh:WebsiteUrl]?
       // rdfs:comment "Website URL";
     schema:url xsd:string
       // rdfs: "URL of the item.";
@@ -185,33 +187,45 @@ okhs:WebsiteURL EXTRA a {
 
 okhs:Publication EXTRA a {
   $okhs:PublicationShape (
-    a [okh:Publication]
+    a [okh:Publication]?
       // rdfs:comment "_scientific_ (that is: peer reviewed) publication that _contains_ the design files";
     okh:doi xsd:string?
       // rdfs:comment "this publication has a digital object identifier (DOI)";
+    rdfs:label xsd:string?
+      // rdfs:comment "Label for this object";
   )
 }
 
 okhs:Standard EXTRA a {
   $okhs:StandardShape (
-    a [okh:Standard]
+    a [okh:Standard]?
       // rdfs:comment "official standard used in the _design_ (not e.g. DIN SPEC 3105-1)";
     okh:standardID xsd:string?
       // rdfs:comment "Document Identifier for the technical Standard";
+    rdfs:label xsd:string?
+      // rdfs:comment "Label for this object";
   )
 }
 
 okhs:File EXTRA a {
   $okhs:FileShape (
-    a [okh:File]
+    a [okh:File]?
       // rdfs:comment "File";
+    rdfs:label xsd:string?
+      // rdfs:comment "Label for this object";
+    okh:fileFormat xsd:string?
+      // rdfs:comment "File extension. For example 'JPG'";
+    okh:fileUrl IRI?
+      // rdfs:comment "The url of the file";
+    okh:permaURL xsd:string?
+      // rdfs:comment "A permanent url for the file";
   )
 }
 
 okhs:ManifestFile EXTRA a {
   $okhs:ManifestFileShape (
     &okhs:FileShape;
-    a [okh:ManifestFile]
+    a [okh:ManifestFile]?
       // rdfs:comment "file holding the metadata";
     okh:okhv xsd:string?
       // rdfs:comment "version of OKH specification the metadata is following (different version → different data fields)";
@@ -221,106 +235,114 @@ okhs:ManifestFile EXTRA a {
 okhs:Readme EXTRA a {
   $okhs:ReadmeShape (
     &okhs:FileShape;
-    a [okh:Readme]
+    a [okh:Readme]?
   )
 }
 
 okhs:ContributionGuide EXTRA a {
   $okhs:ContributionGuideShape (
     &okhs:FileShape;
-    a [okh:ContibutionFile]
+    a [okh:ContibutionFile]?
   )
 }
 
 okhs:Image EXTRA a {
   $okhs:ImageShape (
-    &okhs:FileShpae;
-    a [okh:Readme]
+    &okhs:FileShape;
+    a [okh:Image]?
   )
 }
 
 okhs:BoM EXTRA a {
   $okhs:BoMShape (
-    &okhs:FileShpae;
-    a [okh:BoM]
+    &okhs:FileShape;
+    a [okh:BoM]?
   )
 }
 
 okhs:SourceFile EXTRA a {
   $okhs:SourceFileShape (
-    &okhs:FileShpae;
-    a [okh:SourceFile]
+    &okhs:FileShape;
+    a [okh:SourceFile]?
   )
 }
 
 okhs:ExportFile EXTRA a {
   $okhs:ExportFileShape (
-    &okhs:FileShpae;
-    a [okh:ExportFile]
+    &okhs:FileShape;
+    a [okh:ExportFile]?
   )
 }
 
 okhs:AuxiliaryFile EXTRA a {
   $okhs:AuxiliaryFileShape (
-    &okhs:FileShpae;
-    a [okh:AuxiliaryFile]
+    &okhs:FileShape;
+    a [okh:AuxiliaryFile]?
   )
 }
 
 okhs:ManufacturingInstructions EXTRA a {
   $okhs:ManufacturingInstructionsShape (
-    &okhs:FileShpae;
-    a [okh:ManufacturingInstructions]
+    &okhs:FileShape;
+    a [okh:ManufacturingInstructions]?
   )
 }
 
 okhs:UserManual EXTRA a {
   $okhs:UserManualShape (
-    &okhs:FileShpae;
-    a [okh:UserManual]
+    &okhs:FileShape;
+    a [okh:UserManual]?
   )
 }
 
 okhs:OuterDimensions EXTRA a {
   $okhs:OuterDimensionsShape (
-    a [okh:OuterDimensions]
+    a [okh:OuterDimensions]?
       // rdfs:comment "outer dimensions of a module or part";
     okh:openScad xsd:string*
       // rdfs:comment "material";
     okh:unit xsd:string*
       // rdfs: "mm, cm, m, g, kg";
+    rdfs:label xsd:string?
+      // rdfs:comment "Label for this object";
   )
 }
 
 okhs:Mass EXTRA a {
   $okhs:MassShape (
-    a [okh:Mass]
+    a [okh:Mass]?
       // rdfs:comment "mass of a module or part";
     okh:unit xsd:string*
       // rdfs: "mm, cm, m, g, kg";
     okh:value xsd:decimal*
       // rdfs:comment "value";
+    rdfs:label xsd:string?
+      // rdfs:comment "Label for this object";
   )
 }
 
 otrls:OTRL EXTRA a {
   $otrls:OTRLShape (
-    a [otrl:OTRL]
+    a [otrl:OTRL]?
       // rdfs:comment "Technology Readiness Level for open source hardware";
     otrl:goal xsd:string?
       // rdfs:comment "Goal or purpose of this OTRL/ODRL";
     otrl:exitCriteria xsd:string?
       // rdfs:comment "Criteria to exit this OTRL for the next OTRL; inspired by: https://www.nasa.gov/pdf/458490main_TRL_Definitions.pdf";
+    rdfs:label xsd:string?
+      // rdfs:comment "Label for this object";
   )
 }
 
 otrls:Odrl EXTRA a {
   $otrls:OdrlShape (
-    a [otrl:Odrl]
+    a [otrl:Odrl]?
       // rdfs:comment "Documentation Readiness Level for open source hardware";
     otrl:goal xsd:string?
       // rdfs:comment "Goal or purpose of this OTRL/ODRL";
     otrl:exitCriteria xsd:string?
       // rdfs:comment "Criteria to exit this OTRL for the next OTRL; inspired by: https://www.nasa.gov/pdf/458490main_TRL_Definitions.pdf";
+    rdfs:label xsd:string?
+      // rdfs:comment "Label for this object";
   )
 }

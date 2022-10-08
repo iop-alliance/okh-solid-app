@@ -1,0 +1,29 @@
+@prefix : <https://www.thingiverse.com/thing%3A40675/1.0.0/> .
+@prefix okh: <https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#> .
+@prefix otrl: <http://purl.org/oseg/ontologies/OTRL#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+:Project a okh:Module ;
+    rdfs:label "Slim LM8UU Dual Screw Holder Parametric" ;
+    okh:dataSource "thingiverse.com" ;
+    okh:documentationLanguage "en" ;
+    okh:documentationReadinessLevel otrl:Odrl3 ;
+    okh:function """Slim, revised variant of jonaskuehling's parametric ziptieless LM8UU holder, this version has two screws\r
+\r
+Update:  I've added a version that's round and thus better for integration in existing projects + added screenshots.""" ;
+    okh:hasImage :Image ;
+    okh:licensor "0xPIT" ;
+    okh:repo <https://www.thingiverse.com/thing:40675> ;
+    okh:repoHost "www.thingiverse.com" ;
+    okh:spdxLicense <https://spdx.org/licenses/CC-BY-SA-4.0> ;
+    okh:technologyReadinessLevel otrl:Otrl4 ;
+    okh:uploadMethod "auto" ;
+    okh:version "1.0.0" ;
+    okh:versionOf <https://www.thingiverse.com/thing:40675> .
+
+:Image a okh:Image ;
+    rdfs:label "Image of Slim LM8UU Dual Screw Holder Parametric 1.0.0" ;
+    okh:fileFormat "JPG" ;
+    okh:fileUrl <https://cdn.thingiverse.com/renders/0c/54/3a/4e/39/Screen_Shot_2013-01-07_at_23.17.52_display_large.jpg> ;
+    okh:permaURL <https://cdn.thingiverse.com/renders/0c/54/3a/4e/39/Screen_Shot_2013-01-07_at_23.17.52_display_large.jpg> .
+

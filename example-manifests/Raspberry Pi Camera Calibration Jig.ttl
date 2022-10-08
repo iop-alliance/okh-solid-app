@@ -1,0 +1,32 @@
+@prefix : <https://bath_open_instrumentation_group.gitlab.io/picamera_cra_compensation/1.0.0/> .
+@prefix okh: <https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#> .
+@prefix otrl: <http://purl.org/oseg/ontologies/OTRL#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+:Project a okh:Module ;
+    rdfs:label "Raspberry Pi Camera Calibration Jig" ;
+    okh:documentationLanguage "en" ;
+    okh:documentationReadinessLevel otrl:Odrl1 ;
+    okh:function """A 3D-printed jig to uniformly illuminate the Raspberry Pi camera module's sensor, for the purpose of calibrating its response to different colours of illumination.  This enables flat-field correction, and also the unmixing of colour channels.  As the off-centre lenslet array means that (with uniform angle-of-incidence) the pixels at the edge suffer from significant crosstalk relative to the centre, correcting for varying colour response results in much truer colour representation.
+Calibrating the Raspberry Pi camera module for colour response.
+No major health and safety issues have been identified.""" ;
+    okh:hasBoM :BillOfMaterials ;
+    okh:hasUserManual :UserManual ;
+    okh:licensor "ANONYMOUS" ;
+    okh:release <https://gitlab.com/bath_open_instrumentation_group/picamera_cra_compensation/-/archive/master/picamera_cra_compensation-master.zip> ;
+    okh:repo "https://bath_open_instrumentation_group.gitlab.io/picamera_cra_compensation/" ;
+    okh:repoHost "bath_open_instrumentation_group.gitlab.io" ;
+    okh:spdxLicense <https://spdx.org/licenses/CERN-OHL-1.2> ;
+    okh:technologyReadinessLevel otrl:Otrl3 ;
+    okh:uploadMethod "manifest-script" ;
+    okh:version "1.0.0" ;
+    okh:versionOf "https://bath_open_instrumentation_group.gitlab.io/picamera_cra_compensation/" .
+
+:BillOfMaterials a okh:BoM ;
+    rdfs:label "BillOfMaterials of Raspberry Pi Camera Calibration Jig 1.0.0" ;
+    okh:fileFormat "MD" .
+
+:UserManual a okh:UserManual ;
+    rdfs:label "UserManual of Raspberry Pi Camera Calibration Jig 1.0.0" ;
+    okh:fileFormat "" .
+

@@ -12,6 +12,11 @@ export const okhProjectContext: ContextDefinition = {
   },
   Component:
     "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#Component",
+  label: {
+    "@id": "http://www.w3.org/2000/01/rdf-schema#label",
+    "@type": "http://www.w3.org/2001/XMLSchema#string",
+    "@container": "@set",
+  },
   uploadMethod: {
     "@id":
       "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#uploadMethod",
@@ -28,8 +33,22 @@ export const okhProjectContext: ContextDefinition = {
     "@type": "@id",
     "@container": "@set",
   },
-  Readme:
-    "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#Readme",
+  File: "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#File",
+  fileFormat: {
+    "@id":
+      "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#fileFormat",
+    "@type": "http://www.w3.org/2001/XMLSchema#string",
+  },
+  fileUrl: {
+    "@id":
+      "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#fileUrl",
+  },
+  permaURL: {
+    "@id":
+      "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#permaURL",
+    "@type": "http://www.w3.org/2001/XMLSchema#string",
+  },
+  Image: "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#Image",
   relatedTsDC: {
     "@id":
       "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#relatedTsDC",
@@ -47,9 +66,8 @@ export const okhProjectContext: ContextDefinition = {
       "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#repoHost",
     "@type": "http://www.w3.org/2001/XMLSchema#string",
   },
-  repository: {
-    "@id":
-      "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#repository",
+  repo: {
+    "@id": "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#repo",
     "@type": "@id",
   },
   Reference:
@@ -90,6 +108,7 @@ export const okhProjectContext: ContextDefinition = {
   licensor: {
     "@id":
       "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#licensor",
+    "@type": "http://www.w3.org/2001/XMLSchema#string",
   },
   organization: {
     "@id":
@@ -153,7 +172,8 @@ export const okhProjectContext: ContextDefinition = {
     "@type": "@id",
     "@container": "@set",
   },
-  File: "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#File",
+  Readme:
+    "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#Readme",
   hasContributionGuide: {
     "@id":
       "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#hasContributionGuide",
