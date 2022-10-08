@@ -1,8 +1,8 @@
 import React, { FunctionComponent, useState, useCallback, FormEventHandler } from "react";
 import Button from 'react-bootstrap/Button';
-import { useAuth } from './businessLogic/authGlobalHook';
+import { useAuth } from '../businessLogic/authGlobalHook';
 import Form from 'react-bootstrap/Form';
-import saveManifestToPod from "./util/saveManifestToPod";
+import saveManifestToPod from "../util/saveManifestToPod";
 
 // const CORS_HOST = 'https://cors-anywhere.herokuapp.com'
 const CORS_HOST = 'https://iopa-cors-anywhere.fly.dev'

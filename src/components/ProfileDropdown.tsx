@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
-import { FoafProfile } from "./ldo/foafProfile.typings";
-import { FoafProfileFactory } from "./ldo/foafProfile.ldoFactory";
-import { useAuth } from "./businessLogic/authGlobalHook";
+import { FoafProfile } from "../ldo/foafProfile.typings";
+import { FoafProfileFactory } from "../ldo/foafProfile.ldoFactory";
+import { useAuth } from "../businessLogic/authGlobalHook";
 import useAsyncEffect from 'use-async-effect';
 import Button from 'react-bootstrap/Button';
 import NavDropdown from 'react-bootstrap/NavDropdown';

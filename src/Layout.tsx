@@ -3,7 +3,7 @@ import { NavLink, Link, Outlet, useNavigate } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import ProfileDropdown from './ProfileDropdown';
+import ProfileDropdown from './components/ProfileDropdown';
 import { POST_LOGIN_REDIRECT, useAuth } from "./businessLogic/authGlobalHook";
 
 function Layout() {
