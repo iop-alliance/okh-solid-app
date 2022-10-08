@@ -6,6 +6,7 @@ import Layout from './Layout';
 import Dashboard from './Dashboard';
 import ProjectDetails from './ProjectPage';
 import About from './About';
+import ErrorPage from "./ErrorPage";
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
     {
       path: "/",
       element: <Layout />,
+      errorElement: <ErrorPage />,
       children:[
         {
           index: true,
