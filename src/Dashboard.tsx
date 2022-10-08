@@ -88,8 +88,22 @@ const Dashboard:FunctionComponent<{}> = () => {
       </Modal>
       {/* <Row xs={1} md={2} lg={3} className='g-3'> */}
       <Row>
-        {!projectsLoaded && <ReactLoading type="spin" color="#454545" className='mx-auto' height={100} width={100} />}
-        {modules.map((module) => {
+        {
+          !projectsLoaded && 
+          <ReactLoading type="spin" color="#454545" className='mx-auto mt-5' 
+            height={100} width={100} />
+        }
+        {!modules.length &&
+          <p>You don't have any OKH Projects in your Pod!
+            <Button variant="outline-primary" onClick={handleShowForm}
+              style={{ border: "none", verticalAlign: "baseline", textDecoration: "underline" }} 
+              className='px-1 py-0'
+            >
+              Add an OKH Project manifest
+            </Button>
+            to get started.</p>
+        }
+        {modules.length > 0 && modules.map((module) => {
           return (
             <ProjectListItem module={module} />
           )
