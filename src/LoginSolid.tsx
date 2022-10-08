@@ -1,10 +1,8 @@
-import React, { FunctionComponent, useCallback, useContext, useEffect, useState } from 'react';
+import React, { FunctionComponent, useCallback } from 'react';
 import { useAuth } from "./businessLogic/authGlobalHook";
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import Toast from 'react-bootstrap/Toast';
-import { login } from '@inrupt/solid-client-authn-browser';
 
 interface IProviderData {
   name: string;
@@ -36,7 +34,7 @@ const providerData: IProviderData[] = [
 ];
 
 
-const LoginSolid: FunctionComponent<{}> = ({}) => {
+const LoginSolid: FunctionComponent<{}> = () => {
 
   const { login } = useAuth();
 

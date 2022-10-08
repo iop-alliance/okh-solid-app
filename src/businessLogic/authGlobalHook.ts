@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState, useRef } from "react";
 import {
   ISessionInfo,
   handleIncomingRedirect,
@@ -27,17 +27,21 @@ function useAuthGlobalHookFunc(): AuthGlobalHookReturn {
     getDefaultSession().info
   );
   const [ranInitialAuthCheck, setRanInitialAuthCheck] = useState(false);
+  const handleIncomingRedirectExecuting = useRef<boolean>(false);
 
   const runInitialAuthCheck = useCallback(async () => {
-    const postLoginRedirect = window.localStorage.getItem(POST_LOGIN_REDIRECT);
-    if (!postLoginRedirect) {
-      window.localStorage.setItem(POST_LOGIN_REDIRECT, window.location.href);
+    if (!handleIncomingRedirectExecuting.current) {
+      handleIncomingRedirectExecuting.current = true;
+      const postLoginRedirect = window.localStorage.getItem(POST_LOGIN_REDIRECT);
+      if (!postLoginRedirect) {
+        window.localStorage.setItem(POST_LOGIN_REDIRECT, window.location.href);
+      }
+      await handleIncomingRedirect({
+        restorePreviousSession: true,
+      });
+      setSession({ ...getDefaultSession().info });
+      setRanInitialAuthCheck(true);
     }
-    await handleIncomingRedirect({
-      restorePreviousSession: true,
-    });
-    setSession({ ...getDefaultSession().info });
-    setRanInitialAuthCheck(true);
   }, []);
 
   const login = useCallback(async (issuer: string) => {
