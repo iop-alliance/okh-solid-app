@@ -22,7 +22,7 @@ function Layout() {
   
   return (
     <div>
-      <Navbar bg="light" expand="lg">
+      <Navbar bg="light" variant="light" expand="lg" style={{ borderLeft: "8px solid #f4cd54", borderBottom: "1px solid rgb(224 226 228)" }}>
         <Container>
           <Link to="/" className='navbar-brand'>
             <img
@@ -32,7 +32,8 @@ function Layout() {
                 height="30"
                 className="d-inline-block align-top"
               />{' '}
-            OKH Solid App
+            OKH Solid App{' '}
+            <sub style={{fontSize: "67%"}}>[beta]</sub>
           </Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav" className='justify-content-end'>

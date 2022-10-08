@@ -57,7 +57,7 @@ const ProfileDropdown: FunctionComponent<{}> = () => {
 
     if (session?.isLoggedIn) {
         return (
-            <DropdownButton title="Profile" align='end' variant="outline-primary">
+            <DropdownButton title="Profile" align='end' variant="outline-secondary">
                 <NavDropdown.ItemText>
                     <div className='d-block'>
                         Logged in as{' '}
