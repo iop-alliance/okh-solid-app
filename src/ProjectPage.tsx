@@ -11,7 +11,7 @@ import Modal from 'react-bootstrap/Modal';
 import Row from 'react-bootstrap/Row';
 import { ContainerFactory } from './ldo/solid.ldoFactory';
 import PartsList from './components/PartsList';
-import { ListGroup, ListGroupItem } from 'react-bootstrap';
+import { Accordion, ListGroup, ListGroupItem } from 'react-bootstrap';
 import ReactLoading from 'react-loading';
 import { ArrowLeft } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
@@ -122,6 +122,11 @@ const ProjectDetails: FunctionComponent<{}> = () => {
             <h4>Parts</h4>
             { maybeDisplayPartsList() }
           </div>
+          <div className='mt-3'>
+            <Accordion>
+              
+            </Accordion>
+          </div>
         </Col>
         <Col md={4}>
           { /* @ts-ignore */ }
@@ -136,7 +141,7 @@ const ProjectDetails: FunctionComponent<{}> = () => {
         </Modal.Header>
         <Modal.Body>Are you sure you want to remove this project from your Pod?</Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseDeleteConfirm} className="me-auto">
+          <Button variant="secondary-outline" onClick={handleCloseDeleteConfirm} className="me-auto">
             I want to keep the project
           </Button>
           <Button variant="danger" onClick={deleteProject}>
