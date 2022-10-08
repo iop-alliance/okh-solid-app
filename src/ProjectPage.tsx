@@ -12,8 +12,10 @@ import Modal from 'react-bootstrap/Modal';
 import Row from 'react-bootstrap/Row';
 import { ContainerFactory } from './ldo/solid.ldoFactory';
 import PartsList from './components/PartsList';
-import { Breadcrumb, ListGroup, ListGroupItem } from 'react-bootstrap';
-import Loading from './Loading';
+import { ListGroup, ListGroupItem } from 'react-bootstrap';
+import ReactLoading from 'react-loading';
+import { ArrowLeft } from 'react-bootstrap-icons';
+import { Link } from 'react-router-dom';
 
 const ProjectDetails: FunctionComponent<{}> = () => {
   const { projectId } = useParams<"projectId">();
@@ -68,7 +70,9 @@ const ProjectDetails: FunctionComponent<{}> = () => {
   }, [session, projectId]);
 
   if (!project) {
-    return (<Loading />);
+    return (
+      <ReactLoading type="spin" color="#454545" className='mx-auto mt-5' height={100} width={100} />
+    );
   }
 
   const maybeDisplayPartsList = () => {
@@ -82,10 +86,9 @@ const ProjectDetails: FunctionComponent<{}> = () => {
     <div>
       <Row>
         <Col className='d-flex'>
-          <Breadcrumb className='me-auto'>
-            <Breadcrumb.Item href="/">Projects</Breadcrumb.Item>
-            <Breadcrumb.Item active>{project.label}</Breadcrumb.Item>
-          </Breadcrumb> 
+          <Link to="/" className='me-auto mb-3'>
+            <ArrowLeft /> Back to projects list
+          </Link> 
           <Button variant="danger" className='btn-sm' onClick={handleShowDeleteConfirm}>Delete Project</Button>
         </Col>
       </Row>
