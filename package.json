@@ -2,7 +2,7 @@
   "name": "okh-solid-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://iop-alliance.github.io/okh-solid-app",
+  "homepage": "https://solid-app.internetofproduction.org",
   "dependencies": {
     "@inrupt/solid-client-authn-browser": "^1.12.2",
     "@shexjs/validator": "1.0.0-alpha.21",
