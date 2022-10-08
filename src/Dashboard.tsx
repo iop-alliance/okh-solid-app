@@ -10,25 +10,25 @@ import useAsyncEffect from 'use-async-effect';
 import { ContainerFactory } from "./ldo/solid.ldoFactory";
 import { ModuleFactory } from './ldo/okhProject.ldoFactory';
 import { Module } from './ldo/okhProject.typings';
-// import ManifestUploadForm from './ManifestUploadForm';
-import ManifestUrlForm from './components/ManifestUrlForm';
 import LoginSolid from './components/LoginSolid';
 // import ProjectCard from './components/ProjectCard';
 import ProjectListItem from './components/ProjectListItem';
 import ReactLoading from 'react-loading';
+import AddManifestForms from './components/AddManifestForms';
 
 const Dashboard:FunctionComponent<{}> = () => {
 
   const { session, fetch } = useAuth();
-  const [modules, setModules] = useState<Module[]>([]);
   const [showForm, setShowForm] = useState(false);
   const [showAlert, setShowAlert] = useState(false)
   const [projectsLoaded, setProjectsLoaded] = useState(false)
+  const [modules, setModules] = useState<Module[]>([]);
 
   const handleCloseForm = () => setShowForm(false);
   const handleShowForm = () => setShowForm(true);
 
   const fetchModules = useCallback(async () => {
+
     if (!session.isLoggedIn) { return }
       // Get path to the root container
     const profileUrl = new URL(session.webId as string);
@@ -53,11 +53,7 @@ const Dashboard:FunctionComponent<{}> = () => {
     await fetchModules();
   }, [session])
 
-  const onUploadFormComplete = useCallback(() => {
-    setShowForm(false);
-    setShowAlert(true);
-    fetchModules()
-  }, [setShowForm, fetchModules]);
+
 
   if (!session.isLoggedIn) {
     return (<LoginSolid />)
@@ -77,27 +73,28 @@ const Dashboard:FunctionComponent<{}> = () => {
         </Col>
       </Row>
 
-      <Modal show={showForm} onHide={handleCloseForm}>
+      <Modal show={showForm} onHide={handleCloseForm} size="lg">
         <Modal.Header closeButton>
           <Modal.Title>Add an OKH Project Manifest</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <ManifestUrlForm onComplete={onUploadFormComplete} />
+          <AddManifestForms 
+              setProjectsLoaded={setProjectsLoaded}
+              setShowForm={setShowForm} 
+              setShowAlert={setShowAlert}
+              setModules={setModules}
+              fetchModules={fetchModules}
+            />
         </Modal.Body>
       </Modal>
       {/* <Row xs={1} md={2} lg={3} className='g-3'> */}
       <Row>
-        {
-          !projectsLoaded && 
-          <ReactLoading type="spin" color="#454545" className='mx-auto mt-5' 
-            height={100} width={100} />
-        }
         {!modules.length &&
           <p>You don't have any OKH Projects in your Pod!
             <Button variant="outline-primary" onClick={handleShowForm}
               style={{ border: "none", verticalAlign: "baseline", textDecoration: "underline" }} 
               className='px-1 py-0'
-            >
+              >
               Add an OKH Project manifest
             </Button>
             to get started.</p>
@@ -107,7 +104,12 @@ const Dashboard:FunctionComponent<{}> = () => {
             <ProjectListItem module={module} />
           )
         })}
-      </Row>
+        {
+          !projectsLoaded && 
+          <ReactLoading type="spin" color="#454545" className='mx-auto mt-5' 
+            height={100} width={100} />
+        }
+     </Row>
     </>  
   )
 };
