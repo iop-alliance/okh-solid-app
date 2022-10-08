@@ -5,6 +5,7 @@ import { AuthProvider } from "./businessLogic/authGlobalHook";
 import Layout from './Layout';
 import Dashboard from './Dashboard';
 import ProjectDetails from './ProjectPage';
+import About from './About';
 
 function App() {
 
@@ -16,6 +17,10 @@ function App() {
         {
           index: true,
           element: <Dashboard />
+        },
+        {
+          path: "/about",
+          element: <About />
         },
         {
           path: "projects/:projectId",

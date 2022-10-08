@@ -39,6 +39,7 @@ function Layout() {
           <Navbar.Collapse id="basic-navbar-nav" className='justify-content-end'>
             <Nav className="me-auto">
               <NavLink to="/" className='nav-link'>Home</NavLink>
+              <NavLink to="/about" className='nav-link'>About</NavLink>
             </Nav>
             <Nav>
               <LoginHeader />
