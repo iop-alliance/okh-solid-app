@@ -6,16 +6,16 @@ import { construct } from "@shexjs/validator";
 // @ts-ignore
 import { ctor } from "@shexjs/neighborhood-rdfjs";
 
-export default async function isValid<T>(object: LinkedDataObject<T>, shapeType: ShapeType<T>) {
+export default function isValid<T extends { "@id"?: string }>(object: LinkedDataObject<T>, shapeType: ShapeType<T>) {
     const g = new Store();
     object.$dataset().forEach((quad) => {
         g.addQuad(quad);
     });
     // Validate
-    const validationResult = construct(okhProjectSchema, ctor(g), {}).validate([
+    const validationResult = construct(shapeType.schema, ctor(g), {}).validate([
         {
-        node: moduleId,
-        shape: ModuleShapeType.shape,
+            node: object["@id"] || "",
+            shape: shapeType.shape,
         },
     ]);
     console.log(JSON.stringify(validationResult, null, 2));
