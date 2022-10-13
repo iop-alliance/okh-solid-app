@@ -10,6 +10,7 @@ interface ManifestUploadFormProps {
 
 const ManifestUploadForm: FunctionComponent<ManifestUploadFormProps> = ({ onComplete }) => {
   const [manifestFiles, setManifestFiles] = useState<FileList>();
+  const [isPublic, setIsPublic] = useState(true);
   const { fetch, session } = useAuth();
 
   const onSubmit = useCallback<FormEventHandler<HTMLFormElement>>(async (e) => {
@@ -18,7 +19,7 @@ const ManifestUploadForm: FunctionComponent<ManifestUploadFormProps> = ({ onComp
     await Promise.all(Array.from(manifestFiles).map(async (file) => {
       const rawTurtle = await file.text();
       try {
-        await saveManifestToPod(rawTurtle, session, fetch)
+        await saveManifestToPod(rawTurtle, session, fetch, isPublic);
         onComplete();
       } catch (err: unknown) {
         if ((err as Error).message) {
@@ -28,7 +29,7 @@ const ManifestUploadForm: FunctionComponent<ManifestUploadFormProps> = ({ onComp
         }
       }
     }));
-  }, [manifestFiles, session, fetch]);
+  }, [manifestFiles, session, fetch, isPublic, onComplete]);
 
   return (
     <div className="mb-4">
@@ -43,6 +44,13 @@ const ManifestUploadForm: FunctionComponent<ManifestUploadFormProps> = ({ onComp
               }
               />
         </Form.Group>
+        <Form.Check
+          type="checkbox"
+          checked={isPublic}
+          label="Make the manifest public"
+          className="mb-3"
+          onChange={(e) => setIsPublic(!isPublic)}
+        />
         <Button variant="primary" type="submit">
           Submit
         </Button>

@@ -3,9 +3,7 @@ import Button from 'react-bootstrap/Button';
 import { useAuth } from '../businessLogic/authGlobalHook';
 import Form from 'react-bootstrap/Form';
 import saveManifestToPod from "../util/saveManifestToPod";
-
-// const CORS_HOST = 'https://cors-anywhere.herokuapp.com'
-const CORS_HOST = 'https://iopa-cors-anywhere.fly.dev'
+import corsFetch from "../util/corsFetch";
 
 interface ManifestUrlFormProps {
   onComplete: () => void;
@@ -13,18 +11,19 @@ interface ManifestUrlFormProps {
 
 const ManifestUrlForm: FunctionComponent<ManifestUrlFormProps> = ({ onComplete }) => {
   const [manifestUrl, setManifestUrl] = useState('');
+  const [isPublic, setIsPublic] = useState(true);
   const { fetch, session } = useAuth();
 
   const onSubmit = useCallback<FormEventHandler<HTMLFormElement>>(async (e) => {
     e.preventDefault();
     // Perform fetch and validation
-    const response = await fetch(`${CORS_HOST}/${manifestUrl}`);
+    const response = await corsFetch(manifestUrl);
     if (response.status !== 200) {
       alert('Problem Fetching');
     }
     const rawTurtle = await response.text();
     try {
-      await saveManifestToPod(rawTurtle, session, fetch);
+      await saveManifestToPod(rawTurtle, session, fetch, isPublic);
       onComplete();
     } catch (err: unknown) {
       if ((err as Error).message) {
@@ -33,7 +32,7 @@ const ManifestUrlForm: FunctionComponent<ManifestUrlFormProps> = ({ onComplete }
         alert('There was a problem uploading this manifest');
       }
     }
-  }, [manifestUrl, fetch, session]);
+  }, [manifestUrl, fetch, session, isPublic, onComplete]);
 
   return (
     <Form onSubmit={onSubmit}>
@@ -48,6 +47,13 @@ const ManifestUrlForm: FunctionComponent<ManifestUrlFormProps> = ({ onComplete }
             value={manifestUrl}
           />
       </Form.Group>
+      <Form.Check
+          type="checkbox"
+          checked={isPublic}
+          label="Make the manifest public"
+          className="mb-3"
+          onChange={(e) => setIsPublic(!isPublic)}
+        />
       <Button variant="primary" type="submit">
         Submit
       </Button>
