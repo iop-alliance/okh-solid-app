@@ -18,7 +18,6 @@ function Layout() {
       window.localStorage.removeItem(POST_LOGIN_REDIRECT);
     }
   }, [navigate, session]);
-  console.log(ranInitialAuthCheck);
   
   return (
     <div>

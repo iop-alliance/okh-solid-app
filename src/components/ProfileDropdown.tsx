@@ -9,7 +9,7 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 
 const ProfileDropdown: FunctionComponent<{}> = () => {
     const { logout, session, fetch } = useAuth();
-    const [profile, setProfile] = useState<FoafProfile | undefined>();
+    // const [profile, setProfile] = useState<FoafProfile | undefined>();
     const [nameField, setNameField] = useState<string>("");
 
     useEffect(() => {
@@ -25,11 +25,11 @@ const ProfileDropdown: FunctionComponent<{}> = () => {
                 rawProfile,
                 { baseIRI: session.webId }
             );
-            setProfile(foafProfile);
+            // setProfile(foafProfile);
             setNameField(foafProfile.name || "");
         }
         fetchProfile();
-    }, [session]);
+    }, [session, fetch]);
 
     const [checkedRootApplicationContainer, setCheckedRootApplicationContainer] = useState(false);
     useAsyncEffect(async () => {
@@ -58,12 +58,15 @@ const ProfileDropdown: FunctionComponent<{}> = () => {
     if (session?.isLoggedIn) {
         return (
             <DropdownButton title="Profile" align='end' variant="outline-secondary">
-                <NavDropdown.ItemText>
-                    <div className='d-block'>
-                        Logged in as{' '}
-                        <a href={session.webId}>{nameField}</a>
-                    </div>
-                </NavDropdown.ItemText>
+                {
+                    (nameField !== "") &&
+                    <NavDropdown.ItemText>
+                        <div className='d-block'>
+                            Logged in as{' '}
+                            <a href={session.webId}>{nameField}</a>
+                        </div>
+                    </NavDropdown.ItemText>
+                }
                 <NavDropdown.ItemText>
                     <Button onClick={logout} variant="outline-secondary">Logout</Button>
                 </NavDropdown.ItemText>

@@ -13,7 +13,7 @@ const ProjectListItem: FunctionComponent<ProjectListItemProps> = ({ module }) =>
   return (
       <Card className='mb-3' key={module['@id']}>
         <Row className="no-gutters">
-          <Col md={8}>
+          <Col md={8} className='order-2 order-md-1'>
             <Card.Body>
               <Card.Title>{module.label}</Card.Title>
               <Card.Text>
@@ -27,7 +27,7 @@ const ProjectListItem: FunctionComponent<ProjectListItemProps> = ({ module }) =>
               </Link>
             </Card.Body>
           </Col>
-          <Col md={4} className='p-0'>
+          <Col md={4} className='p-0 order-1 order-md-2'>
             { /* @ts-ignore */ }
             {module.hasImage && module.hasImage.length > 0 && <Card.Img src={module.hasImage?.[0].fileUrl?.['@id']} style={{ objectFit: "cover", height: "250px" }} />}
           </Col>

@@ -8,13 +8,16 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
 import Modal from 'react-bootstrap/Modal';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Row from 'react-bootstrap/Row';
+import Tooltip from 'react-bootstrap/Tooltip';
 import { ContainerFactory } from './ldo/solid.ldoFactory';
 import PartsList from './components/PartsList';
-import { Accordion, ListGroup, ListGroupItem } from 'react-bootstrap';
+import { ListGroup, ListGroupItem } from 'react-bootstrap';
 import ReactLoading from 'react-loading';
 import { ArrowLeft } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
+import { FiCopy } from 'react-icons/fi';
 
 const ProjectDetails: FunctionComponent<{}> = () => {
   const { projectId } = useParams<"projectId">();
@@ -25,6 +28,12 @@ const ProjectDetails: FunctionComponent<{}> = () => {
 
   const handleCloseDeleteConfirm = () => setShowDeleteConfirm(false);
   const handleShowDeleteConfirm = () => setShowDeleteConfirm(true);
+
+  const renderTooltip = (props: any) => (
+    <Tooltip id="button-tooltip" {...props}>
+      Copy link to clipboard
+    </Tooltip>
+  );
 
   const deleteProject = useCallback(async () => {
     if (projectId) {
@@ -56,7 +65,6 @@ const ProjectDetails: FunctionComponent<{}> = () => {
     let project: Module = {};
     if (response.status === 200) {
       const rawText = await response.text();
-      console.log(rawText);
       
       project = await ModuleFactory.parse(projectId, rawText, { baseIRI: projectId });
     } else {
@@ -87,8 +95,7 @@ const ProjectDetails: FunctionComponent<{}> = () => {
         <Col className='d-flex'>
           <Link to="/" className='me-auto mb-3'>
             <ArrowLeft /> Back to projects list
-          </Link> 
-          <Button variant="danger" className='btn-sm' onClick={handleShowDeleteConfirm}>Delete Project</Button>
+          </Link>
         </Col>
       </Row>
       <Row>          
@@ -97,7 +104,19 @@ const ProjectDetails: FunctionComponent<{}> = () => {
         </Col>
       </Row>
       <Row>
-        <Col md={8}>
+        <Col md={8} className='order-1 order-md-0'>
+          <div>
+            <a href={projectId}>Link to manifest</a>
+            <OverlayTrigger
+              placement="top"
+              delay={{ show: 250, hide: 400 }}
+              overlay={renderTooltip}
+              >
+              <span>
+                <FiCopy size="1.25rem" />
+              </span>
+            </OverlayTrigger>
+          </div>
           <div>
             <p>{ project.function }</p>
           </div>
@@ -122,15 +141,19 @@ const ProjectDetails: FunctionComponent<{}> = () => {
             <h4>Parts</h4>
             { maybeDisplayPartsList() }
           </div>
-          <div className='mt-3'>
-            <Accordion>
-              
-            </Accordion>
+          <div className='mt-5'>
+            <div className='red-border rounded p-3'>
+              <h3>Danger Zone</h3>
+              <div className='d-flex align-items-center justify-content-between'>
+                <div>Remove the project from your Pod</div>
+                <Button variant="danger" className='btn-sm ms-5' onClick={handleShowDeleteConfirm}>Delete Project</Button>
+              </div>
+            </div>
           </div>
         </Col>
-        <Col md={4}>
+        <Col md={4} className='order-0 order-md-1'>
           { /* @ts-ignore */ }
-          {project.hasImage && project.hasImage.length > 0 && <Image src={project.hasImage?.[0].fileUrl?.['@id']} width="100%" />}
+          {project.hasImage && project.hasImage.length > 0 && <Image src={project.hasImage?.[0].fileUrl?.['@id']} width="100%" className='mt-3 mt-md-0' />}
 
         </Col>
       </Row>

@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { Part } from '../ldo/okhProject.typings';
-import ListGroup from 'react-bootstrap/ListGroup';
+import Table from 'react-bootstrap/Table';
 import ModulePart from './ModulePart';
 
 interface PartsListProps {
@@ -9,9 +9,18 @@ interface PartsListProps {
 
 const PartsList: FunctionComponent<PartsListProps> = ({ parts }) => {  
   return (
-    <ListGroup variant="flush">
-      {parts.map((part) => <ModulePart part={part} />)}
-    </ListGroup>
+    <Table striped>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>File Type</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {parts.map((part) => <ModulePart part={part} />)}
+      </tbody>
+    </Table>
   )
 }
 

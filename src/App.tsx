@@ -8,6 +8,8 @@ import ProjectDetails from './ProjectPage';
 import About from './About';
 import ErrorPage from "./ErrorPage";
 
+import './App.scss';
+
 function App() {
 
   const router = createBrowserRouter([
