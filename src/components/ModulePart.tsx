@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from 'react';
 import { Part } from '../ldo/okhProject.typings';
-import ListGroup from 'react-bootstrap/ListGroup';
 import { CloudArrowDown } from 'react-bootstrap-icons';
 
 interface ModulePartProps {
@@ -12,7 +11,6 @@ const ModulePart: FunctionComponent<ModulePartProps> = ({ part }) => {
     <tr key={part['@id']}>
       <td>{part.label}</td>
         {part.source && part.source.length > 0 && part.source.map((source) => {
-          { /* @ts-ignore */ }
           const sourceFileUrl = source.fileUrl?.['@id']
           return (
             <>

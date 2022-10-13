@@ -15,7 +15,9 @@ export interface Container {
   /**
    * A container on a Solid server
    */
-  type?: "Container";
+  type?: {
+    "@id": "Container";
+  };
   /**
    * Date modified
    */
@@ -43,7 +45,9 @@ export interface Resource {
   /**
    * Any resource on a Solid server
    */
-  type?: "Resource";
+  type?: {
+    "@id": "Resource";
+  };
   /**
    * Date modified
    */

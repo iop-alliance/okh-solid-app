@@ -116,7 +116,6 @@ export async function saveFilesToPod(
     const files = object[field];
     if (files) {
       await Promise.all(files.map(async (file: File): Promise<void> => {
-        // @ts-ignore
         const fileUrl: string = file.fileUrl["@id"];
         const splitFileUrl = fileUrl.split('/');
         const fileName = splitFileUrl[splitFileUrl.length - 1];
@@ -135,7 +134,6 @@ export async function saveFilesToPod(
           });
           if (saveFileResponse.status === 201) {
             console.log(`Successfully saved ${podFileUrl}`);
-            // @ts-ignore
             file.fileUrl["@id"] = podFileUrl;
           }
         }

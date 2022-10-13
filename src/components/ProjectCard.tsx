@@ -12,7 +12,6 @@ const ProjectCard: FunctionComponent<ProjectCardProps> = ({ module }) => {
   return (
     <Col key={module['@id']}>
       <Card className='h-100'>
-        { /* @ts-ignore */ }
         {module.hasImage && module.hasImage.length > 0 && <Card.Img variant="top" src={module.hasImage?.[0].fileUrl?.['@id']} />}
         <Card.Body>
           <Card.Title>{module.label}</Card.Title>

@@ -1593,8 +1593,6 @@ export const okhProjectSchema: Schema = {
               type: "NodeConstraint",
               nodeKind: "iri",
             },
-            min: 0,
-            max: 1,
             annotations: [
               {
                 type: "Annotation",

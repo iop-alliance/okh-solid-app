@@ -42,7 +42,6 @@ const ProfileDropdown: FunctionComponent<{}> = () => {
             const containerExistsResponse = await fetch(applicationRoot);
             if (containerExistsResponse.status === 404) {
                 // Create root container if it doesn't exist
-                console.log('Container doesnt exist'); 
                 const createContainerResponse = await fetch(applicationRoot, {
                     method: "PUT",
                     headers: {

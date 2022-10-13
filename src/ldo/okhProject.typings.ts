@@ -15,7 +15,9 @@ export interface Component {
   /**
    * Either a module (MOSH) or Part (POSH); more component types may be added in the future
    */
-  type?: "Component";
+  type?: {
+    "@id": "Component";
+  };
   /**
    * Label for this object
    */
@@ -27,7 +29,9 @@ export interface Component {
   /**
    * complies with a technical standard
    */
-  compilesWith?: string[];
+  compilesWith?: {
+    "@id": string;
+  }[];
   /**
    * links to the corresponding Image
    */
@@ -35,7 +39,9 @@ export interface Component {
   /**
    * Identifier for the applying Technology-specific Documentation Criteria according to DIN SPEC 3105-1, e.g. `tsdc:3DP`
    */
-  relatedTsDC?: string[];
+  relatedTsDC?: {
+    "@id": string;
+  }[];
 }
 
 /**
@@ -47,7 +53,14 @@ export interface Module {
   /**
    * Either a module (MOSH) or Part (POSH); more component types may be added in the future | Module of Open Source Hardware (MOSH)
    */
-  type?: ("Component" | "Module")[];
+  type?: (
+    | {
+        "@id": "Component";
+      }
+    | {
+        "@id": "Module";
+      }
+  )[];
   /**
    * Label for this object
    */
@@ -59,7 +72,9 @@ export interface Module {
   /**
    * complies with a technical standard
    */
-  compilesWith?: string[];
+  compilesWith?: {
+    "@id": string;
+  }[];
   /**
    * links to the corresponding Image
    */
@@ -67,7 +82,9 @@ export interface Module {
   /**
    * Identifier for the applying Technology-specific Documentation Criteria according to DIN SPEC 3105-1, e.g. `tsdc:3DP`
    */
-  relatedTsDC?: string[];
+  relatedTsDC?: {
+    "@id": string;
+  }[];
   /**
    * platform, where the crawler found the metadata (e.g. GitHub, Wikifactory)
    */
@@ -91,7 +108,9 @@ export interface Module {
   /**
    * A resource from which this work is derived or from which it is a modification or adaption.
    */
-  forkOf?: string;
+  forkOf?: {
+    "@id": string;
+  };
   /**
    * connects specific versions of Modules with their versionless superclass
    */
@@ -107,15 +126,21 @@ export interface Module {
   /**
    * organization representing (most) contributors of this project
    */
-  organization?: string;
+  organization?: {
+    "@id": string;
+  };
   /**
    * view complete list under https://spdx.org/licenses/
    */
-  spdxLicense?: string;
+  spdxLicense?: {
+    "@id": string;
+  };
   /**
    * URL to legal code of a license without SPDX identifier, hence OSHWA-compliance is to be checked manually
    */
-  alternativeLicense?: string[];
+  alternativeLicense?: {
+    "@id": string;
+  }[];
   /**
    * Technology Readiness Level (TRL) using the OTRL definitions
    */
@@ -127,15 +152,21 @@ export interface Module {
   /**
    * permanent URL to evidence of compliance (OSHWA, FSF, DIN SPEC 3105)
    */
-  attestation?: string[];
+  attestation?: {
+    "@id": string;
+  }[];
   /**
    * design files of this OSH modules have been peer reviewed in a scientific publication
    */
-  hasPublication?: string[];
+  hasPublication?: {
+    "@id": string;
+  }[];
   /**
    * International Patent Classification (IPC)
    */
-  cpcPatentClass?: string[];
+  cpcPatentClass?: {
+    "@id": string;
+  }[];
   /**
    * functional description, e.g. what it actually does, what problem it solves, for whom, under which conditions etc. so if you wish that someone finds & uses your okh specifically e.g. for COVID-19-crisis response, include relevant keywords in this field optional: description of input, output and interfaces
    */
@@ -163,7 +194,9 @@ export interface Module {
   /**
    * production-relevant metadata, such as material, manufacturing technology, outer dimensions, smallest tolerance, finest surface roughness
    */
-  productionMetadata?: string[];
+  productionMetadata?: {
+    "@id": string;
+  }[];
   /**
    * has manifest file
    */
@@ -199,7 +232,9 @@ export interface Module {
   /**
    * URL to release
    */
-  release?: string[];
+  release?: {
+    "@id": string;
+  }[];
   /**
    * primary category as stated at OSHWA - possilbe values: 3D Printing, Agriculture, Arts, Education, Electronics, Enclosure, Environmental, Home Connection, IOT, Manufacturing, Other, Robotics, Science, Sound, Space, Tool, Wearables
    */
@@ -211,15 +246,21 @@ export interface Module {
   /**
    * harward license as stated at OSHWA
    */
-  hardwareLicense?: string;
+  hardwareLicense?: {
+    "@id": string;
+  };
   /**
    * sotware license as stated at OSHWA
    */
-  softwareLicense?: string;
+  softwareLicense?: {
+    "@id": string;
+  };
   /**
    * documentation license as stated at OSHWA
    */
-  documentationLicense?: string;
+  documentationLicense?: {
+    "@id": string;
+  };
   /**
    * origin (country) as stated at OSHWA
    */
@@ -239,7 +280,14 @@ export interface Part {
   /**
    * Either a module (MOSH) or Part (POSH); more component types may be added in the future | Piece of Open Source Hardware (POSH)
    */
-  type?: ("Component" | "Part")[];
+  type?: (
+    | {
+        "@id": "Component";
+      }
+    | {
+        "@id": "Part";
+      }
+  )[];
   /**
    * Label for this object
    */
@@ -251,7 +299,9 @@ export interface Part {
   /**
    * complies with a technical standard
    */
-  compilesWith?: string[];
+  compilesWith?: {
+    "@id": string;
+  }[];
   /**
    * links to the corresponding Image
    */
@@ -259,11 +309,15 @@ export interface Part {
   /**
    * Identifier for the applying Technology-specific Documentation Criteria according to DIN SPEC 3105-1, e.g. `tsdc:3DP`
    */
-  relatedTsDC?: string[];
+  relatedTsDC?: {
+    "@id": string;
+  }[];
   /**
    * fork of
    */
-  forkOf?: string;
+  forkOf?: {
+    "@id": string;
+  };
   /**
    * IETF language tag following the BCP 47 standard e.g. en-GB denotes the language of the documentation for the component subject
    */
@@ -271,11 +325,15 @@ export interface Part {
   /**
    * production-relevant metadata, such as material, manufacturing technology, outer dimensions, smallest tolerance, finest surface roughness
    */
-  productionMetadata?: string[];
+  productionMetadata?: {
+    "@id": string;
+  }[];
   /**
    * smallest tolerance class (following ISO 286)
    */
-  smallestToleranceClass?: string;
+  smallestToleranceClass?: {
+    "@id": string;
+  };
   /**
    * has manifest file
    */
@@ -307,7 +365,14 @@ export interface Software {
   /**
    * Either a module (MOSH) or Part (POSH); more component types may be added in the future | Software (including firmware) needed to run & use the OSH
    */
-  type?: ("Component" | "Software")[];
+  type?: (
+    | {
+        "@id": "Component";
+      }
+    | {
+        "@id": "Software";
+      }
+  )[];
   /**
    * Label for this object
    */
@@ -319,7 +384,9 @@ export interface Software {
   /**
    * complies with a technical standard
    */
-  compilesWith?: string[];
+  compilesWith?: {
+    "@id": string;
+  }[];
   /**
    * links to the corresponding Image
    */
@@ -327,11 +394,15 @@ export interface Software {
   /**
    * Identifier for the applying Technology-specific Documentation Criteria according to DIN SPEC 3105-1, e.g. `tsdc:3DP`
    */
-  relatedTsDC?: string[];
+  relatedTsDC?: {
+    "@id": string;
+  }[];
   /**
    * URL to release
    */
-  release?: string[];
+  release?: {
+    "@id": string;
+  }[];
   /**
    * Installation Guide
    */
@@ -347,7 +418,9 @@ export interface Reference {
   /**
    * unambiguous reference
    */
-  type?: "Reference";
+  type?: {
+    "@id": "Reference";
+  };
   /**
    * Label for this object
    */
@@ -363,7 +436,14 @@ export interface WebsiteURL {
   /**
    * unambiguous reference | Website URL
    */
-  type?: ("Reference" | "WebsiteUrl")[];
+  type?: (
+    | {
+        "@id": "Reference";
+      }
+    | {
+        "@id": "WebsiteUrl";
+      }
+  )[];
   /**
    * Label for this object
    */
@@ -380,7 +460,9 @@ export interface Publication {
   /**
    * _scientific_ (that is: peer reviewed) publication that _contains_ the design files
    */
-  type?: "Publication";
+  type?: {
+    "@id": "Publication";
+  };
   /**
    * this publication has a digital object identifier (DOI)
    */
@@ -400,7 +482,9 @@ export interface Standard {
   /**
    * official standard used in the _design_ (not e.g. DIN SPEC 3105-1)
    */
-  type?: "Standard";
+  type?: {
+    "@id": "Standard";
+  };
   /**
    * Document Identifier for the technical Standard
    */
@@ -420,7 +504,9 @@ export interface File {
   /**
    * File
    */
-  type?: "File";
+  type?: {
+    "@id": "File";
+  };
   /**
    * Label for this object
    */
@@ -432,7 +518,9 @@ export interface File {
   /**
    * The url of the file
    */
-  fileUrl?: string;
+  fileUrl: {
+    "@id": string;
+  };
   /**
    * A permanent url for the file
    */
@@ -448,7 +536,14 @@ export interface ManifestFile {
   /**
    * File | file holding the metadata
    */
-  type?: ("File" | "ManifestFile")[];
+  type?: (
+    | {
+        "@id": "File";
+      }
+    | {
+        "@id": "ManifestFile";
+      }
+  )[];
   /**
    * Label for this object
    */
@@ -460,7 +555,9 @@ export interface ManifestFile {
   /**
    * The url of the file
    */
-  fileUrl?: string;
+  fileUrl: {
+    "@id": string;
+  };
   /**
    * A permanent url for the file
    */
@@ -480,7 +577,14 @@ export interface Readme {
   /**
    * File
    */
-  type?: ("File" | "Readme")[];
+  type?: (
+    | {
+        "@id": "File";
+      }
+    | {
+        "@id": "Readme";
+      }
+  )[];
   /**
    * Label for this object
    */
@@ -492,7 +596,9 @@ export interface Readme {
   /**
    * The url of the file
    */
-  fileUrl?: string;
+  fileUrl: {
+    "@id": string;
+  };
   /**
    * A permanent url for the file
    */
@@ -508,7 +614,14 @@ export interface ContributionGuide {
   /**
    * File
    */
-  type?: ("File" | "ContibutionFile")[];
+  type?: (
+    | {
+        "@id": "File";
+      }
+    | {
+        "@id": "ContibutionFile";
+      }
+  )[];
   /**
    * Label for this object
    */
@@ -520,7 +633,9 @@ export interface ContributionGuide {
   /**
    * The url of the file
    */
-  fileUrl?: string;
+  fileUrl: {
+    "@id": string;
+  };
   /**
    * A permanent url for the file
    */
@@ -536,7 +651,14 @@ export interface Image {
   /**
    * File
    */
-  type?: ("File" | "Image")[];
+  type?: (
+    | {
+        "@id": "File";
+      }
+    | {
+        "@id": "Image";
+      }
+  )[];
   /**
    * Label for this object
    */
@@ -548,7 +670,9 @@ export interface Image {
   /**
    * The url of the file
    */
-  fileUrl?: string;
+  fileUrl: {
+    "@id": string;
+  };
   /**
    * A permanent url for the file
    */
@@ -564,7 +688,14 @@ export interface BoM {
   /**
    * File
    */
-  type?: ("File" | "BoM")[];
+  type?: (
+    | {
+        "@id": "File";
+      }
+    | {
+        "@id": "BoM";
+      }
+  )[];
   /**
    * Label for this object
    */
@@ -576,7 +707,9 @@ export interface BoM {
   /**
    * The url of the file
    */
-  fileUrl?: string;
+  fileUrl: {
+    "@id": string;
+  };
   /**
    * A permanent url for the file
    */
@@ -592,7 +725,14 @@ export interface SourceFile {
   /**
    * File
    */
-  type?: ("File" | "SourceFile")[];
+  type?: (
+    | {
+        "@id": "File";
+      }
+    | {
+        "@id": "SourceFile";
+      }
+  )[];
   /**
    * Label for this object
    */
@@ -604,7 +744,9 @@ export interface SourceFile {
   /**
    * The url of the file
    */
-  fileUrl?: string;
+  fileUrl: {
+    "@id": string;
+  };
   /**
    * A permanent url for the file
    */
@@ -620,7 +762,14 @@ export interface ExportFile {
   /**
    * File
    */
-  type?: ("File" | "ExportFile")[];
+  type?: (
+    | {
+        "@id": "File";
+      }
+    | {
+        "@id": "ExportFile";
+      }
+  )[];
   /**
    * Label for this object
    */
@@ -632,7 +781,9 @@ export interface ExportFile {
   /**
    * The url of the file
    */
-  fileUrl?: string;
+  fileUrl: {
+    "@id": string;
+  };
   /**
    * A permanent url for the file
    */
@@ -648,7 +799,14 @@ export interface AuxiliaryFile {
   /**
    * File
    */
-  type?: ("File" | "AuxiliaryFile")[];
+  type?: (
+    | {
+        "@id": "File";
+      }
+    | {
+        "@id": "AuxiliaryFile";
+      }
+  )[];
   /**
    * Label for this object
    */
@@ -660,7 +818,9 @@ export interface AuxiliaryFile {
   /**
    * The url of the file
    */
-  fileUrl?: string;
+  fileUrl: {
+    "@id": string;
+  };
   /**
    * A permanent url for the file
    */
@@ -676,7 +836,14 @@ export interface ManufacturingInstructions {
   /**
    * File
    */
-  type?: ("File" | "ManufacturingInstructions")[];
+  type?: (
+    | {
+        "@id": "File";
+      }
+    | {
+        "@id": "ManufacturingInstructions";
+      }
+  )[];
   /**
    * Label for this object
    */
@@ -688,7 +855,9 @@ export interface ManufacturingInstructions {
   /**
    * The url of the file
    */
-  fileUrl?: string;
+  fileUrl: {
+    "@id": string;
+  };
   /**
    * A permanent url for the file
    */
@@ -704,7 +873,14 @@ export interface UserManual {
   /**
    * File
    */
-  type?: ("File" | "UserManual")[];
+  type?: (
+    | {
+        "@id": "File";
+      }
+    | {
+        "@id": "UserManual";
+      }
+  )[];
   /**
    * Label for this object
    */
@@ -716,7 +892,9 @@ export interface UserManual {
   /**
    * The url of the file
    */
-  fileUrl?: string;
+  fileUrl: {
+    "@id": string;
+  };
   /**
    * A permanent url for the file
    */
@@ -732,7 +910,9 @@ export interface OuterDimensions {
   /**
    * outer dimensions of a module or part
    */
-  type?: "OuterDimensions";
+  type?: {
+    "@id": "OuterDimensions";
+  };
   /**
    * material
    */
@@ -753,7 +933,9 @@ export interface Mass {
   /**
    * mass of a module or part
    */
-  type?: "Mass";
+  type?: {
+    "@id": "Mass";
+  };
   unit?: string[];
   /**
    * value
@@ -774,7 +956,9 @@ export interface OTRL {
   /**
    * Technology Readiness Level for open source hardware
    */
-  type?: "OTRL";
+  type?: {
+    "@id": "OTRL";
+  };
   /**
    * Goal or purpose of this OTRL/ODRL
    */
@@ -798,7 +982,9 @@ export interface Odrl {
   /**
    * Documentation Readiness Level for open source hardware
    */
-  type?: "Odrl";
+  type?: {
+    "@id": "Odrl";
+  };
   /**
    * Goal or purpose of this OTRL/ODRL
    */

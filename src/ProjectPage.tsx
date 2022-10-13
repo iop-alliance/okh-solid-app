@@ -125,16 +125,14 @@ const ProjectDetails: FunctionComponent<{}> = () => {
             <ListGroup variant="flush">
               <ListGroupItem><strong>Version:</strong> {project.version}</ListGroupItem>
               <ListGroupItem><strong>Licensor:</strong> {project.licensor}</ListGroupItem>
-              <ListGroupItem>
+              {project.spdxLicense && <ListGroupItem>
                 <strong>License:</strong>{' '}
-                { /* @ts-ignore */}
                 <a href={project.spdxLicense['@id']} target="_blank" rel="noreferrer">{project.spdxLicense['@id']}</a>
-              </ListGroupItem>
-              <ListGroupItem>
+              </ListGroupItem>}
+              {project.repo && <ListGroupItem>
                 <strong>Original repository:</strong>{' '}
-                { /* @ts-ignore */}
                 <a href={project.repo['@id']} target="_blank" rel="noreferrer">{project.repo['@id']}</a>
-              </ListGroupItem>
+              </ListGroupItem>}
             </ListGroup>
           </div>
           <div className='mt-3'>
@@ -152,9 +150,7 @@ const ProjectDetails: FunctionComponent<{}> = () => {
           </div>
         </Col>
         <Col md={4} className='order-0 order-md-1'>
-          { /* @ts-ignore */ }
           {project.hasImage && project.hasImage.length > 0 && <Image src={project.hasImage?.[0].fileUrl?.['@id']} width="100%" className='mt-3 mt-md-0' />}
-
         </Col>
       </Row>
 

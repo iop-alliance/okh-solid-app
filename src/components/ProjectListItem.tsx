@@ -28,7 +28,6 @@ const ProjectListItem: FunctionComponent<ProjectListItemProps> = ({ module }) =>
             </Card.Body>
           </Col>
           <Col md={4} className='p-0 order-1 order-md-2'>
-            { /* @ts-ignore */ }
             {module.hasImage && module.hasImage.length > 0 && <Card.Img src={module.hasImage?.[0].fileUrl?.['@id']} style={{ objectFit: "cover", height: "250px" }} />}
           </Col>
         </Row>

@@ -215,7 +215,7 @@ okhs:File EXTRA a {
       // rdfs:comment "Label for this object";
     okh:fileFormat xsd:string?
       // rdfs:comment "File extension. For example 'JPG'";
-    okh:fileUrl IRI?
+    okh:fileUrl IRI
       // rdfs:comment "The url of the file";
     okh:permaURL xsd:string?
       // rdfs:comment "A permanent url for the file";
