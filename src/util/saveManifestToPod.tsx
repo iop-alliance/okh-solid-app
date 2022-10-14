@@ -4,7 +4,10 @@ import { File } from "../ldo/okhProject.typings";
 import { namedNode } from '@rdfjs/data-model';
 import { Session } from "@inrupt/solid-client-authn-browser";
 import { setAcl } from "./aclUtils";
-import corsFetch from "../util/corsFetch";
+import corsFetch from "./corsFetch";
+import { ModuleShapeType } from "../ldo/okhProject.shapeTypes";
+import isValid from "./isValid";
+import { Module } from "../ldo/okhProject.typings";
 
 export default async function saveManifestToPod (
   rawTurtle: string,
@@ -20,7 +23,7 @@ export default async function saveManifestToPod (
     namedNode('https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#Module')
   ).toArray().map((quad) => quad.subject);
   const module = await ModuleFactory.parse(moduleSubjects[0].value, rawTurtle);
-  if (true /* await module.$isValid() */) {
+  if (isValid<Module>(module, ModuleShapeType)) {
     const profileUrl = new URL(session.webId as string);
     const projectContainer = `${profileUrl.origin}/okh/${encodeURIComponent(module.label || 'someProject')}/`;
     const projectUrl = `${projectContainer}index.ttl`;
