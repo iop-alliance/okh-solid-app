@@ -65,10 +65,10 @@ const LoginSolid: FunctionComponent<{}> = () => {
     <>
       <Row className='pt-3'>
         <Col md={6} className='pe-md-3'>
-          <h1>Store your hardware project files on your Solid Pod, not with a company</h1>
-          <h3 className='mt-4'>
+          <h1>Store your hardware project data and files on your Solid Pod, not with a company</h1>
+          <h4 className='mt-4'>
             Visit the <Link to="/about">About</Link> page to learn more about this app.
-          </h3>
+          </h4>
         </Col>
         <Col md={6} className='ps-md-3'>
           <hr className='d-sm-block d-md-none' />
