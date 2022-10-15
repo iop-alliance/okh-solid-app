@@ -19,9 +19,9 @@ We, at the <a target="_blank" rel="noreferrer" href="https://www.internetofprodu
 of Production Alliance</a> are developing those connections.
 
 The <a target="_blank" rel="noreferrer" href="https://www.internetofproduction.org/open-know-how">Open
-Know-How (OKH)</a> is a unique standard that allows for specificying the necessary data fields to 
-describe hardware project metadata and identify project files for extraction, bundling, and moving 
-between platforms.
+Know-How (OKH)</a> specification is a unique standard that allows for describing the necessary data 
+fields for hardware project metadata and identifying project files for extraction, bundling, and 
+moving between platforms.
 
 The Solid ecosystem and protocols are an ideal way of storing and sharing project files, and this 
 app addresses the specific needs of makers and designers for decentralised storing of hardware 
