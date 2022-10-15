@@ -66,16 +66,16 @@ const Dashboard:FunctionComponent<{}> = () => {
       </Alert>
       <Row>
         <Col className='d-flex mb-3'>
-          <h1 className='me-auto'>OKH Projects</h1>
+          <h1 className='me-auto'>Projects</h1>
           <Button variant="outline-success" onClick={handleShowForm}>
-            <Plus />Add OKH Project
+            <Plus />Add Project
           </Button>
         </Col>
       </Row>
 
       <Modal show={showForm} onHide={handleCloseForm} size="lg">
         <Modal.Header closeButton>
-          <Modal.Title>Add an OKH Project Manifest</Modal.Title>
+          <Modal.Title>Add Project using OKH Manifest</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <AddManifestForms 
@@ -90,12 +90,12 @@ const Dashboard:FunctionComponent<{}> = () => {
       {/* <Row xs={1} md={2} lg={3} className='g-3'> */}
       <Row>
         {!modules.length &&
-          <p>You don't have any OKH Projects in your Pod!
+          <p>You don't have any projects in your Pod!
             <Button variant="outline-primary" onClick={handleShowForm}
               style={{ border: "none", verticalAlign: "baseline", textDecoration: "underline" }} 
               className='px-1 py-0'
               >
-              Add an OKH Project manifest
+              Add Project using OKH manifest
             </Button>
             to get started.</p>
         }
