@@ -91,9 +91,9 @@ conceptualised the app and defines the functionality. He is also actively involv
 app's functionality and is responsible for the design and implemention of the user interface (so 
 please reach out to him if you have any suggestions or complaints about it 🙂). <span 
 style="color: #acacac;">&nbsp;|&nbsp;</span> <a target="_blank" rel="noreferrer" 
-href="https://twitter.com/lurnid"><img alt="Twiiter Logo" src="/twitter-logo.png" width="24"></a>
+href="https://twitter.com/lurnid"><img alt="Twiiter Logo" src="/images/twitter-logo.png" width="24"></a>
 <span style="color: #acacac;">&nbsp;|&nbsp;</span> <a target="_blank" rel="noreferrer" 
-href="https://www.linkedin.com/in/mwardeh"><img alt="Linked In Logo" src="/li-logo.png" width="24"></a>
+href="https://www.linkedin.com/in/mwardeh"><img alt="Linked In Logo" src="/images/li-logo.png" width="24"></a>
 
 **Sarah Hutton**: Research and Community Engagement Lead  at the <a target="_blank" 
 rel="noreferrer" href="https://www.internetofproduction.org/">Internet of Production Alliance</a>, 
@@ -103,10 +103,10 @@ Success Research</a>. Sarah ensures that we have a research-led understanding of
 requirements and the use-cases we're solving for. She designs and conducts the user testing which 
 helps keep us on the right track to building something that the community will not only find useful, 
 but also enjoy using 🤩. <span style="color: #acacac;">&nbsp;|&nbsp;</span> <a target="_blank" 
-rel="noreferrer" href="https://twitter.com/schutton"><img alt="Twitter Logo" src="/twitter-logo.png"
+rel="noreferrer" href="https://twitter.com/schutton"><img alt="Twitter Logo" src="/images/twitter-logo.png"
 width="24"></a>
 <span style="color: #acacac;">&nbsp;|&nbsp;</span> <a target="_blank" rel="noreferrer" 
-href="https://www.linkedin.com/in/sarahhutton"><img alt="Linked In Logo" src="/li-logo.png" width="24"></a>
+href="https://www.linkedin.com/in/sarahhutton"><img alt="Linked In Logo" src="/images/li-logo.png" width="24"></a>
 
 **Jackson Morgan:** Runs <a target="_blank" rel="noreferrer" href="https://www.o.team/">O.team</a>, 
 a freelance dev shop for Solid, the decentralized web platform. He also contributes to Solid's open 
@@ -122,7 +122,7 @@ This project was made possible thorugh the generous support of:
 <div class="row mb-4">
   <div class="col-md-3">
     <img alt="Logo of the Next Generation Internet Data Portability and Services Incubator"
-      src="/ngi-dapsi-logo.png" class="w-100">
+      src="/images/ngi-dapsi-logo.png" class="w-100">
   </div>
   <div class="col-md-9">
     <strong>NGI-DAPSI:</strong> this project was funded by a grant from the 
@@ -138,7 +138,7 @@ This project was made possible thorugh the generous support of:
 <div class="row">
   <div class="col-md-3">
     <img alt="Logo of the Internet of Production Alliance"
-      src="/iopa-logo.png" class="w-100">
+      src="/images/iopa-logo.png" class="w-100">
   </div>
   <div class="col-md-9">
     <strong>IOPA:</strong> The 

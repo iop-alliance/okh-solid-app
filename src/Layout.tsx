@@ -26,7 +26,7 @@ function Layout() {
           <Link to="/" className='navbar-brand'>
             <img
                 alt=""
-                src="/okh-solid-logo.png"
+                src="/images/okh-solid-logo.png"
                 width="30"
                 height="30"
                 className="d-inline-block align-top"
