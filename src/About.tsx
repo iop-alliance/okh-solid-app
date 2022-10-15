@@ -95,11 +95,6 @@ href="https://twitter.com/lurnid"><img alt="Twiiter Logo" src="/twitter-logo.png
 <span style="color: #acacac;">&nbsp;|&nbsp;</span> <a target="_blank" rel="noreferrer" 
 href="https://www.linkedin.com/in/mwardeh"><img alt="Linked In Logo" src="/li-logo.png" width="24"></a>
 
-**Jackson Morgan:** Runs <a target="_blank" rel="noreferrer" href="https://www.o.team/">O.team</a>, 
-a freelance dev shop for Solid, the decentralized web platform. He also contributes to Solid's open 
-source specs and devtools. Jackson helps guide us through the ins and outs of the Solid specifications
-and protocols, and implements the Solid-related functionality in the app.
-
 **Sarah Hutton**: Research and Community Engagement Lead  at the <a target="_blank" 
 rel="noreferrer" href="https://www.internetofproduction.org/">Internet of Production Alliance</a>, 
 and Research Affiliate at <a target="_blank" rel="noreferrer" 
@@ -112,6 +107,11 @@ rel="noreferrer" href="https://twitter.com/schutton"><img alt="Twitter Logo" src
 width="24"></a>
 <span style="color: #acacac;">&nbsp;|&nbsp;</span> <a target="_blank" rel="noreferrer" 
 href="https://www.linkedin.com/in/sarahhutton"><img alt="Linked In Logo" src="/li-logo.png" width="24"></a>
+
+**Jackson Morgan:** Runs <a target="_blank" rel="noreferrer" href="https://www.o.team/">O.team</a>, 
+a freelance dev shop for Solid, the decentralized web platform. He also contributes to Solid's open 
+source specs and devtools. Jackson helps guide us through the ins and outs of the Solid specifications
+and protocols, and implements the Solid-related functionality in the app.
 
 <hr class="border border-secondary opacity-25 w-75 mx-auto mt-4 mb-3">
 
