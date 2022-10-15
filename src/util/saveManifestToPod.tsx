@@ -23,7 +23,7 @@ export default async function saveManifestToPod (
     namedNode('https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#Module')
   ).toArray().map((quad) => quad.subject);
   const module = await ModuleFactory.parse(moduleSubjects[0].value, rawTurtle);
-  if (isValid<Module>(module, ModuleShapeType)) {
+  // if (isValid<Module>(module, ModuleShapeType)) {
     const profileUrl = new URL(session.webId as string);
     const projectContainer = `${profileUrl.origin}/okh/${encodeURIComponent(module.label || 'someProject')}/`;
     const projectUrl = `${projectContainer}index.ttl`;
@@ -85,7 +85,7 @@ export default async function saveManifestToPod (
       );
     }
   }
-}
+// }
 
 const moduleFileFields = [
   'hasReadme',
