@@ -160,7 +160,7 @@ const ProjectDetails: FunctionComponent<{}> = () => {
         </Modal.Header>
         <Modal.Body>Are you sure you want to remove this project from your Pod?</Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary-outline" onClick={handleCloseDeleteConfirm} className="me-auto">
+          <Button variant="outline-secondary" onClick={handleCloseDeleteConfirm} className="me-auto">
             I want to keep the project
           </Button>
           <Button variant="danger" onClick={deleteProject}>
