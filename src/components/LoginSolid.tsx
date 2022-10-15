@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
+import Image from 'react-bootstrap/Image';
+import Modal from 'react-bootstrap/Modal';
 import Row from 'react-bootstrap/Row';
 
 interface IProviderData {
@@ -41,6 +43,10 @@ const LoginSolid: FunctionComponent<{}> = () => {
   const { login } = useAuth();
 
   const [oidcIssuer, setOidcIssuer] = useState('');
+  const [showAuthorizationConfirm, setShowAuthorizationConfirm] = useState(false)
+
+  const handleCloseAuthorizationConfirm = () => setShowAuthorizationConfirm(false);
+  const handleShowAuthorizationConfirm = () => setShowAuthorizationConfirm(true);
 
   const onSubmit = useCallback<FormEventHandler<HTMLFormElement>>(async (e) => {
     e.preventDefault();
@@ -88,7 +94,10 @@ const LoginSolid: FunctionComponent<{}> = () => {
                   <Col md={6}>
                     <Button 
                       variant="primary" className='rounded w-100' 
-                      onClick={() => loginCallBack(provider.issuer)}>
+                      onClick={() => {
+                        setOidcIssuer(provider.issuer);
+                        handleShowAuthorizationConfirm();
+                      }}>
                         Log In
                     </Button>
                   </Col>
@@ -116,6 +125,25 @@ const LoginSolid: FunctionComponent<{}> = () => {
           </Form>
         </Col>
       </Row>
+
+      <Modal show={showAuthorizationConfirm} onHide={handleCloseAuthorizationConfirm} size="lg">
+        <Modal.Header closeButton />
+        <Modal.Body>
+          If you see the screen below, make sure that the default permissions as shown in the screenshot 
+          below are selected. This will allow the OKH Solid app to add and manage the data and files 
+          related to the projects you want to store in your Pod.
+          <Image src="/images/solid-authorize.png" fluid className='border mt-3' />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="outline-secondary" onClick={handleCloseAuthorizationConfirm} className="me-auto">
+            Back to Issuer Selection
+          </Button>
+          <Button variant="primary" onClick={() => loginCallBack(oidcIssuer)}>
+            OK, Continue to Login
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
     </>
   )
 };
