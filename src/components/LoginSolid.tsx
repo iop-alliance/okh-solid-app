@@ -63,7 +63,7 @@ const LoginSolid: FunctionComponent<{}> = () => {
 
   return (
     <>
-      <Row>
+      <Row className='pt-3'>
         <Col md={6} className='pe-md-3'>
           <h1>Store your hardware project files on your Solid Pod, not with a company</h1>
           <h3 className='mt-4'>
