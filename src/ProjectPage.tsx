@@ -140,6 +140,10 @@ const ProjectDetails: FunctionComponent<{}> = () => {
               {project.documentationLanguage && <ListGroupItem>
                 <strong>Documentation Language:</strong> {project.documentationLanguage}
               </ListGroupItem>}
+              {  project.technologyReadinessLevel && <ListGroupItem>
+                <strong>Technology Readiness Level:</strong>{' '}
+                <a href={project.technologyReadinessLevel['@id']} target="_blank" rel="noreferrer">{project.technologyReadinessLevel['@id']}</a>
+              </ListGroupItem>}
             </ListGroup>
           </div>
           <div className='mt-3'>
