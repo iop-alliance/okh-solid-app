@@ -18,6 +18,7 @@ import ReactLoading from 'react-loading';
 import { ArrowLeft } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
 import { FiCopy } from 'react-icons/fi';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 const ProjectDetails: FunctionComponent<{}> = () => {
   const { projectId } = useParams<"projectId">();
@@ -105,16 +106,19 @@ const ProjectDetails: FunctionComponent<{}> = () => {
       </Row>
       <Row>
         <Col md={8} className='order-1 order-md-0'>
-          <div>
-            <a href={projectId}>Link to manifest</a>
+          <div className='mb-3'>
+            <a href={projectId}>Link to share the manifest</a>
             <OverlayTrigger
               placement="top"
               delay={{ show: 250, hide: 400 }}
               overlay={renderTooltip}
               >
-              <span>
-                <FiCopy size="1.25rem" />
-              </span>
+              { /* @ts-ignore */ }
+              <CopyToClipboard text={projectId}>
+                <span role="button">
+                  {' '}<FiCopy size="1.25rem" />
+                </span>
+              </CopyToClipboard>
             </OverlayTrigger>
           </div>
           <div>
@@ -132,6 +136,9 @@ const ProjectDetails: FunctionComponent<{}> = () => {
               {project.repo && <ListGroupItem>
                 <strong>Original repository:</strong>{' '}
                 <a href={project.repo['@id']} target="_blank" rel="noreferrer">{project.repo['@id']}</a>
+              </ListGroupItem>}
+              {project.documentationLanguage && <ListGroupItem>
+                <strong>Documentation Language:</strong> {project.documentationLanguage}
               </ListGroupItem>}
             </ListGroup>
           </div>
