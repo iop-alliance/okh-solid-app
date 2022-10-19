@@ -8,10 +8,8 @@
     "@inrupt/solid-client": "1.6.0",
     "@inrupt/solid-client-authn-browser": "^1.12.2",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
-    "@shexjs/validator": "1.0.0-alpha.21",
-    "@shexjs/neighborhood-rdfjs": "1.0.0-alpha.24",
-    "@shexjs/util": "1.0.0-alpha.21",
-    "@shexjs/visitor": "1.0.0-alpha.21",
+    "@shexjs/neighborhood-rdfjs": "^1.0.0-alpha.24",
+    "@shexjs/validator": "^1.0.0-alpha.24",
     "@svgr/webpack": "^5.5.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -107,8 +105,8 @@
   },
   "devDependencies": {
     "@types/jsonld": "^1.5.6",
-    "@types/shexj": "2.1.1",
-    "ldo-cli": "0.1.4"
+    "@types/shexj": "^2.1.3",
+    "ldo-cli": "^2.0.0"
   },
   "jest": {
     "roots": [

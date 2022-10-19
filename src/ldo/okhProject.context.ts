@@ -25,6 +25,7 @@ export const okhProjectContext: ContextDefinition = {
   compilesWith: {
     "@id":
       "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#compilesWith",
+    "@type": "@id",
     "@container": "@set",
   },
   hasImage: {
@@ -42,16 +43,18 @@ export const okhProjectContext: ContextDefinition = {
   fileUrl: {
     "@id":
       "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#fileUrl",
+    "@type": "@id",
   },
   permaURL: {
     "@id":
       "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#permaURL",
-    "@type": "http://www.w3.org/2001/XMLSchema#string",
+    "@type": "@id",
   },
   Image: "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#Image",
   relatedTsDC: {
     "@id":
       "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#relatedTsDC",
+    "@type": "@id",
     "@container": "@set",
   },
   Module:
@@ -91,6 +94,7 @@ export const okhProjectContext: ContextDefinition = {
   forkOf: {
     "@id":
       "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#forkOf",
+    "@type": "@id",
     "@container": "@set",
   },
   versionOf: {
@@ -113,14 +117,17 @@ export const okhProjectContext: ContextDefinition = {
   organization: {
     "@id":
       "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#organization",
+    "@type": "@id",
   },
   spdxLicense: {
     "@id":
       "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#spdxLicense",
+    "@type": "@id",
   },
   alternativeLicense: {
     "@id":
       "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#alternativeLicense",
+    "@type": "@id",
     "@container": "@set",
   },
   technologyReadinessLevel: {
@@ -149,16 +156,19 @@ export const okhProjectContext: ContextDefinition = {
   attestation: {
     "@id":
       "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#attestation",
+    "@type": "@id",
     "@container": "@set",
   },
   hasPublication: {
     "@id":
       "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#hasPublication",
+    "@type": "@id",
     "@container": "@set",
   },
   cpcPatentClass: {
     "@id":
       "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#cpcPatentClass",
+    "@type": "@id",
     "@container": "@set",
   },
   function: {
@@ -199,11 +209,13 @@ export const okhProjectContext: ContextDefinition = {
   productionMetadata: {
     "@id":
       "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#productionMetadata",
+    "@type": "@id",
     "@container": "@set",
   },
   smallestToleranceClass: {
     "@id":
       "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#smallestToleranceClass",
+    "@type": "@id",
   },
   hasManifestFile: {
     "@id":
@@ -292,6 +304,7 @@ export const okhProjectContext: ContextDefinition = {
   release: {
     "@id":
       "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#release",
+    "@type": "@id",
     "@container": "@set",
   },
   installationGuide: {
@@ -314,14 +327,17 @@ export const okhProjectContext: ContextDefinition = {
   hardwareLicense: {
     "@id":
       "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl/oshwa=#hardwareLicense",
+    "@type": "@id",
   },
   softwareLicense: {
     "@id":
       "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl/oshwa=#softwareLicense",
+    "@type": "@id",
   },
   documentationLicense: {
     "@id":
       "https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl/oshwa=#documentationLicense",
+    "@type": "@id",
   },
   country: {
     "@id":

@@ -5,9 +5,9 @@ import { namedNode } from '@rdfjs/data-model';
 import { Session } from "@inrupt/solid-client-authn-browser";
 import { setAcl } from "./aclUtils";
 import corsFetch from "./corsFetch";
-import { ModuleShapeType } from "../ldo/okhProject.shapeTypes";
-import isValid from "./isValid";
-import { Module } from "../ldo/okhProject.typings";
+// import { ModuleShapeType } from "../ldo/okhProject.shapeTypes";
+// import isValid from "./isValid";
+// import { Module } from "../ldo/okhProject.typings";
 
 export default async function saveManifestToPod (
   rawTurtle: string,
@@ -23,7 +23,7 @@ export default async function saveManifestToPod (
     namedNode('https://github.com/OPEN-NEXT/OKH-LOSH/raw/master/OKH-LOSH.ttl#Module')
   ).toArray().map((quad) => quad.subject);
   const module = await ModuleFactory.parse(moduleSubjects[0].value, rawTurtle);
-  if (isValid<Module>(module, ModuleShapeType)) {
+  if (/* isValid<Module>(module, ModuleShapeType) */ true) {
     const profileUrl = new URL(session.webId as string);
     const projectContainer = `${profileUrl.origin}/okh/${encodeURIComponent(module.label || 'someProject')}/`;
     const projectUrl = `${projectContainer}index.ttl`;
@@ -32,25 +32,25 @@ export default async function saveManifestToPod (
     module['@id'] = projectUrl;
 
     // Save each document to a pod
-    // const filePromises: Promise<void>[] = [ 
-    //   saveFilesToPod(
-    //     module as unknown as Record<string, File[] | undefined>,
-    //     moduleFileFields,
-    //     projectContainer,
-    //     fetch
-    //   )
-    // ];
-    // if (module.hasComponent) {
-    //   module.hasComponent.forEach((part) => {
-    //     filePromises.push(saveFilesToPod(
-    //       part  as unknown as Record<string, File[] | undefined>,
-    //       partFileFields,
-    //       projectContainer,
-    //       fetch
-    //     ));
-    //   });
-    // }
-    // await Promise.all(filePromises);
+    const filePromises: Promise<void>[] = [ 
+      saveFilesToPod(
+        module as unknown as Record<string, File[] | undefined>,
+        moduleFileFields,
+        projectContainer,
+        fetch
+      )
+    ];
+    if (module.hasComponent) {
+      module.hasComponent.forEach((part) => {
+        filePromises.push(saveFilesToPod(
+          part  as unknown as Record<string, File[] | undefined>,
+          partFileFields,
+          projectContainer,
+          fetch
+        ));
+      });
+    }
+    await Promise.all(filePromises);
 
     // Save the index
     const response = await fetch(projectUrl, {
@@ -129,11 +129,11 @@ export async function saveFilesToPod(
         if (fileResponse.status === 200) {
           const saveFileResponse = await fetch(podFileUrl, {
             method: 'put',
-            body: fileResponse.body,
+            body: await fileResponse.blob(),
             headers: {
               slug: finalFileName
             },
-            duplex: 'half'
+            duplex: 'full'
           });
           if (saveFileResponse.status === 201) {
             console.log(`Successfully saved ${podFileUrl}`);

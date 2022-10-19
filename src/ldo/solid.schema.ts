@@ -10,193 +10,199 @@ export const solidSchema: Schema = {
   shapes: [
     {
       id: "http://www.w3.org/ns/lddps#Container",
-      type: "Shape",
-      expression: {
-        id: "http://www.w3.org/ns/lddps#ContainerShape",
-        type: "EachOf",
-        expressions: [
-          {
-            type: "TripleConstraint",
-            predicate: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
-            valueExpr: {
-              type: "NodeConstraint",
-              values: ["http://www.w3.org/ns/ldp#Container"],
+      type: "ShapeDecl",
+      shapeExpr: {
+        type: "Shape",
+        expression: {
+          id: "http://www.w3.org/ns/lddps#ContainerShape",
+          type: "EachOf",
+          expressions: [
+            {
+              type: "TripleConstraint",
+              predicate: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+              valueExpr: {
+                type: "NodeConstraint",
+                values: ["http://www.w3.org/ns/ldp#Container"],
+              },
+              min: 0,
+              max: 1,
+              annotations: [
+                {
+                  type: "Annotation",
+                  predicate: "http://www.w3.org/2000/01/rdf-schema#comment",
+                  object: {
+                    value: "A container on a Solid server",
+                  },
+                },
+              ],
             },
-            min: 0,
-            max: 1,
-            annotations: [
-              {
-                type: "Annotation",
-                predicate: "http://www.w3.org/2000/01/rdf-schema#comment",
-                object: {
-                  value: "A container on a Solid server",
-                },
+            {
+              type: "TripleConstraint",
+              predicate: "http://purl.org/dc/terms/modified",
+              valueExpr: {
+                type: "NodeConstraint",
+                datatype: "http://www.w3.org/2001/XMLSchema#string",
               },
-            ],
-          },
-          {
-            type: "TripleConstraint",
-            predicate: "http://purl.org/dc/terms/modified",
-            valueExpr: {
-              type: "NodeConstraint",
-              datatype: "http://www.w3.org/2001/XMLSchema#string",
+              min: 0,
+              max: 1,
+              annotations: [
+                {
+                  type: "Annotation",
+                  predicate: "http://www.w3.org/2000/01/rdf-schema#comment",
+                  object: {
+                    value: "Date modified",
+                  },
+                },
+              ],
             },
-            min: 0,
-            max: 1,
-            annotations: [
-              {
-                type: "Annotation",
-                predicate: "http://www.w3.org/2000/01/rdf-schema#comment",
-                object: {
-                  value: "Date modified",
+            {
+              type: "TripleConstraint",
+              predicate: "http://www.w3.org/ns/ldp#contains",
+              valueExpr: "http://www.w3.org/ns/lddps#Resource",
+              min: 0,
+              max: -1,
+              annotations: [
+                {
+                  type: "Annotation",
+                  predicate: "http://www.w3.org/2000/01/rdf-schema#comment",
+                  object: {
+                    value: "Defines a Solid Resource",
+                  },
                 },
-              },
-            ],
-          },
-          {
-            type: "TripleConstraint",
-            predicate: "http://www.w3.org/ns/ldp#contains",
-            valueExpr: "http://www.w3.org/ns/lddps#Resource",
-            min: 0,
-            max: -1,
-            annotations: [
-              {
-                type: "Annotation",
-                predicate: "http://www.w3.org/2000/01/rdf-schema#comment",
-                object: {
-                  value: "Defines a Solid Resource",
-                },
-              },
-            ],
-          },
-          {
-            type: "TripleConstraint",
-            predicate: "http://www.w3.org/ns/posix/stat#mtime",
-            valueExpr: {
-              type: "NodeConstraint",
-              datatype: "http://www.w3.org/2001/XMLSchema#decimal",
+              ],
             },
-            min: 0,
-            max: 1,
-            annotations: [
-              {
-                type: "Annotation",
-                predicate: "http://www.w3.org/2000/01/rdf-schema#comment",
-                object: {
-                  value: "?",
-                },
+            {
+              type: "TripleConstraint",
+              predicate: "http://www.w3.org/ns/posix/stat#mtime",
+              valueExpr: {
+                type: "NodeConstraint",
+                datatype: "http://www.w3.org/2001/XMLSchema#decimal",
               },
-            ],
-          },
-          {
-            type: "TripleConstraint",
-            predicate: "http://www.w3.org/ns/posix/stat#size",
-            valueExpr: {
-              type: "NodeConstraint",
-              datatype: "http://www.w3.org/2001/XMLSchema#integer",
+              min: 0,
+              max: 1,
+              annotations: [
+                {
+                  type: "Annotation",
+                  predicate: "http://www.w3.org/2000/01/rdf-schema#comment",
+                  object: {
+                    value: "?",
+                  },
+                },
+              ],
             },
-            min: 0,
-            max: 1,
-            annotations: [
-              {
-                type: "Annotation",
-                predicate: "http://www.w3.org/2000/01/rdf-schema#comment",
-                object: {
-                  value: "size of this container",
-                },
+            {
+              type: "TripleConstraint",
+              predicate: "http://www.w3.org/ns/posix/stat#size",
+              valueExpr: {
+                type: "NodeConstraint",
+                datatype: "http://www.w3.org/2001/XMLSchema#integer",
               },
-            ],
-          },
-        ],
+              min: 0,
+              max: 1,
+              annotations: [
+                {
+                  type: "Annotation",
+                  predicate: "http://www.w3.org/2000/01/rdf-schema#comment",
+                  object: {
+                    value: "size of this container",
+                  },
+                },
+              ],
+            },
+          ],
+        },
+        extra: ["http://www.w3.org/1999/02/22-rdf-syntax-ns#type"],
       },
-      extra: ["http://www.w3.org/1999/02/22-rdf-syntax-ns#type"],
     },
     {
       id: "http://www.w3.org/ns/lddps#Resource",
-      type: "Shape",
-      expression: {
-        id: "http://www.w3.org/ns/lddps#ResourceShape",
-        type: "EachOf",
-        expressions: [
-          {
-            type: "TripleConstraint",
-            predicate: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
-            valueExpr: {
-              type: "NodeConstraint",
-              values: ["http://www.w3.org/ns/ldp#Resource"],
-            },
-            min: 0,
-            max: 1,
-            annotations: [
-              {
-                type: "Annotation",
-                predicate: "http://www.w3.org/2000/01/rdf-schema#comment",
-                object: {
-                  value: "Any resource on a Solid server",
-                },
+      type: "ShapeDecl",
+      shapeExpr: {
+        type: "Shape",
+        expression: {
+          id: "http://www.w3.org/ns/lddps#ResourceShape",
+          type: "EachOf",
+          expressions: [
+            {
+              type: "TripleConstraint",
+              predicate: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+              valueExpr: {
+                type: "NodeConstraint",
+                values: ["http://www.w3.org/ns/ldp#Resource"],
               },
-            ],
-          },
-          {
-            type: "TripleConstraint",
-            predicate: "http://purl.org/dc/terms/modified",
-            valueExpr: {
-              type: "NodeConstraint",
-              datatype: "http://www.w3.org/2001/XMLSchema#string",
-            },
-            min: 0,
-            max: 1,
-            annotations: [
-              {
-                type: "Annotation",
-                predicate: "http://www.w3.org/2000/01/rdf-schema#comment",
-                object: {
-                  value: "Date modified",
+              min: 0,
+              max: 1,
+              annotations: [
+                {
+                  type: "Annotation",
+                  predicate: "http://www.w3.org/2000/01/rdf-schema#comment",
+                  object: {
+                    value: "Any resource on a Solid server",
+                  },
                 },
-              },
-            ],
-          },
-          {
-            type: "TripleConstraint",
-            predicate: "http://www.w3.org/ns/posix/stat#mtime",
-            valueExpr: {
-              type: "NodeConstraint",
-              datatype: "http://www.w3.org/2001/XMLSchema#decimal",
+              ],
             },
-            min: 0,
-            max: 1,
-            annotations: [
-              {
-                type: "Annotation",
-                predicate: "http://www.w3.org/2000/01/rdf-schema#comment",
-                object: {
-                  value: "?",
-                },
+            {
+              type: "TripleConstraint",
+              predicate: "http://purl.org/dc/terms/modified",
+              valueExpr: {
+                type: "NodeConstraint",
+                datatype: "http://www.w3.org/2001/XMLSchema#string",
               },
-            ],
-          },
-          {
-            type: "TripleConstraint",
-            predicate: "http://www.w3.org/ns/posix/stat#size",
-            valueExpr: {
-              type: "NodeConstraint",
-              datatype: "http://www.w3.org/2001/XMLSchema#integer",
+              min: 0,
+              max: 1,
+              annotations: [
+                {
+                  type: "Annotation",
+                  predicate: "http://www.w3.org/2000/01/rdf-schema#comment",
+                  object: {
+                    value: "Date modified",
+                  },
+                },
+              ],
             },
-            min: 0,
-            max: 1,
-            annotations: [
-              {
-                type: "Annotation",
-                predicate: "http://www.w3.org/2000/01/rdf-schema#comment",
-                object: {
-                  value: "size of this container",
-                },
+            {
+              type: "TripleConstraint",
+              predicate: "http://www.w3.org/ns/posix/stat#mtime",
+              valueExpr: {
+                type: "NodeConstraint",
+                datatype: "http://www.w3.org/2001/XMLSchema#decimal",
               },
-            ],
-          },
-        ],
+              min: 0,
+              max: 1,
+              annotations: [
+                {
+                  type: "Annotation",
+                  predicate: "http://www.w3.org/2000/01/rdf-schema#comment",
+                  object: {
+                    value: "?",
+                  },
+                },
+              ],
+            },
+            {
+              type: "TripleConstraint",
+              predicate: "http://www.w3.org/ns/posix/stat#size",
+              valueExpr: {
+                type: "NodeConstraint",
+                datatype: "http://www.w3.org/2001/XMLSchema#integer",
+              },
+              min: 0,
+              max: 1,
+              annotations: [
+                {
+                  type: "Annotation",
+                  predicate: "http://www.w3.org/2000/01/rdf-schema#comment",
+                  object: {
+                    value: "size of this container",
+                  },
+                },
+              ],
+            },
+          ],
+        },
+        extra: ["http://www.w3.org/1999/02/22-rdf-syntax-ns#type"],
       },
-      extra: ["http://www.w3.org/1999/02/22-rdf-syntax-ns#type"],
     },
   ],
 };

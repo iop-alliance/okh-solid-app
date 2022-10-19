@@ -524,7 +524,9 @@ export interface File {
   /**
    * A permanent url for the file
    */
-  permaURL?: string;
+  permaURL?: {
+    "@id": string;
+  };
 }
 
 /**
@@ -561,7 +563,9 @@ export interface ManifestFile {
   /**
    * A permanent url for the file
    */
-  permaURL?: string;
+  permaURL?: {
+    "@id": string;
+  };
   /**
    * version of OKH specification the metadata is following (different version → different data fields)
    */
@@ -602,7 +606,9 @@ export interface Readme {
   /**
    * A permanent url for the file
    */
-  permaURL?: string;
+  permaURL?: {
+    "@id": string;
+  };
 }
 
 /**
@@ -639,7 +645,9 @@ export interface ContributionGuide {
   /**
    * A permanent url for the file
    */
-  permaURL?: string;
+  permaURL?: {
+    "@id": string;
+  };
 }
 
 /**
@@ -676,7 +684,9 @@ export interface Image {
   /**
    * A permanent url for the file
    */
-  permaURL?: string;
+  permaURL?: {
+    "@id": string;
+  };
 }
 
 /**
@@ -713,7 +723,9 @@ export interface BoM {
   /**
    * A permanent url for the file
    */
-  permaURL?: string;
+  permaURL?: {
+    "@id": string;
+  };
 }
 
 /**
@@ -750,7 +762,9 @@ export interface SourceFile {
   /**
    * A permanent url for the file
    */
-  permaURL?: string;
+  permaURL?: {
+    "@id": string;
+  };
 }
 
 /**
@@ -787,7 +801,9 @@ export interface ExportFile {
   /**
    * A permanent url for the file
    */
-  permaURL?: string;
+  permaURL?: {
+    "@id": string;
+  };
 }
 
 /**
@@ -824,7 +840,9 @@ export interface AuxiliaryFile {
   /**
    * A permanent url for the file
    */
-  permaURL?: string;
+  permaURL?: {
+    "@id": string;
+  };
 }
 
 /**
@@ -861,7 +879,9 @@ export interface ManufacturingInstructions {
   /**
    * A permanent url for the file
    */
-  permaURL?: string;
+  permaURL?: {
+    "@id": string;
+  };
 }
 
 /**
@@ -898,7 +918,9 @@ export interface UserManual {
   /**
    * A permanent url for the file
    */
-  permaURL?: string;
+  permaURL?: {
+    "@id": string;
+  };
 }
 
 /**
