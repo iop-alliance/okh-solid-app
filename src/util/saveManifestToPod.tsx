@@ -132,8 +132,7 @@ export async function saveFilesToPod(
             body: await fileResponse.blob(),
             headers: {
               slug: finalFileName
-            },
-            duplex: 'full'
+            }
           });
           if (saveFileResponse.status === 201) {
             console.log(`Successfully saved ${podFileUrl}`);
