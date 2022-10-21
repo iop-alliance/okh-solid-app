@@ -4,6 +4,7 @@ import { useAuth } from '../businessLogic/authGlobalHook';
 import Form from 'react-bootstrap/Form';
 import saveManifestToPod from "../util/saveManifestToPod";
 import corsFetch from "../util/corsFetch";
+import PublicTooltip from './PublicTooltip'
 
 interface ManifestUrlFormProps {
   onComplete: () => void;
@@ -47,13 +48,16 @@ const ManifestUrlForm: FunctionComponent<ManifestUrlFormProps> = ({ onComplete }
             value={manifestUrl}
           />
       </Form.Group>
-      <Form.Check
+      <div className="d-flex align-items-start">
+        <Form.Check
           type="checkbox"
           checked={isPublic}
-          label="Make the manifest public"
-          className="mb-3"
+          label="Make the project public"
+          className="mb-3 me-1"
           onChange={(e) => setIsPublic(!isPublic)}
-        />
+          />
+        <PublicTooltip />
+      </div>
       <Button variant="primary" type="submit">
         Submit
       </Button>
