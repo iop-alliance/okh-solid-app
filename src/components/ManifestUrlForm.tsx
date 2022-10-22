@@ -4,7 +4,9 @@ import { useAuth } from '../businessLogic/authGlobalHook';
 import Form from 'react-bootstrap/Form';
 import saveManifestToPod from "../util/saveManifestToPod";
 import corsFetch from "../util/corsFetch";
-import PublicTooltip from './PublicTooltip'
+import PublicTooltip from './PublicTooltip';
+import ReactLoading from 'react-loading';
+
 
 interface ManifestUrlFormProps {
   onComplete: () => void;
@@ -13,6 +15,7 @@ interface ManifestUrlFormProps {
 const ManifestUrlForm: FunctionComponent<ManifestUrlFormProps> = ({ onComplete }) => {
   const [manifestUrl, setManifestUrl] = useState('');
   const [isPublic, setIsPublic] = useState(true);
+  const [showProgressBar, setShowProgressBar] = useState(false);
   const { fetch, session } = useAuth();
 
   const onSubmit = useCallback<FormEventHandler<HTMLFormElement>>(async (e) => {
@@ -24,7 +27,9 @@ const ManifestUrlForm: FunctionComponent<ManifestUrlFormProps> = ({ onComplete }
     }
     const rawTurtle = await response.text();
     try {
+      setShowProgressBar(true);
       await saveManifestToPod(rawTurtle, session, fetch, isPublic);
+      setShowProgressBar(false);
       onComplete();
     } catch (err: unknown) {
       if ((err as Error).message) {
@@ -58,9 +63,19 @@ const ManifestUrlForm: FunctionComponent<ManifestUrlFormProps> = ({ onComplete }
           />
         <PublicTooltip />
       </div>
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
+      <div className="d-flex">
+          <Button variant="primary" type="submit" disabled={showProgressBar}>
+            {showProgressBar ? 'Loading project…' : 'Add Project'}
+          </Button>
+          {showProgressBar && <ReactLoading
+            height={38}
+            width={38}
+            type={"bars"}
+            color={"#0d6efd"}
+            className={"ms-2"}
+          />
+          }
+        </div>
     </Form>
   )
 }
