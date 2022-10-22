@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import useAsyncEffect from 'use-async-effect';
 import { ModuleFactory } from './ldo/okhProject.ldoFactory';
 import { Module } from './ldo/okhProject.typings';
+import Accordion from 'react-bootstrap/Accordion';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
@@ -13,12 +14,14 @@ import Row from 'react-bootstrap/Row';
 import Tooltip from 'react-bootstrap/Tooltip';
 import { ContainerFactory } from './ldo/solid.ldoFactory';
 import PartsList from './components/PartsList';
-import { ListGroup, ListGroupItem } from 'react-bootstrap';
+import { Container, ListGroup, ListGroupItem } from 'react-bootstrap';
 import ReactLoading from 'react-loading';
 import { ArrowLeft } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
 import { FiCopy } from 'react-icons/fi';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import ReactMarkdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
 
 const ProjectDetails: FunctionComponent<{}> = () => {
   const { projectId } = useParams<"projectId">();
@@ -26,6 +29,8 @@ const ProjectDetails: FunctionComponent<{}> = () => {
   const { session, fetch } = useAuth();
   const navigate = useNavigate();
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
+  const [readmeText, setReadmeText] = useState("")
+  const [showReadme, setShowReadme] = useState(false)
 
   const handleCloseDeleteConfirm = () => setShowDeleteConfirm(false);
   const handleShowDeleteConfirm = () => setShowDeleteConfirm(true);
@@ -66,14 +71,21 @@ const ProjectDetails: FunctionComponent<{}> = () => {
     let project: Module = {};
     if (response.status === 200) {
       const rawText = await response.text();
-      
+
       project = await ModuleFactory.parse(projectId, rawText, { baseIRI: projectId });
+
+      if (project.hasReadme && project.hasReadme.length > 0) {
+        const readmeUrl = new URL(project.hasReadme?.[0].fileUrl['@id'] as string);
+        const readmeResponse = await fetch(readmeUrl);
+        if (readmeResponse.status === 200) {
+          setReadmeText(await readmeResponse.text())
+        }
+      }
     } else {
       // TODO: Handle Error
       throw new Error('Something happened');
     }
-    // console.log(project.source);
-    
+        
     setProject(project);
   }, [session, projectId]);
 
@@ -81,6 +93,30 @@ const ProjectDetails: FunctionComponent<{}> = () => {
     return (
       <ReactLoading type="spin" color="#454545" className='mx-auto mt-5' height={100} width={100} />
     );
+  }
+  
+  const maybeDisplayReadme = () => {
+    if (project.hasReadme && project.hasReadme.length > 0) {
+      return (
+        <>
+          <Accordion id="readme" className='border rounded'>
+              <Accordion.Header onClick={() => setShowReadme(!showReadme)}>
+                {showReadme ? "" : "Show Project Readme"}
+              </Accordion.Header>
+              <Accordion.Collapse eventKey="0" in={showReadme}>
+                <Accordion.Body>
+                  <ReactMarkdown rehypePlugins={[rehypeRaw]} children={readmeText} />
+                </Accordion.Body>
+              </Accordion.Collapse>
+          </Accordion>
+          <hr />
+        </>
+      )
+    }
+    return <>
+      <p>This project's manifest doesn't include a Readme</p>
+      <hr />
+    </>
   }
 
   const maybeDisplayPartsList = () => {
@@ -145,6 +181,11 @@ const ProjectDetails: FunctionComponent<{}> = () => {
                 <a href={project.technologyReadinessLevel['@id']} target="_blank" rel="noreferrer">{project.technologyReadinessLevel['@id']}</a>
               </ListGroupItem>}
             </ListGroup>
+            <hr />
+          </div>
+          <div className='mt-3'>
+            <h4>Readme</h4>
+            { maybeDisplayReadme() }
           </div>
           <div className='mt-3'>
             <h4>Parts</h4>
