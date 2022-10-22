@@ -1,8 +1,7 @@
-import { FunctionComponent, useCallback, useState } from "react";
+import { FunctionComponent, useCallback } from "react";
 import { Tab, Tabs } from "react-bootstrap";
 import ManifestUploadForm from "./ManifestUploadForm";
 import ManifestUrlForm from "./ManifestUrlForm";
-import { useAuth } from '../businessLogic/authGlobalHook';
 
 interface AddManifestFormsProps {
   setProjectsLoaded: any;

@@ -1,5 +1,4 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
-import { FoafProfile } from "../ldo/foafProfile.typings";
 import { FoafProfileFactory } from "../ldo/foafProfile.ldoFactory";
 import { useAuth } from "../businessLogic/authGlobalHook";
 import useAsyncEffect from 'use-async-effect';
@@ -42,7 +41,7 @@ const ProfileDropdown: FunctionComponent<{}> = () => {
             const containerExistsResponse = await fetch(applicationRoot);
             if (containerExistsResponse.status === 404) {
                 // Create root container if it doesn't exist
-                const createContainerResponse = await fetch(applicationRoot, {
+                await fetch(applicationRoot, {
                     method: "PUT",
                     headers: {
                         link: '<http://www.w3.org/ns/ldp#BasicContainer>; rel="type"'
