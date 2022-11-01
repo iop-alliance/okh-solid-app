@@ -31,8 +31,8 @@ function Layout() {
                 height="30"
                 className="d-inline-block align-top"
               />{' '}
-            OKH Solid App{' '}
-            <sub style={{fontSize: "67%"}}>[beta]</sub>
+            OKH Solid App
+            <sub style={{fontSize: "50%"}}>(beta)</sub>
           </Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav" className='justify-content-end'>
