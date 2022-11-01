@@ -25,10 +25,10 @@ const AddManifestForms:FunctionComponent<AddManifestFormsProps> = (
     <>
       <p>
         To add a project to your Solid Pod, you need to either enter a link 
-        to a valid OKH RDF manifest file, or upload one from your device.
+        to a valid OKH-LD manifest file, or upload one from your device.
       </p>
       <p>
-        Please select the appropiate tab below to add the OKH RDF manifest file.
+        Please select the appropiate tab below to add a project using an OKH-LD manifest file.
       </p>
       <Tabs defaultActiveKey="urlForm" className="mb-3">
         <Tab eventKey="urlForm" title="Add via URL" className="px-3">

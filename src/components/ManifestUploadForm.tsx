@@ -45,7 +45,7 @@ const ManifestUploadForm: FunctionComponent<ManifestUploadFormProps> = ({ onComp
     <div className="mb-4">
       <Form onSubmit={onSubmit}>
         <Form.Group className="mb-3" controlId="formUrl">
-          <Form.Label>Choose an OKH Manifest file:</Form.Label>
+          <Form.Label>Choose an OKH-LD Manifest file:</Form.Label>
           <Form.Control 
               type="file"
               onChange={e =>

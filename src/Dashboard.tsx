@@ -75,7 +75,7 @@ const Dashboard:FunctionComponent<{}> = () => {
 
       <Modal show={showForm} onHide={handleCloseForm} size="lg">
         <Modal.Header closeButton>
-          <Modal.Title>Add Project using OKH Manifest</Modal.Title>
+          <Modal.Title>Add Project using OKH-LD Manifest</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <AddManifestForms 
@@ -95,7 +95,7 @@ const Dashboard:FunctionComponent<{}> = () => {
               style={{ border: "none", verticalAlign: "baseline", textDecoration: "underline" }} 
               className='px-1 py-0'
               >
-              Add Project using OKH manifest
+              Add a project using an OKH-LD manifest
             </Button>
             to get started.</p>
         }
