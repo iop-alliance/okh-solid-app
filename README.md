@@ -1,11 +1,12 @@
+The app is deployed here for you to use:
+https://solid-app.internetofproduction.org/
 
-Project manifests can be found here:
+If you would like to explore some project manifests to use with the app, they can be found here:
 https://gitlab.opensourceecology.de/verein/projekte/losh-rdf/-/tree/main/RDF/
 
 -----------------------------------
 
-
-# Getting Started with Create React App
+# Running the app locally
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
