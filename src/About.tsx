@@ -80,6 +80,14 @@ interactivity of hardware projects towards enabling a decentralised manufacturin
 
 <hr class="border border-secondary opacity-25 w-75 mx-auto mt-4 mb-3">
 
+## Contribution
+
+This app's code is availalbe at <a target="_blank" rel="noreferer" 
+href="https://github.com/iop-alliance/okh-solid-app">https://github.com/iop-alliance/okh-solid-app</a>
+
+If you'd like to contribute to the codebase or in any other way, please get in touch with Max Wardeh at 
+max.wardeh@internetofproduction.org.
+
 ## OKH Solid App Team
 
 This app was developed with contributions from:
@@ -90,9 +98,7 @@ href="https://www.internetofproduction.org/">Internet of Production Alliance</a>
 conceptualised the app and defines the functionality. He is also actively involved in developing the 
 app's functionality and is responsible for the design and implemention of the user interface (so 
 please reach out to him if you have any suggestions or complaints about it 🙂). <span 
-style="color: #acacac;">&nbsp;|&nbsp;</span> <a target="_blank" rel="noreferrer" 
-href="https://twitter.com/lurnid"><img alt="Twiiter Logo" src="/images/twitter-logo.png" width="24"></a>
-<span style="color: #acacac;">&nbsp;|&nbsp;</span> <a target="_blank" rel="noreferrer" 
+style="color: #acacac;">&nbsp;|&nbsp;</span> <span style="color: #acacac;">&nbsp;|&nbsp;</span> <a target="_blank" rel="noreferrer" 
 href="https://www.linkedin.com/in/mwardeh"><img alt="Linked In Logo" src="/images/li-logo.png" width="24"></a>
 
 **Sarah Hutton**: Research and Community Engagement Lead  at the <a target="_blank" 
